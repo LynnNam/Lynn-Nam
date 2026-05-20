@@ -44,3 +44,57 @@ filterBtns.forEach((btn) => {
     });
   });
 });
+
+const projectModal = document.getElementById("project-modal");
+const sportsWatchCard = document.querySelector('[data-project="sports-watch"]');
+
+const sportsWatchImages = [
+  "images/sports-watch/01@2x.png",
+  "images/sports-watch/02@2x.png",
+  "images/sports-watch/03@2x.png",
+  "images/sports-watch/04@2x.png",
+];
+
+function preloadSportsWatchImages() {
+  sportsWatchImages.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+
+function openProjectModal() {
+  preloadSportsWatchImages();
+  projectModal.hidden = false;
+  projectModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  projectModal.querySelector(".project-modal-close").focus();
+}
+
+function closeProjectModal() {
+  projectModal.hidden = true;
+  projectModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  sportsWatchCard?.focus();
+}
+
+if (sportsWatchCard) {
+  sportsWatchCard.addEventListener("mouseenter", preloadSportsWatchImages, { once: true });
+  sportsWatchCard.addEventListener("focus", preloadSportsWatchImages, { once: true });
+  sportsWatchCard.addEventListener("click", openProjectModal);
+  sportsWatchCard.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openProjectModal();
+    }
+  });
+}
+
+projectModal.querySelectorAll("[data-close-modal]").forEach((el) => {
+  el.addEventListener("click", closeProjectModal);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !projectModal.hidden) {
+    closeProjectModal();
+  }
+});

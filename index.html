@@ -82,9 +82,17 @@
         </div>
 
         <div class="portfolio-grid">
-          <article class="project-card" data-category="wearable">
+          <article class="project-card project-card--clickable" data-category="wearable" data-project="sports-watch" tabindex="0" role="button" aria-label="查看运动健康腕表系列详情">
             <div class="project-visual">
-              <img src="images/sports-watch.jpg" alt="运动健康腕表系列产品设计" width="800" height="600" loading="lazy">
+              <img
+                src="images/sports-watch-cover.png"
+                srcset="images/sports-watch-cover.png 1x, images/sports-watch-cover@2x.png 2x"
+                alt="运动健康腕表系列产品设计"
+                width="1024"
+                height="840"
+                loading="lazy"
+                decoding="async">
+              <span class="project-view-hint">查看详情</span>
             </div>
             <div class="project-info">
               <span class="project-tag">智能手表</span>
@@ -166,6 +174,32 @@
   <footer class="footer">
     <p>© <span id="year"></span> Lynn Nam · Product Designer</p>
   </footer>
+
+  <div class="project-modal" id="project-modal" hidden aria-hidden="true">
+    <div class="project-modal-backdrop" data-close-modal></div>
+    <div class="project-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="project-modal-close" aria-label="关闭" data-close-modal>&times;</button>
+      <header class="project-modal-header">
+        <span class="project-tag">智能手表</span>
+        <h2 id="modal-title">运动健康腕表系列</h2>
+        <p class="project-modal-desc">轻量化表体与模块化表带系统，兼顾运动场景与日常佩戴。从表冠肌理、超薄机身到心率凸台与多材质表带，完整呈现 ID 与 CMF 设计细节。</p>
+      </header>
+      <div class="project-modal-gallery">
+        <figure class="project-modal-figure">
+          <img src="images/sports-watch/01.png" srcset="images/sports-watch/01.png 1x, images/sports-watch/01@2x.png 2x" alt="运动健康腕表：表冠切面肌理与超薄机身、心率凸台设计" width="1024" height="570" loading="eager" decoding="async">
+        </figure>
+        <figure class="project-modal-figure">
+          <img src="images/sports-watch/02.png" srcset="images/sports-watch/02.png 1x, images/sports-watch/02@2x.png 2x" alt="运动健康腕表：AirFlow 立体凹槽表带透气设计" width="1024" height="573" loading="eager" decoding="async">
+        </figure>
+        <figure class="project-modal-figure">
+          <img src="images/sports-watch/03.png" srcset="images/sports-watch/03.png 1x, images/sports-watch/03@2x.png 2x" alt="运动健康腕表：双色荔枝纹皮革表带商务场景" width="1024" height="574" loading="eager" decoding="async">
+        </figure>
+        <figure class="project-modal-figure">
+          <img src="images/sports-watch/04.png" srcset="images/sports-watch/04.png 1x, images/sports-watch/04@2x.png 2x" alt="运动健康腕表：经典相机灵感与精密机械质感" width="1024" height="575" loading="eager" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
