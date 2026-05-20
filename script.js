@@ -24,3 +24,23 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
     note.hidden = true;
   }, 4000);
 });
+
+const filterBtns = document.querySelectorAll(".filter-btn");
+const projectCards = document.querySelectorAll(".project-card");
+
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const filter = btn.dataset.filter;
+
+    filterBtns.forEach((b) => {
+      b.classList.toggle("active", b === btn);
+      b.setAttribute("aria-selected", b === btn ? "true" : "false");
+    });
+
+    projectCards.forEach((card) => {
+      const category = card.dataset.category;
+      const show = filter === "all" || category === filter;
+      card.classList.toggle("hidden", !show);
+    });
+  });
+});
