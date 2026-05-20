@@ -324,10 +324,15 @@ body {
 .project-visual {
   aspect-ratio: 4 / 3;
   background: var(--bg-alt);
+  overflow: hidden;
 }
 
-.project-visual--wearable-1 {
-  background: linear-gradient(145deg, #e8e8e8 0%, #d4d4d4 50%, #c8c8c8 100%);
+.project-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .project-visual--wearable-2 {
