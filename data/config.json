@@ -1,0 +1,340 @@
+{
+  "site": {
+    "name": "Lynn OS",
+    "owner": "Lynn",
+    "tagline": "你的每日信息工作台",
+    "logo": "images/lynn-nam-logo.png",
+    "logoAlt": "LYNN NAM industrial design",
+    "heroPortrait": "images/lynn-hero-portrait.png",
+    "heroPortraitAlt": "Lynn Nam ASCII portrait"
+  },
+  "hero": {
+    "brand": "LYNN NAM",
+    "top": [
+      { "label": "PRODUCT DESIGNER", "num": "01", "href": "#morning-brief" },
+      { "label": "INDUSTRIAL DESIGN", "num": "02", "suffix": "CMF", "href": "#design-workbench" }
+    ],
+    "left": [
+      { "text": "DESIGNING BETTER FUTURES THROUGH DETAIL", "href": "#morning-brief" },
+      { "label": "SMART WEARABLES", "num": "03", "href": "portfolio.html" }
+    ],
+    "right": [
+      { "text": "DESIGN IS HOW WE THINK MADE VISIBLE", "prefix": "010", "href": "#design-workbench" },
+      { "text": "USER EXPERIENCE", "href": "#today" },
+      { "text": "MATERIAL INTELLIGENCE", "href": "#design-workbench" }
+    ],
+    "bottom": [
+      { "label": "SHENZHEN", "num": "04", "href": "#welcome" },
+      { "text": "DESIGN x TECHNOLOGY x HUMAN", "href": "#workbench-heading" },
+      { "text": "CRAFTING MEANINGFUL PRODUCTS PEOPLE LOVE", "href": "portfolio.html" }
+    ]
+  },
+  "weather": {
+    "city": "深圳",
+    "latitude": 22.5431,
+    "longitude": 114.0579,
+    "timezone": "Asia/Shanghai"
+  },
+  "quickLaunch": [
+    {
+      "name": "ChatGPT",
+      "url": "https://chatgpt.com",
+      "logo": "images/logos/chatgpt.png"
+    },
+    {
+      "name": "Google",
+      "url": "https://www.google.com",
+      "logo": "images/logos/google.svg"
+    },
+    {
+      "name": "NAVER",
+      "url": "https://www.naver.com",
+      "logo": "images/logos/naver.svg"
+    },
+    {
+      "name": "百度",
+      "url": "https://www.baidu.com",
+      "logo": "images/logos/baidu.png"
+    }
+  ],
+  "greeting": {
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening",
+    "dailyTips": [
+      "今天优先推进智能穿戴项目的 CMF 定稿。",
+      "上午适合处理英文输入与资讯阅读，下午留给深度设计。",
+      "检查资产组合占比，黄金仓位是否仍在目标区间。",
+      "给 NAVER 新闻留 15 分钟，快速扫描行业动态即可。",
+      "今日提醒：下午三点与设计团队 sync 表带方案。",
+      "保持工作台简洁，只打开今天需要的三个标签页。"
+    ]
+  },
+  "morningBrief": {
+    "naverNews": {
+      "title": "NAVER 랭킹뉴스",
+      "subtitle": "韩国热点速览",
+      "sourceUrl": "https://news.naver.com/main/ranking/popularDay.naver",
+      "items": [
+        {
+          "title": "삼성전자, 차세대 웨어러블 칩셋 공개 임박",
+          "source": "한국경제",
+          "time": "08:12",
+          "url": "https://news.naver.com"
+        },
+        {
+          "title": "애플, 건강 모니터링 기능 강화한 신규 워치 라인업 유출",
+          "source": "매일경제",
+          "time": "07:45",
+          "url": "https://news.naver.com"
+        },
+        {
+          "title": "국내 스타트업, AI 로봇 홈케어 시장 진출 가속",
+          "source": "조선비즈",
+          "time": "07:20",
+          "url": "https://news.naver.com"
+        },
+        {
+          "title": "반도체 업황 회복세, IT 하드웨어 수요도 동반 상승",
+          "source": "이데일리",
+          "time": "06:58",
+          "url": "https://news.naver.com"
+        }
+      ]
+    },
+    "wearableNews": {
+      "title": "智能穿戴新品资讯",
+      "subtitle": "行业与产品动态",
+      "sourceUrl": "https://www.gsmarena.com/",
+      "items": [
+        {
+          "title": "Garmin 发布新一代 Enduro 系列，续航提升至 90 天",
+          "source": "Wearable",
+          "time": "昨日",
+          "url": "https://www.garmin.com"
+        },
+        {
+          "title": "华为 WATCH GT 5 Pro 曝光：钛合金表圈 + 全新健康传感器",
+          "source": "IT之家",
+          "time": "昨日",
+          "url": "https://www.ithome.com"
+        },
+        {
+          "title": "Oura Ring 4 开启预售，睡眠与压力算法全面升级",
+          "source": "The Verge",
+          "time": "2 天前",
+          "url": "https://www.theverge.com"
+        },
+        {
+          "title": "小米手环 9 Pro 通过认证，预计本月国内发布",
+          "source": "数码闲聊站",
+          "time": "3 天前",
+          "url": "https://weibo.com"
+        }
+      ]
+    },
+    "youtube": {
+      "title": "Morning English",
+      "subtitle": "YouTube 学习频道",
+      "channels": [
+        {
+          "name": "English Podcast 1314",
+          "category": "晨间播客",
+          "url": "https://www.youtube.com/channel/UCVLlQuRYrd9VrMJIOnaqzJw",
+          "note": "早上化妆时听英语"
+        },
+        {
+          "name": "BBC Learning English",
+          "category": "新闻英语",
+          "url": "https://www.youtube.com/@bbclearningenglish",
+          "note": "每日短课与词汇，适合晨间 15 分钟"
+        },
+        {
+          "name": "TED",
+          "category": "演讲听力",
+          "url": "https://www.youtube.com/@TED",
+          "note": "真实语速 + 字幕，练听力与表达结构"
+        },
+        {
+          "name": "NPR",
+          "category": "新闻播客",
+          "url": "https://www.youtube.com/@NPR",
+          "note": "美式新闻口语，适合通勤泛听"
+        },
+        {
+          "name": "CNN 10",
+          "category": "新闻英语",
+          "url": "https://www.youtube.com/@CNN10",
+          "note": "10 分钟国际新闻，语速适中"
+        },
+        {
+          "name": "English Addict with Mr Duncan",
+          "category": "口语表达",
+          "url": "https://www.youtube.com/@mrduncanenglish",
+          "note": "轻松口语与习语，适合热身"
+        }
+      ]
+    }
+  },
+  "designWorkbench": {
+    "title": "Design Workbench",
+    "groups": [
+      {
+        "title": "设计网站快捷入口",
+        "items": [
+          {
+            "name": "Behance",
+            "category": "作品集",
+            "url": "https://www.behance.net",
+            "logo": "images/logos/design/behance.svg",
+            "note": "全球设计师作品与案例追踪"
+          },
+          {
+            "name": "Pinterest",
+            "category": "灵感板",
+            "url": "https://www.pinterest.com",
+            "logo": "images/logos/design/pinterest.svg",
+            "note": "CMF、造型与场景 mood board"
+          },
+          {
+            "name": "Dezeen",
+            "category": "设计媒体",
+            "url": "https://www.dezeen.com",
+            "logo": "images/logos/design/dezeen.svg",
+            "note": "建筑与产品设计前沿报道"
+          },
+          {
+            "name": "Yanko Design",
+            "category": "产品设计",
+            "url": "https://www.yankodesign.com",
+            "logo": "images/logos/design/yanko.svg",
+            "note": "消费电子与概念产品灵感"
+          },
+          {
+            "name": "Core77",
+            "category": "工业设计",
+            "url": "https://www.core77.com",
+            "logo": "images/logos/design/core77.svg",
+            "note": "ID 趋势、访谈与行业观察"
+          },
+          {
+            "name": "Designboom",
+            "category": "设计媒体",
+            "url": "https://www.designboom.com",
+            "logo": "images/logos/design/designboom.svg",
+            "note": "展览、概念设计与材料趋势"
+          },
+          {
+            "name": "iF Design",
+            "category": "设计奖项",
+            "url": "https://ifdesign.com",
+            "logo": "images/logos/design/if-design.svg",
+            "note": "iF 获奖作品与评审标准参考"
+          },
+          {
+            "name": "Red Dot Design Award",
+            "category": "设计奖项",
+            "url": "https://www.red-dot.org",
+            "logo": "images/logos/design/red-dot.svg",
+            "note": "红点获奖案例与品类检索"
+          }
+        ]
+      },
+      {
+        "title": "智能穿戴品牌官网",
+        "items": [
+          {
+            "name": "Apple Watch",
+            "category": "旗舰腕表",
+            "url": "https://www.apple.com/watch/",
+            "logo": "images/logos/wearables/apple.svg",
+            "note": "表壳材质、表带系统与 UI 参考"
+          },
+          {
+            "name": "Samsung Galaxy Watch",
+            "category": "旗舰腕表",
+            "url": "https://www.samsung.com/watches/",
+            "logo": "images/logos/wearables/samsung.svg",
+            "note": "圆形表盘与 Android 生态设计"
+          },
+          {
+            "name": "Garmin",
+            "category": "运动户外",
+            "url": "https://www.garmin.com",
+            "logo": "images/logos/wearables/garmin.svg",
+            "note": "运动场景 CMF 与按键布局"
+          },
+          {
+            "name": "Amazfit",
+            "category": "运动健康",
+            "url": "https://www.amazfit.com",
+            "logo": "images/logos/wearables/amazfit.svg",
+            "note": "轻量化表体与性价比定位"
+          },
+          {
+            "name": "Huawei Watch",
+            "category": "旗舰腕表",
+            "url": "https://consumer.huawei.com/cn/wearables/",
+            "logo": "images/logos/wearables/huawei.svg",
+            "note": "健康传感器与商务风格线"
+          },
+          {
+            "name": "Xiaomi",
+            "category": "消费级",
+            "url": "https://www.mi.com",
+            "logo": "images/logos/wearables/xiaomi.svg",
+            "note": "手环/手表产品线与包装体系"
+          },
+          {
+            "name": "Nothing",
+            "category": "新锐品牌",
+            "url": "https://nothing.tech",
+            "logo": "images/logos/wearables/nothing.svg",
+            "note": "透明美学与极简硬件语言"
+          },
+          {
+            "name": "COROS",
+            "category": "运动户外",
+            "url": "https://www.coros.com",
+            "logo": "images/logos/wearables/coros.svg",
+            "note": "专业运动表结构与人机工学"
+          },
+          {
+            "name": "Oura Ring",
+            "category": "智能戒指",
+            "url": "https://ouraring.com",
+            "logo": "images/logos/wearables/oura.svg",
+            "note": "无屏穿戴与健康数据设计"
+          },
+          {
+            "name": "Whoop",
+            "category": "运动健康",
+            "url": "https://www.whoop.com",
+            "logo": "images/logos/wearables/whoop.svg",
+            "note": "订阅模式与恢复指标 UX"
+          }
+        ]
+      }
+    ]
+  },
+  "today": {
+    "title": "Today",
+    "todos": [
+      { "id": "t1", "text": "Review sports watch CMF samples", "done": false },
+      { "id": "t2", "text": "Update NAVER news bookmarks", "done": true },
+      { "id": "t3", "text": "Watch 20 min Morning English", "done": false },
+      { "id": "t4", "text": "Sync portfolio asset notes", "done": false }
+    ],
+    "links": [
+      { "name": "Gmail", "url": "https://mail.google.com" },
+      { "name": "NAVER Mail", "url": "https://mail.naver.com" },
+      { "name": "Figma", "url": "https://www.figma.com" },
+      { "name": "Calendar", "url": "https://calendar.google.com" }
+    ],
+    "reminders": [
+      { "time": "10:00", "text": "设计评审：表冠纹理方案" },
+      { "time": "14:30", "text": "基金定投日 — 仅记录，不自动交易" },
+      { "time": "18:00", "text": "导出今日工作台笔记" }
+    ]
+  }
+}

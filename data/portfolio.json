@@ -1,0 +1,104 @@
+{
+  "baseCurrency": "CNY",
+  "currencySymbol": "¥",
+  "lastUpdated": "2026-05-20",
+  "disclaimer": "Mock 数据 · 未连接真实账户",
+  "todayProfit": 4280,
+  "holdings": [
+    {
+      "name": "招商银行活期",
+      "symbol": "CASH-CMB",
+      "type": "cash",
+      "currency": "CNY",
+      "amount": 180000,
+      "avgCost": 1,
+      "currentPrice": 1
+    },
+    {
+      "name": "支付宝余额宝",
+      "symbol": "CASH-YEB",
+      "type": "cash",
+      "currency": "CNY",
+      "amount": 77300,
+      "avgCost": 1,
+      "currentPrice": 1
+    },
+    {
+      "name": "贵州茅台",
+      "symbol": "600519",
+      "type": "stocks",
+      "currency": "CNY",
+      "amount": 100,
+      "avgCost": 1680,
+      "currentPrice": 1752.5
+    },
+    {
+      "name": "宁德时代",
+      "symbol": "300750",
+      "type": "stocks",
+      "currency": "CNY",
+      "amount": 500,
+      "avgCost": 198.5,
+      "currentPrice": 205.8
+    },
+    {
+      "name": "腾讯控股",
+      "symbol": "0700",
+      "type": "stocks",
+      "currency": "HKD",
+      "amount": 200,
+      "avgCost": 320,
+      "currentPrice": 338
+    },
+    {
+      "name": "易方达蓝筹精选",
+      "symbol": "005827",
+      "type": "funds",
+      "currency": "CNY",
+      "amount": 85000,
+      "avgCost": 1.82,
+      "currentPrice": 2.08
+    },
+    {
+      "name": "华夏恒生科技 ETF",
+      "symbol": "513180",
+      "type": "funds",
+      "currency": "CNY",
+      "amount": 120000,
+      "avgCost": 0.56,
+      "currentPrice": 0.61
+    },
+    {
+      "name": "华安黄金 ETF",
+      "symbol": "518880",
+      "type": "gold",
+      "currency": "CNY",
+      "amount": 30000,
+      "avgCost": 4.52,
+      "currentPrice": 4.86
+    },
+    {
+      "name": "比特币",
+      "symbol": "BTC",
+      "type": "crypto",
+      "currency": "USD",
+      "amount": 0.35,
+      "avgCost": 52000,
+      "currentPrice": 67800
+    },
+    {
+      "name": "以太坊",
+      "symbol": "ETH",
+      "type": "crypto",
+      "currency": "USD",
+      "amount": 2.5,
+      "avgCost": 2800,
+      "currentPrice": 3420
+    }
+  ],
+  "fxRates": {
+    "CNY": 1,
+    "HKD": 0.92,
+    "USD": 7.24
+  }
+}

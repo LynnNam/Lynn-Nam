@@ -3,200 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lynn Nam · 产品设计师</title>
+  <title>Lynn OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@9..40,300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@9..40,300;400;500&family=IBM+Plex+Mono:wght@300;400&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="nav">
-    <a href="#" class="logo">Lynn Nam</a>
-    <ul class="nav-links">
-      <li><a href="#about">关于</a></li>
-      <li><a href="#work">作品</a></li>
-      <li><a href="#contact">联系</a></li>
-    </ul>
-    <button class="menu-btn" aria-label="菜单" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  <div class="app-loading" id="app-loading" aria-live="polite">正在加载 Lynn OS …</div>
+  <div class="app">
+    <header class="topbar" id="topbar">
+      <div class="brand" id="brand"></div>
+      <nav class="topbar-nav" id="sidebar-nav" aria-label="主导航"></nav>
+    </header>
 
-  <header class="hero" id="home">
-    <p class="hero-role">产品设计师</p>
-    <h1>用形态与材质，<br>让科技变得可被触摸。</h1>
-    <p class="hero-tagline">智能穿戴 · 机器人 · 电子产品 ID · CMF</p>
-    <a href="#work" class="btn btn-outline">浏览作品</a>
-  </header>
+    <div class="main-wrap">
+      <div class="main content page container">
+        <header class="welcome" id="welcome"></header>
 
-  <main>
-    <section id="about" class="section">
-      <div class="section-inner">
-        <p class="section-label">关于我</p>
-        <h2>Lynn Nam</h2>
-        <div class="about-content">
-          <p class="section-lead">
-            我专注于智能穿戴、机器人与消费电子产品的工业设计，从概念草图到 CMF 落地，用系统化的设计思维连接技术与人的感知。
-          </p>
-          <p class="section-text">
-            多年硬件产品设计经验，让我习惯在工程约束与美学表达之间寻找平衡。我擅长将复杂的交互与结构，收敛为清晰、克制、可被记住的产品形态；并通过材质、色彩与表面处理，为科技产品注入温度与品牌辨识度。
-          </p>
-        </div>
-        <ul class="strengths">
-          <li>
-            <span class="strength-num">01</span>
-            <div>
-              <h3>智能穿戴</h3>
-              <p>腕表、手环等可穿戴设备的形态、佩戴感与界面协同设计。</p>
-            </div>
-          </li>
-          <li>
-            <span class="strength-num">02</span>
-            <div>
-              <h3>机器人</h3>
-              <p>家用与商用机器人的外观语言、情感化表达与人机关系塑造。</p>
-            </div>
-          </li>
-          <li>
-            <span class="strength-num">03</span>
-            <div>
-              <h3>电子产品 ID & CMF</h3>
-              <p>从 ID 造型到材质配色与工艺定义，完整把控产品视觉与触感体验。</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
+        <main class="dashboard section-grid">
+          <section class="section" id="morning-brief" aria-labelledby="brief-heading"></section>
+          <section class="section" id="design-workbench" aria-labelledby="workbench-heading"></section>
+          <section class="section" id="today" aria-labelledby="today-heading"></section>
+        </main>
 
-    <section id="work" class="section section-work">
-      <div class="section-inner section-inner--wide">
-        <p class="section-label">作品集</p>
-        <h2>精选项目</h2>
-        <p class="section-text work-intro">按品类浏览部分代表性设计案例。完整项目资料可在联系后获取。</p>
-
-        <div class="portfolio-filters" role="tablist" aria-label="作品分类">
-          <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">全部</button>
-          <button type="button" class="filter-btn" data-filter="wearable" role="tab" aria-selected="false">智能手表</button>
-          <button type="button" class="filter-btn" data-filter="robot" role="tab" aria-selected="false">机器人</button>
-          <button type="button" class="filter-btn" data-filter="electronics" role="tab" aria-selected="false">电子产品</button>
-        </div>
-
-        <div class="portfolio-grid">
-          <article class="project-card project-card--clickable" data-category="wearable" data-project="sports-watch" tabindex="0" role="button" aria-label="查看运动健康腕表系列详情">
-            <div class="project-visual">
-              <img
-                src="images/sports-watch-cover.png"
-                srcset="images/sports-watch-cover.png 1x, images/sports-watch-cover@2x.png 2x"
-                alt="运动健康腕表系列产品设计"
-                width="1024"
-                height="840"
-                loading="lazy"
-                decoding="async">
-              <span class="project-view-hint">查看详情</span>
-            </div>
-            <div class="project-info">
-              <span class="project-tag">智能手表</span>
-              <h3>运动健康腕表系列</h3>
-              <p>轻量化表体与模块化表带系统，兼顾运动场景与日常佩戴。</p>
-            </div>
-          </article>
-          <article class="project-card" data-category="wearable">
-            <div class="project-visual project-visual--wearable-2" aria-hidden="true"></div>
-            <div class="project-info">
-              <span class="project-tag">智能手表</span>
-              <h3>儿童安全定位手表</h3>
-              <p>圆润亲和的造型语言，耐摔结构与高辨识度 CMF 方案。</p>
-            </div>
-          </article>
-          <article class="project-card" data-category="robot">
-            <div class="project-visual project-visual--robot-1" aria-hidden="true"></div>
-            <div class="project-info">
-              <span class="project-tag">机器人</span>
-              <h3>家用陪伴机器人</h3>
-              <p>柔和曲面与模块化表情屏，建立可信赖的家庭伙伴形象。</p>
-            </div>
-          </article>
-          <article class="project-card" data-category="robot">
-            <div class="project-visual project-visual--robot-2" aria-hidden="true"></div>
-            <div class="project-info">
-              <span class="project-tag">机器人</span>
-              <h3>商用导览服务机器人</h3>
-              <p>垂直简洁的机身比例与品牌色点缀，适配公共商业空间。</p>
-            </div>
-          </article>
-          <article class="project-card" data-category="electronics">
-            <div class="project-visual project-visual--electronics-1" aria-hidden="true"></div>
-            <div class="project-info">
-              <span class="project-tag">电子产品</span>
-              <h3>无线降噪耳机</h3>
-              <p>人体工学耳壳曲面与金属质感 CMF，强调佩戴舒适与高级感。</p>
-            </div>
-          </article>
-          <article class="project-card" data-category="electronics">
-            <div class="project-visual project-visual--electronics-2" aria-hidden="true"></div>
-            <div class="project-info">
-              <span class="project-tag">电子产品</span>
-              <h3>便携式智能投影仪</h3>
-              <p>极简几何体块与隐藏式散热结构，桌面与差旅双场景适用。</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section section-contact">
-      <div class="section-inner">
-        <p class="section-label">联系我</p>
-        <h2>一起聊聊下一个产品</h2>
-        <p class="section-text">有合作、咨询或想查看更多案例？欢迎来信。</p>
-        <a href="mailto:nanling1004@naver.com" class="contact-email">nanling1004@naver.com</a>
-
-        <form class="contact-form" id="contact-form">
-          <label>
-            <span>姓名</span>
-            <input type="text" name="name" placeholder="你的名字" required>
-          </label>
-          <label>
-            <span>邮箱</span>
-            <input type="email" name="email" placeholder="your@email.com" required>
-          </label>
-          <label>
-            <span>留言</span>
-            <textarea name="message" rows="4" placeholder="项目简介或想说的话…" required></textarea>
-          </label>
-          <button type="submit" class="btn">发送留言</button>
-        </form>
-        <p class="form-note" id="form-note" hidden>感谢留言！（演示模式，未实际发送）</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> Lynn Nam · Product Designer</p>
-  </footer>
-
-  <div class="project-modal" id="project-modal" hidden aria-hidden="true">
-    <div class="project-modal-backdrop" data-close-modal></div>
-    <div class="project-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button type="button" class="project-modal-close" aria-label="关闭" data-close-modal>&times;</button>
-      <header class="project-modal-header">
-        <span class="project-tag">智能手表</span>
-        <h2 id="modal-title">运动健康腕表系列</h2>
-        <p class="project-modal-desc">轻量化表体与模块化表带系统，兼顾运动场景与日常佩戴。从表冠肌理、超薄机身到心率凸台与多材质表带，完整呈现 ID 与 CMF 设计细节。</p>
-      </header>
-      <div class="project-modal-gallery">
-        <figure class="project-modal-figure">
-          <img src="images/sports-watch/01.png" srcset="images/sports-watch/01.png 1x, images/sports-watch/01@2x.png 2x" alt="运动健康腕表：表冠切面肌理与超薄机身、心率凸台设计" width="1024" height="570" loading="eager" decoding="async">
-        </figure>
-        <figure class="project-modal-figure">
-          <img src="images/sports-watch/02.png" srcset="images/sports-watch/02.png 1x, images/sports-watch/02@2x.png 2x" alt="运动健康腕表：AirFlow 立体凹槽表带透气设计" width="1024" height="573" loading="eager" decoding="async">
-        </figure>
-        <figure class="project-modal-figure">
-          <img src="images/sports-watch/03.png" srcset="images/sports-watch/03.png 1x, images/sports-watch/03@2x.png 2x" alt="运动健康腕表：双色荔枝纹皮革表带商务场景" width="1024" height="574" loading="eager" decoding="async">
-        </figure>
-        <figure class="project-modal-figure">
-          <img src="images/sports-watch/04.png" srcset="images/sports-watch/04.png 1x, images/sports-watch/04@2x.png 2x" alt="运动健康腕表：经典相机灵感与精密机械质感" width="1024" height="575" loading="eager" decoding="async">
-        </figure>
+        <footer class="footer" id="footer"></footer>
       </div>
     </div>
   </div>
