@@ -9,6 +9,10 @@
   background: var(--bg);
 }
 
+#work {
+  scroll-margin-top: 5.5rem;
+}
+
 .projects-section-header .section-title {
   font-family: var(--font-display);
   font-weight: 500;
@@ -73,27 +77,115 @@
   background: var(--bg);
 }
 
+/* OMNI-D Mobility — dark charcoal page */
+.project-detail-page--omni-mobility {
+  --project-bg: #333333;
+  --project-text: #faf7f0;
+  --project-text-muted: rgba(250, 247, 240, 0.78);
+  --project-text-light: rgba(250, 247, 240, 0.52);
+  --project-border: rgba(250, 247, 240, 0.12);
+  background: var(--project-bg);
+  color: var(--project-text);
+}
+
+.project-detail-page--omni-mobility.project-detail-page {
+  background: var(--project-bg);
+  color: var(--project-text);
+}
+
+.project-detail-page--omni-mobility .portfolio-loading {
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+/* Top nav shell: same light theme as other project pages */
+.project-detail-page--omni-mobility .site-nav-shell {
+  background: var(--bg);
+  border-bottom-color: rgba(26, 26, 26, 0.06);
+  color: var(--text);
+}
+
+.project-detail-page--omni-mobility .site-nav-shell .project-detail-nav-title {
+  color: var(--text-muted);
+}
+
+/* Above Design Highlights — original light theme */
+.project-detail-page--omni-mobility .project-detail-hero,
+.project-detail-page--omni-mobility .project-overview {
+  background: var(--bg);
+  color: var(--text);
+  border-top-color: rgba(26, 26, 26, 0.06);
+}
+
+.project-detail-page--omni-mobility .project-detail-hero .project-detail-hero__label,
+.project-detail-page--omni-mobility .project-detail-hero .project-detail-hero__keywords li {
+  color: var(--text-light);
+  border-bottom-color: rgba(26, 26, 26, 0.12);
+}
+
+.project-detail-page--omni-mobility .project-detail-hero .project-detail-hero__title,
+.project-detail-page--omni-mobility .project-detail-hero .tri-block--tagline .tri-block__line--en,
+.project-detail-page--omni-mobility .project-overview .tri-section-title__line--en {
+  color: var(--text);
+}
+
+.project-detail-page--omni-mobility .project-detail-hero .tri-block--tagline .tri-block__line--cn,
+.project-detail-page--omni-mobility .project-detail-hero .tri-block--tagline .tri-block__line--kr,
+.project-detail-page--omni-mobility .project-overview .tri-block--overview .tri-block__line,
+.project-detail-page--omni-mobility .project-overview .tri-section-title__line--cn,
+.project-detail-page--omni-mobility .project-overview .tri-section-title__line--kr {
+  color: var(--text-muted);
+}
+
+/* Design Highlights and below — dark theme */
+.project-detail-page--omni-mobility .project-highlights,
+.project-detail-page--omni-mobility .image-gallery,
+.project-detail-page--omni-mobility .end-section {
+  border-top-color: var(--project-border);
+}
+
+.project-detail-page--omni-mobility .project-highlights .tri-section-title__line--en,
+.project-detail-page--omni-mobility .project-highlights .tri-block--highlight-title .tri-block__line {
+  color: var(--project-text);
+}
+
+.project-detail-page--omni-mobility .project-highlights .tri-section-title__line--cn,
+.project-detail-page--omni-mobility .project-highlights .tri-section-title__line--kr,
+.project-detail-page--omni-mobility .project-highlights .tri-block--section-intro .tri-block__line,
+.project-detail-page--omni-mobility .project-highlights .tri-block--highlight-text .tri-block__line {
+  color: var(--project-text-muted);
+}
+
+.project-detail-page--omni-mobility .end-section__label {
+  color: var(--project-text-light);
+}
+
+.project-detail-page--omni-mobility .end-section__back {
+  color: var(--project-text-muted);
+}
+
+.project-detail-page--omni-mobility .end-section__back:hover {
+  color: var(--project-text);
+  border-bottom-color: var(--project-text);
+}
+
 .project-detail-app {
   min-height: 100vh;
 }
 
 .project-detail-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem var(--content-padding);
-  background: rgba(250, 247, 240, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+  padding: 0.75rem var(--content-padding) 0.4rem;
+}
+
+.project-detail-nav .site-nav-leading {
+  flex-shrink: 0;
 }
 
 .project-detail-nav-title {
+  margin-left: auto;
   font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -101,10 +193,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .project-detail-page #project-detail-root {
-  padding-top: 4.5rem;
+  padding-top: var(--site-nav-shell-h, 4.85rem);
 }
 
 .project-detail-hero {

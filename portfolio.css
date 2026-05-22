@@ -57,56 +57,16 @@ a {
 
 /* Nav */
 .portfolio-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1rem 2rem;
-  padding: 1.25rem var(--content-padding);
-  background: rgba(250, 247, 240, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  padding: 0.85rem var(--content-padding) 0.5rem;
 }
 
-.portfolio-back {
+.portfolio-nav .site-nav-leading {
   grid-column: 1;
   grid-row: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  color: var(--text);
-  background: var(--bg-card);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-  flex-shrink: 0;
-}
-
-.portfolio-back:hover {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.portfolio-back-icon {
-  font-size: 1.15rem;
-  line-height: 1;
-  font-weight: 500;
-}
-
-.portfolio-logo {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: start;
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
 }
 
 .portfolio-nav-links {
@@ -152,52 +112,12 @@ a {
   background: var(--text);
 }
 
-/* Hero */
-.portfolio-hero {
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 7rem var(--content-padding) 3rem;
-  max-width: 100%;
-  background: var(--bg);
-}
-
-.hero-role {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-}
-
-.hero-name {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
-}
-
-.hero-tagline {
-  font-size: clamp(0.75rem, 1.8vw, 1.05rem);
-  font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
-  white-space: nowrap;
-}
-
-.hero-focus {
-  font-size: 0.63rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-}
-
 /* Profile archive — moved from Lynn OS homepage */
 .portfolio-hero-archive {
   --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
   width: 100%;
   background: var(--bg);
+  padding-top: calc(var(--site-nav-shell-h, 4.85rem) + 0.75rem);
 }
 
 .hero-archive {
@@ -804,7 +724,7 @@ body.modal-open {
 
   .portfolio-nav-links {
     position: fixed;
-    top: 57px;
+    top: var(--site-nav-shell-h, 4.85rem);
     left: 0;
     right: 0;
     flex-direction: column;

@@ -30,12 +30,9 @@ async function loadSiteData() {
 }
 
 function renderNav() {
-  const s = siteData.site;
-  document.getElementById("portfolio-nav").innerHTML = `
-    <a href="${escapeHtml(s.backUrl)}" class="portfolio-back" aria-label="${escapeHtml(s.backLabel)}" title="${escapeHtml(s.backLabel)}">
-      <span class="portfolio-back-icon" aria-hidden="true">←</span>
-    </a>
-    <a href="#home" class="portfolio-logo">${escapeHtml(s.name)}</a>
+  const nav = document.getElementById("portfolio-nav");
+  nav.innerHTML = `
+    ${renderSiteNavLeading({ homeHref: "index.html", backLabel: siteData.site.backLabel })}
     <button class="menu-toggle" aria-label="菜单" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -44,9 +41,8 @@ function renderNav() {
       <li><a href="#work">${escapeHtml(projectsData?.section?.title || siteData.work.title)}</a></li>
     </ul>
   `;
-
-  const menuBtn = document.querySelector(".menu-toggle");
-  const navLinks = document.querySelector(".portfolio-nav-links");
+  const menuBtn = nav.querySelector(".menu-toggle");
+  const navLinks = nav.querySelector(".portfolio-nav-links");
 
   menuBtn.addEventListener("click", () => {
     const open = navLinks.classList.toggle("open");
@@ -59,16 +55,6 @@ function renderNav() {
       menuBtn.setAttribute("aria-expanded", "false");
     });
   });
-}
-
-function renderHero() {
-  const h = siteData.hero;
-  document.getElementById("portfolio-hero").innerHTML = `
-    <p class="hero-role" id="home">${escapeHtml(h.greeting)}</p>
-    <h1 class="hero-name">${escapeHtml(h.name)}</h1>
-    <p class="hero-tagline">${escapeHtml(h.tagline)}</p>
-    <p class="hero-focus">${escapeHtml(h.focus)}</p>
-  `;
 }
 
 function portfolioHref(href) {
@@ -203,17 +189,18 @@ function renderProjectsSection() {
 
   const projectsHtml = getEnrichedProjects().map((p) => renderProjectCard(p)).join("");
 
-  document.getElementById("portfolio-work").innerHTML = `
-    <div class="work-header projects-section-header" id="work">
+  const workEl = document.getElementById("work");
+  workEl.innerHTML = `
+    <div class="work-header projects-section-header">
       <p class="section-label">${escapeHtml(section.label)}</p>
-      <h2 class="section-title">${escapeHtml(section.title)}</h2>
+      <h2 class="section-title" id="work-heading">${escapeHtml(section.title)}</h2>
       <p class="work-subtitle">${escapeHtml(section.subtitle)}</p>
     </div>
     <div class="portfolio-filters" role="tablist">${filtersHtml}</div>
     <div class="projects-grid" id="projects-grid">${projectsHtml}</div>
   `;
 
-  document.getElementById("portfolio-work").classList.add("portfolio-work--projects");
+  workEl.classList.add("portfolio-work--projects");
   bindFilters();
 }
 
@@ -273,11 +260,28 @@ function renderFooter() {
     `© ${new Date().getFullYear()} ${siteData.site.owner} · ${siteData.site.role}`;
 }
 
+/** Scroll to Selected Works (#work) after dynamic content is rendered */
+function scrollToWorkSection() {
+  const work = document.getElementById("work");
+  if (!work) return;
+  const shell = document.querySelector(".site-nav-shell");
+  const offset = (shell?.offsetHeight || 72) + 20;
+  const top = work.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+}
+
+function handleWorkHashScroll() {
+  const hash = location.hash.replace(/^#/, "");
+  if (hash !== "work" && hash !== "portfolio-work") return;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(scrollToWorkSection);
+  });
+}
+
 async function init() {
   try {
     await loadSiteData();
     renderNav();
-    renderHero();
     renderHeroArchive();
     renderAbout();
     renderProjectsSection();
@@ -285,6 +289,8 @@ async function init() {
     document.title = siteData.site.name;
     document.getElementById("portfolio-loading").hidden = true;
     document.getElementById("portfolio-app").hidden = false;
+    handleWorkHashScroll();
+    window.addEventListener("hashchange", handleWorkHashScroll);
   } catch (err) {
     document.getElementById("portfolio-loading").textContent =
       `${err.message} · 请通过本地服务器打开`;

@@ -25,10 +25,9 @@ function renderTriSectionTitle(i18n) {
 }
 
 function renderProjectDetailNav(project) {
-  document.getElementById("project-detail-nav").innerHTML = `
-    <a href="portfolio.html#work" class="portfolio-back" aria-label="${escapeHtml(pageLabels.endBack.en)}">
-      <span class="portfolio-back-icon" aria-hidden="true">←</span>
-    </a>
+  const nav = document.getElementById("project-detail-nav");
+  nav.innerHTML = `
+    ${renderSiteNavLeading({ homeHref: "index.html", backLabel: pageLabels.endBack.en })}
     <span class="project-detail-nav-title">${escapeHtml(project.title)}</span>
   `;
 }
@@ -123,7 +122,25 @@ function renderEndSection() {
   `;
 }
 
+function applyProjectTheme(project) {
+  const body = document.body;
+  body.className = "project-detail-page";
+  body.style.removeProperty("--project-bg");
+  body.style.removeProperty("--project-text");
+  body.style.removeProperty("--project-text-muted");
+  body.style.removeProperty("--project-text-light");
+  body.style.removeProperty("--project-border");
+
+  const theme = project.theme;
+  if (!theme?.bg && !theme?.text) return;
+
+  body.classList.add(`project-detail-page--${project.id}`);
+  if (theme.bg) body.style.setProperty("--project-bg", theme.bg);
+  if (theme.text) body.style.setProperty("--project-text", theme.text);
+}
+
 function renderProjectDetail(project) {
+  applyProjectTheme(project);
   document.getElementById("project-detail-root").innerHTML = `
     ${renderProjectHero(project)}
     ${renderProjectOverview(project)}
@@ -139,6 +156,9 @@ async function init() {
   const app = document.getElementById("project-detail-app");
   const params = new URLSearchParams(window.location.search);
   const id = params.get("project");
+  if (id === "omni-mobility") {
+    document.body.classList.add("project-detail-page--omni-mobility");
+  }
 
   try {
     const { projects, labels } = await loadProjectsData();

@@ -118,6 +118,10 @@
       "id": "omni-mobility",
       "category": "robot",
       "categoryLabel": "Outdoor Mobility",
+      "theme": {
+        "bg": "#333333",
+        "text": "#faf7f0"
+      },
       "title": "OMNI-D Mobility Platform",
       "description": "Outdoor mobility platform — styling, structure, CMF, and smart-city scenarios.",
       "keywords": ["Outdoor Robot", "Mobility", "Smart Hardware", "CMF", "3D Modeling"],
