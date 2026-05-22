@@ -258,88 +258,6 @@ function renderQuickLaunchHtml() {
   `;
 }
 
-function heroArchiveLink(href, inner) {
-  if (!href) return inner;
-  return `<a class="hero-archive__link" href="${escapeHtml(href)}">${inner}</a>`;
-}
-
-function renderHeroArchive() {
-  const h = config.hero;
-  const portrait = config.site.heroPortrait;
-  if (!h || !portrait) return "";
-
-  const topMid = h.top[0];
-  const topEnd = h.top[1];
-  const topMidHtml = heroArchiveLink(
-    topMid.href,
-    `<span class="hero-archive__num">${escapeHtml(topMid.num)}</span> ${escapeHtml(topMid.label)}`
-  );
-  const topEndHtml = heroArchiveLink(
-    topEnd.href,
-    `${escapeHtml(topEnd.label)} <span class="hero-archive__num">${escapeHtml(topEnd.num)}</span> ${escapeHtml(topEnd.suffix || "")}`
-  );
-
-  const leftHtml = h.left
-    .map((item) => {
-      if (item.label) {
-        return `<div class="hero-archive__tag">${heroArchiveLink(item.href, `<span>${escapeHtml(item.label)}</span>`)} <span class="hero-archive__num">${escapeHtml(item.num)}</span></div>`;
-      }
-      return `<span class="hero-archive__line">${heroArchiveLink(item.href, escapeHtml(item.text))}</span>`;
-    })
-    .join("");
-
-  const rightHtml = h.right
-    .map((item) => {
-      const prefix = item.prefix ? `${escapeHtml(item.prefix)} ` : "";
-      return `<span class="hero-archive__line">${heroArchiveLink(item.href, `${prefix}${escapeHtml(item.text)}`)}</span>`;
-    })
-    .join("");
-
-  const bottomStart = h.bottom[0];
-  const bottomMid = h.bottom[1];
-  const bottomEnd = h.bottom[2];
-
-  return `
-    <section class="hero-archive" aria-label="Profile archive">
-      <div class="hero-archive__frame">
-        <header class="hero-archive__top">
-          <div class="hero-archive__brand">${escapeHtml(h.brand)}</div>
-          <div class="hero-archive__top-mid">${topMidHtml}</div>
-          <div class="hero-archive__top-end">${topEndHtml}</div>
-        </header>
-
-        <div class="hero-archive__body">
-          <aside class="hero-archive__side hero-archive__side--left">${leftHtml}</aside>
-
-          <figure class="hero-portrait">
-            <img
-              class="hero-portrait__img"
-              src="${escapeHtml(portrait)}"
-              alt="${escapeHtml(config.site.heroPortraitAlt || "")}"
-              loading="eager"
-              fetchpriority="high"
-              decoding="sync"
-            >
-          </figure>
-
-          <aside class="hero-archive__side hero-archive__side--right">${rightHtml}</aside>
-        </div>
-
-        <footer class="hero-archive__bottom">
-          <div class="hero-archive__bottom-start">
-            ${heroArchiveLink(
-              bottomStart.href,
-              `<span class="hero-archive__num">${escapeHtml(bottomStart.num)}</span> ${escapeHtml(bottomStart.label)}`
-            )}
-          </div>
-          <div class="hero-archive__bottom-mid">${heroArchiveLink(bottomMid.href, escapeHtml(bottomMid.text))}</div>
-          <div class="hero-archive__bottom-end">${heroArchiveLink(bottomEnd.href, escapeHtml(bottomEnd.text))}</div>
-        </footer>
-      </div>
-    </section>
-  `;
-}
-
 function renderWelcome() {
   const owner = config.site.owner;
   const greeting = getTimeGreeting();
@@ -348,7 +266,6 @@ function renderWelcome() {
     <div class="welcome-hero">
       <h1 class="welcome-greeting">${escapeHtml(greeting)}, ${escapeHtml(owner)}</h1>
       <p class="welcome-meta" id="welcome-meta">${escapeHtml(formatWelcomeMeta(null))}</p>
-      ${renderHeroArchive()}
     </div>
     ${renderQuickLaunchHtml()}
     <p class="welcome-tip">${escapeHtml(getDailyTip())}</p>
@@ -553,6 +470,149 @@ function renderFooter() {
     `© ${new Date().getFullYear()} ${config.site.name} · Mock Data Only`;
 }
 
+function isHeroKeywordVisible(kw) {
+  return kw.offsetParent !== null && getComputedStyle(kw).display !== "none";
+}
+
+function updateHeroMapLines() {
+  const hero = document.getElementById("hero-map");
+  if (!hero) return;
+
+  const inner = hero.querySelector(".hero-map__inner");
+  const center = hero.querySelector(".hero-map__center");
+  const svg = hero.querySelector(".hero-map__lines");
+  const group = document.getElementById("hero-map-lines-group");
+  if (!inner || !center || !svg || !group) return;
+
+  const innerRect = inner.getBoundingClientRect();
+  if (innerRect.width < 1 || innerRect.height < 1) return;
+
+  svg.setAttribute("viewBox", `0 0 ${innerRect.width} ${innerRect.height}`);
+
+  const toLocal = (clientX, clientY) => ({
+    x: clientX - innerRect.left,
+    y: clientY - innerRect.top,
+  });
+
+  const centerRect = center.getBoundingClientRect();
+  const cx = centerRect.left + centerRect.width / 2;
+  const cy = centerRect.top + centerRect.height / 2;
+
+  function nameEdgePoint(targetX, targetY) {
+    const dx = targetX - cx;
+    const dy = targetY - cy;
+    if (Math.abs(dx) < 0.001 && Math.abs(dy) < 0.001) return toLocal(cx, cy);
+    const halfW = centerRect.width / 2;
+    const halfH = centerRect.height / 2;
+    const scale = Math.min(
+      dx !== 0 ? halfW / Math.abs(dx) : Infinity,
+      dy !== 0 ? halfH / Math.abs(dy) : Infinity
+    );
+    return toLocal(cx + dx * scale, cy + dy * scale);
+  }
+
+  function keywordAnchor(kwRect) {
+    const kx = kwRect.left + kwRect.width / 2;
+    const ky = kwRect.top + kwRect.height / 2;
+    const dx = cx - kx;
+    const dy = cy - ky;
+    const dist = Math.hypot(dx, dy) || 1;
+    const inset = Math.max(kwRect.width, kwRect.height) * 0.42;
+    return toLocal(kx + (dx / dist) * inset, ky + (dy / dist) * inset);
+  }
+
+  group.replaceChildren();
+
+  hero.querySelectorAll(".hero-keyword").forEach((kw) => {
+    if (!isHeroKeywordVisible(kw)) return;
+
+    const kwRect = kw.getBoundingClientRect();
+    const kx = kwRect.left + kwRect.width / 2;
+    const ky = kwRect.top + kwRect.height / 2;
+    const start = nameEdgePoint(kx, ky);
+    const end = keywordAnchor(kwRect);
+
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("class", "hero-map__line");
+    line.setAttribute("data-for", kw.id);
+    line.setAttribute("x1", String(start.x));
+    line.setAttribute("y1", String(start.y));
+    line.setAttribute("x2", String(end.x));
+    line.setAttribute("y2", String(end.y));
+    group.appendChild(line);
+  });
+}
+
+function initHeroMap() {
+  const hero = document.getElementById("hero-map");
+  if (!hero) return;
+
+  const keywords = hero.querySelectorAll(".hero-keyword");
+  const inner = hero.querySelector(".hero-map__inner");
+
+  keywords.forEach((kw) => {
+    const x = kw.dataset.x;
+    const y = kw.dataset.y;
+    if (x != null && y != null) {
+      kw.style.left = `${x}%`;
+      kw.style.top = `${y}%`;
+    }
+
+    kw.addEventListener("mouseenter", () => {
+      const line = hero.querySelector(`.hero-map__line[data-for="${kw.id}"]`);
+      if (line) line.classList.add("is-highlight");
+    });
+    kw.addEventListener("mouseleave", () => {
+      const line = hero.querySelector(`.hero-map__line[data-for="${kw.id}"]`);
+      if (line) line.classList.remove("is-highlight");
+    });
+  });
+
+  const scheduleLineUpdate = () => {
+    requestAnimationFrame(updateHeroMapLines);
+  };
+
+  scheduleLineUpdate();
+  window.addEventListener("resize", scheduleLineUpdate);
+  if (inner && "ResizeObserver" in window) {
+    const ro = new ResizeObserver(scheduleLineUpdate);
+    ro.observe(inner);
+    ro.observe(hero.querySelector(".hero-map__center"));
+  }
+
+  document.fonts?.ready?.then(scheduleLineUpdate);
+
+  const mq = window.matchMedia("(min-width: 769px)");
+  let raf = 0;
+  hero.addEventListener("mousemove", (e) => {
+    if (!mq.matches) return;
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      const rect = hero.getBoundingClientRect();
+      const nx = (e.clientX - rect.left) / rect.width - 0.5;
+      const ny = (e.clientY - rect.top) / rect.height - 0.5;
+      const px = nx * 8;
+      const py = ny * 8;
+      keywords.forEach((kw) => {
+        kw.style.setProperty("--parallax-x", `${px}px`);
+        kw.style.setProperty("--parallax-y", `${py}px`);
+      });
+      updateHeroMapLines();
+    });
+  });
+
+  hero.addEventListener("mouseleave", () => {
+    keywords.forEach((kw) => {
+      kw.style.setProperty("--parallax-x", "0px");
+      kw.style.setProperty("--parallax-y", "0px");
+    });
+    scheduleLineUpdate();
+  });
+
+  mq.addEventListener("change", scheduleLineUpdate);
+}
+
 function hideLoading() {
   const el = document.getElementById("app-loading");
   if (el) el.hidden = true;
@@ -576,6 +636,7 @@ async function init() {
     renderBrand();
     renderSidebar();
     renderWelcome();
+    initHeroMap();
     initShenzhenWeather();
     renderMorningBrief();
     renderDesignWorkbench();

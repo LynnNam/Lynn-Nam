@@ -1,4 +1,5 @@
 let siteData = null;
+let osConfig = null;
 
 function escapeHtml(str) {
   return String(str)
@@ -14,9 +15,14 @@ function renderPortfolioImg({ src, alt, priority }) {
 }
 
 async function loadSiteData() {
-  const res = await fetch("data/portfolio-site.json");
-  if (!res.ok) throw new Error("无法加载作品集数据");
-  siteData = await res.json();
+  const [siteRes, configRes] = await Promise.all([
+    fetch("data/portfolio-site.json"),
+    fetch("data/config.json"),
+  ]);
+  if (!siteRes.ok) throw new Error("无法加载作品集数据");
+  if (!configRes.ok) throw new Error("无法加载主页配置");
+  siteData = await siteRes.json();
+  osConfig = await configRes.json();
 }
 
 function renderNav() {
@@ -61,6 +67,94 @@ function renderHero() {
   `;
 }
 
+function portfolioHref(href) {
+  if (!href) return href;
+  if (href.startsWith("#")) return `index.html${href}`;
+  return href;
+}
+
+function heroArchiveLink(href, inner) {
+  if (!href) return inner;
+  return `<a class="hero-archive__link" href="${escapeHtml(portfolioHref(href))}">${inner}</a>`;
+}
+
+function renderHeroArchive() {
+  const h = osConfig?.hero;
+  const portrait = osConfig?.site?.heroPortrait;
+  const el = document.getElementById("portfolio-hero-archive");
+  if (!h || !portrait || !el) return;
+
+  const topMid = h.top[0];
+  const topEnd = h.top[1];
+  const topMidHtml = heroArchiveLink(
+    topMid.href,
+    `<span class="hero-archive__num">${escapeHtml(topMid.num)}</span> ${escapeHtml(topMid.label)}`
+  );
+  const topEndHtml = heroArchiveLink(
+    topEnd.href,
+    `${escapeHtml(topEnd.label)} <span class="hero-archive__num">${escapeHtml(topEnd.num)}</span> ${escapeHtml(topEnd.suffix || "")}`
+  );
+
+  const leftHtml = h.left
+    .map((item) => {
+      if (item.label) {
+        return `<div class="hero-archive__tag">${heroArchiveLink(item.href, `<span>${escapeHtml(item.label)}</span>`)} <span class="hero-archive__num">${escapeHtml(item.num)}</span></div>`;
+      }
+      return `<span class="hero-archive__line">${heroArchiveLink(item.href, escapeHtml(item.text))}</span>`;
+    })
+    .join("");
+
+  const rightHtml = h.right
+    .map((item) => {
+      const prefix = item.prefix ? `${escapeHtml(item.prefix)} ` : "";
+      return `<span class="hero-archive__line">${heroArchiveLink(item.href, `${prefix}${escapeHtml(item.text)}`)}</span>`;
+    })
+    .join("");
+
+  const bottomStart = h.bottom[0];
+  const bottomMid = h.bottom[1];
+  const bottomEnd = h.bottom[2];
+
+  el.innerHTML = `
+    <section class="hero-archive" aria-label="Profile archive">
+      <div class="hero-archive__frame">
+        <header class="hero-archive__top">
+          <div class="hero-archive__brand">${escapeHtml(h.brand)}</div>
+          <div class="hero-archive__top-mid">${topMidHtml}</div>
+          <div class="hero-archive__top-end">${topEndHtml}</div>
+        </header>
+
+        <div class="hero-archive__body">
+          <aside class="hero-archive__side hero-archive__side--left">${leftHtml}</aside>
+
+          <figure class="hero-portrait">
+            <img
+              class="hero-portrait__img"
+              src="${escapeHtml(portrait)}"
+              alt="${escapeHtml(osConfig.site.heroPortraitAlt || "")}"
+              loading="lazy"
+              decoding="async"
+            >
+          </figure>
+
+          <aside class="hero-archive__side hero-archive__side--right">${rightHtml}</aside>
+        </div>
+
+        <footer class="hero-archive__bottom">
+          <div class="hero-archive__bottom-start">
+            ${heroArchiveLink(
+              bottomStart.href,
+              `<span class="hero-archive__num">${escapeHtml(bottomStart.num)}</span> ${escapeHtml(bottomStart.label)}`
+            )}
+          </div>
+          <div class="hero-archive__bottom-mid">${heroArchiveLink(bottomMid.href, escapeHtml(bottomMid.text))}</div>
+          <div class="hero-archive__bottom-end">${heroArchiveLink(bottomEnd.href, escapeHtml(bottomEnd.text))}</div>
+        </footer>
+      </div>
+    </section>
+  `;
+}
+
 function renderAbout() {
   const a = siteData.about;
   const strengthsHtml = a.strengths
@@ -79,7 +173,6 @@ function renderAbout() {
 
   document.getElementById("portfolio-about").innerHTML = `
     <p class="section-label">${escapeHtml(a.title)}</p>
-    <h2 class="section-title">${escapeHtml(siteData.site.owner)}</h2>
     <p class="about-lead">${escapeHtml(a.lead)}</p>
     <p class="about-text">${escapeHtml(a.text)}</p>
     <ul class="strengths-list">${strengthsHtml}</ul>
@@ -226,6 +319,7 @@ async function init() {
     await loadSiteData();
     renderNav();
     renderHero();
+    renderHeroArchive();
     renderAbout();
     renderWork();
     renderFooter();
