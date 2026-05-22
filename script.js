@@ -211,7 +211,7 @@ function renderSidebar() {
   const navItems = [
     { href: "#welcome", label: "首页" },
     { href: "#morning-brief", label: "Brief" },
-    { href: "#design-workbench", label: "设计" },
+    { href: "#design-workbench", label: "设计网站" },
     { href: "portfolio.html", label: "Portfolio" },
     { href: "#today", label: "Today" },
   ];

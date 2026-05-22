@@ -17,7 +17,8 @@
   --shadow: none;
   --radius: 12px;
   --radius-sm: 8px;
-  --topbar-h: auto;
+  --topbar-h: 7.85rem;
+  --topbar-bg: rgba(250, 247, 240, 0.5);
   --content-padding: clamp(2.5rem, 5vw, 4.5rem);
   --grid-gap: 1.75rem;
   --section-gap: 3.5rem;
@@ -58,8 +59,10 @@ a {
 
 /* Top bar (原侧边栏) */
 .topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
   display: flex;
   align-items: center;
@@ -68,8 +71,11 @@ a {
   width: 100%;
   min-height: var(--topbar-h);
   padding: 0.75rem var(--content-padding);
-  background: #fbfaf7;
-  border-bottom: 1px solid var(--border);
+  background: var(--topbar-bg);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .brand {
@@ -82,10 +88,9 @@ a {
 .brand-logo-link {
   display: block;
   line-height: 0;
-  background: #ffffff;
-  padding: 0.35rem 0.65rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: transparent;
+  padding: 0;
+  border: none;
   transition: opacity 0.15s;
 }
 
@@ -137,6 +142,7 @@ a {
   min-width: 0;
   width: 100%;
   max-width: 100%;
+  padding-top: var(--topbar-h);
 }
 
 .main,
@@ -169,17 +175,16 @@ a {
   gap: 0.65rem;
   padding: 0.75rem 1rem;
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius);
   box-shadow: none;
   font-size: 0.82rem;
   font-weight: 400;
-  transition: border-color 0.2s, background 0.2s;
+  transition: background 0.2s;
   min-width: 0;
 }
 
 .quick-launch-item:hover {
-  border-color: var(--border-strong);
   background: var(--bg-soft);
   transform: none;
   box-shadow: none;
@@ -587,7 +592,7 @@ a {
 /* Cards */
 .card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius);
   box-shadow: none;
   padding: 1.5rem 1.6rem;
@@ -740,14 +745,13 @@ a {
   gap: 0.35rem;
   padding: 0.9rem 1rem;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius-sm);
-  transition: border-color 0.15s, opacity 0.15s;
+  transition: opacity 0.15s;
 }
 
 .resource-chip:hover {
   opacity: 0.7;
-  border-color: var(--border-strong);
   transform: none;
   background: var(--bg-soft);
 }
@@ -1053,7 +1057,7 @@ a {
 @media (max-width: 768px) {
   :root {
     --content-padding: 1.25rem;
-    --topbar-h: auto;
+    --topbar-h: 10.5rem;
   }
 
   .topbar {
@@ -1070,12 +1074,8 @@ a {
   }
 
   .brand-logo {
-    height: 4.725rem;
-    max-width: min(294px, 92vw);
-  }
-
-  .brand-logo-link {
-    padding: 0.4rem 0.65rem;
+    height: 3.15rem;
+    max-width: min(210px, 92vw);
   }
 
   .welcome {
