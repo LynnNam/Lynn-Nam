@@ -1,0 +1,412 @@
+{
+  "section": {
+    "label": "Selected Works",
+    "title": "Projects",
+    "subtitle": "Industrial design · robotics · smart wearables"
+  },
+  "labels": {
+    "overview": {
+      "en": "Project Overview",
+      "zh": "项目介绍",
+      "kr": "프로젝트 개요"
+    },
+    "highlights": {
+      "en": "Design Highlights",
+      "zh": "设计亮点",
+      "kr": "디자인 하이라이트"
+    },
+    "highlightsIntro": {
+      "en": "Key design decisions across form, CMF, structure, and real-world service scenarios.",
+      "zh": "围绕形态、CMF、结构与实际服务场景的核心设计判断。",
+      "kr": "형태, CMF, 구조, 실사용 시나리오를 아우르는 핵심 디자인 포인트입니다."
+    },
+    "gallery": {
+      "en": "Image Gallery",
+      "zh": "作品展示",
+      "kr": "이미지 갤러리"
+    },
+    "endBack": {
+      "en": "Back to Projects",
+      "zh": "返回项目列表",
+      "kr": "프로젝트 목록으로"
+    }
+  },
+  "projects": [
+    {
+      "id": "hello-robot",
+      "category": "robot",
+      "categoryLabel": "Service Robot",
+      "title": "HELLO, ROBOT",
+      "description": "Indoor service robotics — epidemic prevention, hospitality, and public-space cleaning.",
+      "keywords": ["Service Robot", "Indoor Robotics", "CMF", "Product Design", "Mock-up"],
+      "coverBoard": 4,
+      "boards": [4, 5, 6, 7, 8, 10, 11, 12, 13, 15],
+      "tagline": {
+        "en": "Future of autonomous delivery — from strategic vision to physical form.",
+        "zh": "从战略愿景到实体形态，探索自主配送服务的未来。",
+        "kr": "전략 비전에서 물리적 형태까지, 자율 배송 서비스의 미래를 탐구합니다."
+      },
+      "overview": {
+        "en": "HELLO, ROBOT explores how autonomous service machines can feel approachable, efficient, and trustworthy in indoor environments. The work spans scenario mapping, form exploration, functional modularity, physical mock-ups, and CMF refinement—connecting robot, IoT, AI, and hardware into coherent experiences for hotels, hospitals, and commercial spaces.",
+        "zh": "HELLO, ROBOT 聚焦室内服务机器人如何呈现亲和、高效且值得信赖的体验。项目涵盖场景梳理、形态探索、功能模块化、实物模型与 CMF 深化，将机器人、物联网、人工智能与硬件整合为适用于酒店、医院与商业空间的完整产品表达。",
+        "kr": "HELLO, ROBOT는 실내 서비스 로봇이 친근하고 효율적이며 신뢰감 있는 경험을 제공하는 방법을 탐구합니다. 시나리오 정리, 형태 탐색, 기능 모듈화, 목업, CMF 정교화를 통해 로봇·IoT·AI·하드웨어를 호텔, 병원, 상업 공간에 맞는 일관된 제품 경험으로 연결했습니다."
+      },
+      "highlights": [
+        {
+          "title": {
+            "en": "Scenario & Vision",
+            "zh": "场景与愿景",
+            "kr": "시나리오와 비전"
+          },
+          "text": {
+            "en": "Strategic framing for indoor / outdoor robot synergy and contactless service futures.",
+            "zh": "建立室内外机器人协同与非接触服务未来的战略框架。",
+            "kr": "실내외 로봇 시너지와 비대면 서비스 미래를 위한 전략적 프레임을 수립했습니다."
+          }
+        },
+        {
+          "title": {
+            "en": "Form Exploration",
+            "zh": "形态探索",
+            "kr": "형태 탐색"
+          },
+          "text": {
+            "en": "Multiple head, body, and base iterations balancing friendliness with technical credibility.",
+            "zh": "多轮机头、机身与底盘方案，在亲和力与技术可信度之间取得平衡。",
+            "kr": "친근함과 기술적 신뢰감의 균형을 맞춘 다양한 헤드·바디·베이스 시안을 검토했습니다."
+          }
+        },
+        {
+          "title": {
+            "en": "CMF Strategy",
+            "zh": "CMF 策略",
+            "kr": "CMF 전략"
+          },
+          "text": {
+            "en": "Matte white, charcoal, teal accents, and light elements for status and interface zones.",
+            "zh": "哑光白、炭灰、青色点缀与灯光元素，定义状态与交互界面区域。",
+            "kr": "무광 화이트, 차콜, 틸 포인트와 라이트 요소로 상태 및 인터페이스 영역을 정의했습니다."
+          }
+        },
+        {
+          "title": {
+            "en": "Physical Mock-up",
+            "zh": "实物模型",
+            "kr": "물리 목업"
+          },
+          "text": {
+            "en": "High-fidelity models developed with LG studio for scale, proportion, and detail validation.",
+            "zh": "与 LG 工作室合作制作高保真模型，验证比例、尺度与细节。",
+            "kr": "LG 스튜디오와 함께 고충실도 모델을 제작해 비례, 스케일, 디테일을 검증했습니다."
+          }
+        },
+        {
+          "title": {
+            "en": "Detail Refinement",
+            "zh": "细节深化",
+            "kr": "디테일 정교화"
+          },
+          "text": {
+            "en": "Sensors, trays, refrigeration, and UI surfaces tuned for real-world service workflows.",
+            "zh": "传感器、托盘、冷藏结构与界面表面处理，贴合真实服务流程。",
+            "kr": "센서, 트레이, 냉장 구조, UI 표면을 실제 서비스 워크플로에 맞게 다듬었습니다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "omni-mobility",
+      "category": "robot",
+      "categoryLabel": "Outdoor Mobility",
+      "title": "OMNI-D Mobility Platform",
+      "description": "Outdoor mobility platform — styling, structure, CMF, and smart-city scenarios.",
+      "keywords": ["Outdoor Robot", "Mobility", "Smart Hardware", "CMF", "3D Modeling"],
+      "coverBoard": 16,
+      "boards": [16, 17, 18, 19, 20, 21, 22, 23],
+      "tagline": {
+        "en": "Modular outdoor mobility with stealth aesthetics and urban-scale thinking.",
+        "zh": "模块化户外移动平台，以低调造型语言回应城市尺度需求。",
+        "kr": "스텔스 미학과 도시 스케일 사고를 담은 모듈형 아웃도어 모빌리티 플랫폼입니다."
+      },
+      "overview": {
+        "en": "This project defines a low-profile outdoor mobility platform for autonomous delivery and personal transport. Design work spans stealth product language, suspension and wheel architecture, modular top interfaces, stroller and scooter configurations, and smart-city deployment visualization—linking engineering constraints with a restrained, futuristic industrial aesthetic.",
+        "zh": "本项目定义面向自主配送与个人出行的低姿态户外移动平台。设计涵盖低调产品语言、悬架与轮系结构、顶部模块化接口、婴儿车与滑板车构型，以及智慧城市部署可视化，在工程约束与未来感工业美学之间建立平衡。",
+        "kr": "본 프로젝트는 자율 배송과 개인 이동을 위한 로우 프로파일 아웃도어 모빌리티 플랫폼을 정의합니다. 스텔스 제품 언어, 서스펜션·휠 구조, 상부 모듈 인터페이스, 유모차·스쿠터 구성, 스마트시티 배치 시각화를 통해 엔지니어링 제약과 절제된 미래형 산업 미학을 연결했습니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Product Styling", "zh": "产品造型", "kr": "제품 스타일링" },
+          "text": {
+            "en": "Aerodynamic black volumes, red accents, and precision surfacing for outdoor tech identity.",
+            "zh": "流线黑色体块、红色点缀与精密曲面，塑造户外科技识别度。",
+            "kr": "에어로 다이내믹 블랙 볼륨, 레드 포인트, 정밀 서피스로 아웃도어 테크 아이덴티티를 구축했습니다."
+          }
+        },
+        {
+          "title": { "en": "Structure & 3D", "zh": "结构与三维", "kr": "구조와 3D" },
+          "text": {
+            "en": "Wireframe-to-render workflow validating proportion, suspension, and assembly logic.",
+            "zh": "从线框到渲染的流程，验证比例、悬架与装配逻辑。",
+            "kr": "와이어프레임에서 렌더까지의 프로세스로 비례, 서스펜션, 조립 로직을 검증했습니다."
+          }
+        },
+        {
+          "title": { "en": "Modular Platform", "zh": "模块化平台", "kr": "모듈형 플랫폼" },
+          "text": {
+            "en": "Platform hole and interchangeable modules for scooter, stroller, and service payloads.",
+            "zh": "顶部平台孔与可互换模块，适配滑板车、婴儿车与服务载荷。",
+            "kr": "상부 플랫폼 홀과 교체형 모듈로 스쿠터, 유모차, 서비스 페이로드를 지원합니다."
+          }
+        },
+        {
+          "title": { "en": "Scenario Design", "zh": "场景设计", "kr": "시나리오 디자인" },
+          "text": {
+            "en": "Smart-city panoramas showing ecosystem scale and human-robot coexistence.",
+            "zh": "智慧城市全景呈现系统规模与人机共存关系。",
+            "kr": "스마트시티 파노라마로 생태계 규모와 인간-로봇 공존을 시각화했습니다."
+          }
+        },
+        {
+          "title": { "en": "CMF Definition", "zh": "CMF 定义", "kr": "CMF 정의" },
+          "text": {
+            "en": "Two-tone gloss and matte finishes with LED rings for functional and brand expression.",
+            "zh": "亮哑双色饰面与 LED 光环，兼顾功能表达与品牌气质。",
+            "kr": "글로스·매트 투톤 마감과 LED 링으로 기능과 브랜드 표현을 동시에 구현했습니다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "leica-watch-render",
+      "category": "wearable",
+      "categoryLabel": "Smartwatch",
+      "title": "Leica-Inspired Smartwatch",
+      "description": "Premium smartwatch visualization inspired by classic camera dial mechanics.",
+      "keywords": ["Smartwatch", "Product Rendering", "CMF", "Wearable", "Industrial Design"],
+      "coverBoard": 27,
+      "boards": [27],
+      "tagline": {
+        "en": "Precision dial texture meets ultra-thin wearable architecture.",
+        "zh": "精密拨轮肌理，遇见超薄可穿戴架构。",
+        "kr": "정밀 다이얼 텍스처와 초슬림 웨어러블 구조의 만남."
+      },
+      "overview": {
+        "en": "A focused rendering study for a premium smartwatch concept. The design translates classic camera dial knurling into a digital crown, pairs polished metal with a perforated sport strap, and emphasizes a 9 mm ultra-thin body with a curved heart-rate sensor platform—showing how mechanical heritage informs contemporary wearables.",
+        "zh": "本项目为高端智能手表概念的高保真渲染研究。设计将经典相机拨轮滚花转化为数字表冠语言，抛光金属与穿孔运动表带形成 CMF 对比，并以 9 mm 超薄机身与曲面心率凸台强调佩戴工学，呈现机械传统如何赋能当代可穿戴产品。",
+        "kr": "프리미엄 스마트워치 컨셉을 위한 집중 렌더링 스터디입니다. 클래식 카메라 다이얼 너링을 디지털 크라운으로 번역하고, 폴리시드 메탈과 퍼포레이션 스트랩 CMF를 조합했으며, 9mm 초슬림 바디와 곡면 심박 센서 플랫폼으로 기계적 유산을 현대 웨어러블에 접목했습니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Mechanical Inspiration", "zh": "机械灵感", "kr": "메커니컬 영감" },
+          "text": {
+            "en": "Crown knurling and faceted surfaces echo precision optical instrument tactility.",
+            "zh": "表冠滚花与切面语言，呼应精密光学仪器的操控质感。",
+            "kr": "크라운 너링과 패싯 서피스가 정밀 광학 기기의 촉감을 재현합니다."
+          }
+        },
+        {
+          "title": { "en": "Ultra-thin Profile", "zh": "超薄轮廓", "kr": "초슬림 프로파일" },
+          "text": {
+            "en": "9 mm side elevation highlighting a disciplined internal stack and wear comfort.",
+            "zh": "9 mm 侧视厚度，呈现克制的内部堆叠与佩戴舒适度。",
+            "kr": "9mm 사이드 뷰로 절제된 내부 스택과 착용 편안함을 강조했습니다."
+          }
+        },
+        {
+          "title": { "en": "Ergonomic Sensor Zone", "zh": "工学传感器区", "kr": "인체공학 센서 영역" },
+          "text": {
+            "en": "Curved heart-rate bump optimized for stable skin contact.",
+            "zh": "曲面心率凸台，优化皮肤接触稳定性。",
+            "kr": "곡면 심박 돌출부로 피부 접촉 안정성을 최적화했습니다."
+          }
+        },
+        {
+          "title": { "en": "Product Visualization", "zh": "产品可视化", "kr": "제품 비주얼라이제이션" },
+          "text": {
+            "en": "Multi-view studio layout communicating form, CMF, and interface clarity.",
+            "zh": "多视角棚拍布局，传达形态、CMF 与界面可读性。",
+            "kr": "멀티 뷰 스튜디오 레이아웃으로 형태, CMF, 인터페이스 가독성을 전달합니다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "explorer-watch",
+      "category": "wearable",
+      "categoryLabel": "Outdoor Watch",
+      "title": "EXPLORER Outdoor Watch",
+      "description": "Rugged outdoor smartwatch with integrated lighting and hybrid UI.",
+      "keywords": ["Outdoor Watch", "Rugged Design", "Exploration", "Wearable", "Hybrid UI"],
+      "coverBoard": 28,
+      "boards": [28, 29],
+      "tagline": {
+        "en": "Rugged tools for night trails, altitude, and off-road exploration.",
+        "zh": "为夜行、高海拔与越野探索而生的硬核装备。",
+        "kr": "야간 트레일, 고도, 오프로드 탐험을 위한 러기드 웨어러블."
+      },
+      "overview": {
+        "en": "EXPLORER targets outdoor users who need reliability in demanding environments. The case combines brushed metal, exposed fasteners, and a ridged strap; the interface merges analog hands with digital data; integrated side lighting supports visibility at night—aligning product semantics with exploration and off-road adventure.",
+        "zh": "EXPLORER 面向在严苛环境中需要可靠性的户外用户。表壳融合拉丝金属、外露紧固件与肋纹表带；界面结合指针与数字信息层；侧面集成照明支持夜间可视——将产品语义与探索、越野场景紧密关联。",
+        "kr": "EXPLORER는 까다로운 환경에서 신뢰성이 필요한 아웃도어 사용자를 위한 제품입니다. 브러시드 메탈, 노출 패스너, 리브 스트랩을 결합하고, 아날로그 핸드와 디지털 데이터를 융합하며, 측면 라이팅으로 야간 가시성을 확보해 탐험·오프로드 시맨틱을 강화했습니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Rugged CMF", "zh": "硬核 CMF", "kr": "러기드 CMF" },
+          "text": {
+            "en": "Metal bezel, tactical strap ribs, and high-contrast orange UI accents.",
+            "zh": "金属表圈、战术肋纹表带与高对比橙色界面点缀。",
+            "kr": "메탈 베젤, 택티컬 리브 스트랩, 고대비 오렌지 UI 포인트."
+          }
+        },
+        {
+          "title": { "en": "Integrated Lighting", "zh": "集成照明", "kr": "통합 라이팅" },
+          "text": {
+            "en": "Built-in side beam for hands-free visibility in low-light terrain.",
+            "zh": "侧面内置光束，低照度地形下解放双手。",
+            "kr": "측면 빌트인 빔으로 저조도 환경에서 핸즈프리 가시성 제공."
+          }
+        },
+        {
+          "title": { "en": "Hybrid Interface", "zh": "混合界面", "kr": "하이브리드 UI" },
+          "text": {
+            "en": "Analog and digital layers composed for glanceable data during movement.",
+            "zh": "指针与数字层叠，运动中仍可快速读取信息。",
+            "kr": "아날로그·디지털 레이어를 조합해 이동 중에도 한눈에 읽히도록 설계."
+          }
+        },
+        {
+          "title": { "en": "Scenario Storytelling", "zh": "场景叙事", "kr": "시나리오 스토리텔링" },
+          "text": {
+            "en": "Lifestyle imagery linking the product to hiking and off-road contexts.",
+            "zh": "生活方式影像，连接徒步与越野使用情境。",
+            "kr": "하이킹·오프로드 맥락과 제품을 연결하는 라이프스타일 이미지."
+          }
+        }
+      ]
+    },
+    {
+      "id": "aura-watch-collection",
+      "category": "wearable",
+      "categoryLabel": "Watch Collection",
+      "title": "Aura Watch Collection",
+      "description": "Series smartwatch exploration across CMF, UI, and lifestyle positioning.",
+      "keywords": ["Watch Collection", "CMF", "Series Design", "Wearable", "Young Sport"],
+      "coverBoard": 30,
+      "boards": [30, 31, 32],
+      "tagline": {
+        "en": "Three design directions — youthful sport, fashion motion, and premium geometry.",
+        "zh": "三条设计方向——年轻运动、时尚动感与高端几何。",
+        "kr": "세 가지 디자인 방향 — 유스 스포츠, 패션 모션, 프리미엄 지오메트리."
+      },
+      "overview": {
+        "en": "Aura Watch Collection systematizes wearable series design: one line explores youthful sport and decorative lugs; another emphasizes slim fashion forms and differentiated keys; the third delivers an octagonal premium identity with brushed metal and curved glass—completed by AirFlow strap research and lifestyle storytelling.",
+        "zh": "Aura 智能手表系列以系统化方法展开可穿戴产品线设计：一条线探索年轻运动与装饰性表耳；一条线强调纤薄时尚形态与差异化按键；第三条线以八边形高端识别、拉丝金属与曲面玻璃完成表达，并以 AirFlow 表带研究与生活方式叙事收束整体。",
+        "kr": "Aura Watch Collection은 웨어러블 시리즈 디자인을 체계화한 프로젝트입니다. 유스 스포츠·데코 러그 라인, 슬림 패션 폼·차별화 키 라인, 옥타곤 프리미엄 아이덴티티 라인으로 구성했으며, AirFlow 스트랩 연구와 라이프스타일 스토리텔링으로 마무리했습니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Series DNA", "zh": "系列基因", "kr": "시리즈 DNA" },
+          "text": {
+            "en": "Three personas sharing one coherent design process and presentation system.",
+            "zh": "三种用户画像共享统一的设计流程与展示体系。",
+            "kr": "하나의 디자인 프로세스와 프레젠테이션 시스템을 공유하는 세 페르소나."
+          }
+        },
+        {
+          "title": { "en": "CMF Exploration", "zh": "CMF 探索", "kr": "CMF 탐색" },
+          "text": {
+            "en": "Blue sport, all-black fashion, and taupe premium palettes with matching UI.",
+            "zh": "运动蓝、全黑时尚与灰褐高端配色，并匹配对应界面。",
+            "kr": "스포츠 블루, 올블랙 패션, 토프 프리미엄 팔레트와 매칭 UI."
+          }
+        },
+        {
+          "title": { "en": "AirFlow Strap", "zh": "AirFlow 表带", "kr": "AirFlow 스트랩" },
+          "text": {
+            "en": "3D groove structure and dual-breath perforation for active comfort.",
+            "zh": "立体凹槽结构与双重透气孔，服务运动佩戴舒适。",
+            "kr": "3D 그루브 구조와 이중 통기 펀칭으로 액티브 착용감 강화."
+          }
+        },
+        {
+          "title": { "en": "UI Variation", "zh": "界面变化", "kr": "UI 변주" },
+          "text": {
+            "en": "Gradients, analog fashion faces, and minimalist luxury dial languages.",
+            "zh": "渐变、时尚指针表盘与极简奢华表盘语言。",
+            "kr": "그라데이션, 패션 아날로그 페이스, 미니멀 럭셔리 다이얼 언어."
+          }
+        },
+        {
+          "title": { "en": "Lifestyle Context", "zh": "生活场景", "kr": "라이프스타일 맥락" },
+          "text": {
+            "en": "On-body photography connecting hardware choices to daily wear.",
+            "zh": "佩戴摄影，将硬件选择与日用场景相连。",
+            "kr": "착용 사진으로 하드웨어 선택과 일상 착용을 연결."
+          }
+        }
+      ]
+    },
+    {
+      "id": "chronos-wearable",
+      "category": "wearable",
+      "categoryLabel": "Smartwatch · Straps",
+      "title": "Chronos Precision Wearable",
+      "description": "Leica-inspired case CMF and AirFlow / leather / sport strap systems.",
+      "keywords": ["Smartwatch", "Strap Design", "CMF", "Leica-Inspired", "Product Visualization"],
+      "coverBoard": "24",
+      "boards": ["24", "24-02", "24-03", "24-04", "24-05", "24-06"],
+      "tagline": {
+        "en": "Heritage optics meet ultra-thin smartwatch architecture and strap innovation.",
+        "zh": "光学传统遇见超薄智能腕表架构与表带创新。",
+        "kr": "광학 헤리티지와 초슬림 스마트워치 구조, 스트랩 이노베이션의 만남."
+      },
+      "overview": {
+        "en": "Chronos Precision Wearable brings optical-instrument heritage into smart hardware. The study spans knurled crown tactility, a 9 mm ultra-thin profile, curved heart-rate ergonomics, and three strap architectures—AirFlow breathability, dual-tone lychee leather for business, and Summit woven band for sport—unified under a restrained premium industrial language.",
+        "zh": "Chronos 精密可穿戴项目将光学仪器传统引入智能硬件。研究涵盖滚花表冠触感、9 mm 超薄轮廓、曲面心率佩戴工学，以及三种表带架构——AirFlow 透气结构、商务双色荔枝纹皮革与 Summit 运动编织带——在克制的高级工业语言下形成统一表达。",
+        "kr": "Chronos Precision Wearable은 광학 기기 헤리티지를 스마트 하드웨어에 접목합니다. 너링 크라운 촉감, 9mm 초슬림 프로파일, 곡면 심박 인체공학, AirFlow 통기 구조, 비즈니스 투톤 리치 레더, 스포츠 Summit 위븐 밴드를 절제된 프리미엄 산업 언어로 통합했습니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Mechanical Heritage", "zh": "机械传承", "kr": "메커니컬 헤리티지" },
+          "text": {
+            "en": "Dial knurling and camera-inspired CMF translated into crown interaction.",
+            "zh": "表盘滚花与相机启发 CMF，转化为表冠交互语言。",
+            "kr": "다이얼 너링과 카메라 CMF를 크라운 인터랙션으로 번역."
+          }
+        },
+        {
+          "title": { "en": "Ultra-thin Architecture", "zh": "超薄架构", "kr": "초슬림 아키텍처" },
+          "text": {
+            "en": "9 mm profile with curved sensor platform for precision and comfort.",
+            "zh": "9 mm 机身与曲面传感器平台，兼顾精度与舒适。",
+            "kr": "9mm 프로파일과 곡면 센서 플랫폼으로 정밀함과 편안함 확보."
+          }
+        },
+        {
+          "title": { "en": "AirFlow Strap System", "zh": "AirFlow 表带系统", "kr": "AirFlow 스트랩 시스템" },
+          "text": {
+            "en": "3D grooves and dual-breath perforation for active sweat management.",
+            "zh": "立体凹槽与双重透气，优化运动排汗体验。",
+            "kr": "3D 그루브와 이중 통기로 액티브 땀 배출 관리."
+          }
+        },
+        {
+          "title": { "en": "Business Leather CMF", "zh": "商务皮革 CMF", "kr": "비즈니스 레더 CMF" },
+          "text": {
+            "en": "Two-tone lychee grain strap with contrast stitching for premium wear.",
+            "zh": "双色荔枝纹表带与对比缝线，适配商务佩戴。",
+            "kr": "투톤 리치 그레인 스트랩과 대비 스티칭으로 프리미엄 착용."
+          }
+        },
+        {
+          "title": { "en": "Summit Sport Band", "zh": "Summit 运动表带", "kr": "Summit 스포츠 밴드" },
+          "text": {
+            "en": "Ultra-light woven textile validated through high-performance lifestyle scenes.",
+            "zh": "超轻编织面料，经高性能生活场景验证。",
+            "kr": "초경량 위븐 텍스타일, 하이퍼포먼스 라이프스타일로 검증."
+          }
+        }
+      ]
+    }
+  ]
+}

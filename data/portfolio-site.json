@@ -35,91 +35,12 @@
     ]
   },
   "work": {
-    "title": "作品集",
-    "subtitle": "按品类浏览精选项目",
+    "title": "Projects",
+    "subtitle": "Selected works in robotics and wearables",
     "categories": [
-      { "key": "all", "label": "全部" },
-      { "key": "wearable", "label": "智能手表" },
-      { "key": "robot", "label": "机器人" },
-      { "key": "electronics", "label": "电子产品" }
+      { "key": "all", "label": "All" },
+      { "key": "robot", "label": "Robot" },
+      { "key": "wearable", "label": "Wearable" }
     ]
-  },
-  "projects": [
-    {
-      "id": "sports-watch",
-      "title": "Leica-Inspired Smartwatch Design",
-      "category": "wearable",
-      "categoryLabel": "智能手表",
-      "description": "灵感来自经典相机拨轮的切面肌理，复刻精密机械的操控质感与表体 CMF。",
-      "image": "images/sports-watch-cover@2x.png",
-      "imageSrc": "images/sports-watch-cover.png",
-      "visualClass": "visual-wearable-1",
-      "gallery": [
-        {
-          "src": "images/sports-watch/01@2x.png",
-          "src1x": "images/sports-watch/01.png",
-          "alt": "表冠切面肌理、整机透视、超薄机身与心率凸台"
-        },
-        {
-          "src": "images/sports-watch/02@2x.png",
-          "src1x": "images/sports-watch/02.png",
-          "alt": "AirFlow Strap 立体凹槽与双重透气设计"
-        },
-        {
-          "src": "images/sports-watch/03@2x.png",
-          "src1x": "images/sports-watch/03.png",
-          "alt": "双色荔枝纹皮革表带 · 商务高级"
-        },
-        {
-          "src": "images/leica-watch/05.png",
-          "alt": "Summit Band 超轻薄编织表带 · 运动场景"
-        },
-        {
-          "src": "images/sports-watch/04@2x.png",
-          "src1x": "images/sports-watch/04.png",
-          "alt": "经典相机灵感与精密机械质感"
-        }
-      ]
-    },
-    {
-      "id": "kids-watch",
-      "title": "儿童安全定位手表",
-      "category": "wearable",
-      "categoryLabel": "智能手表",
-      "description": "圆润亲和的造型语言，耐摔结构与高辨识度 CMF 方案。",
-      "visualClass": "visual-wearable-2"
-    },
-    {
-      "id": "home-robot",
-      "title": "家用陪伴机器人",
-      "category": "robot",
-      "categoryLabel": "机器人",
-      "description": "柔和曲面与模块化表情屏，建立可信赖的家庭伙伴形象。",
-      "visualClass": "visual-robot-1"
-    },
-    {
-      "id": "guide-robot",
-      "title": "商用导览服务机器人",
-      "category": "robot",
-      "categoryLabel": "机器人",
-      "description": "垂直简洁的机身比例与品牌色点缀，适配公共商业空间。",
-      "visualClass": "visual-robot-2"
-    },
-    {
-      "id": "earbuds",
-      "title": "无线降噪耳机",
-      "category": "electronics",
-      "categoryLabel": "电子产品",
-      "description": "人体工学耳壳曲面与金属质感 CMF，强调佩戴舒适与高级感。",
-      "visualClass": "visual-electronics-1"
-    },
-    {
-      "id": "projector",
-      "title": "便携式智能投影仪",
-      "category": "electronics",
-      "categoryLabel": "电子产品",
-      "description": "极简几何体块与隐藏式散热结构，桌面与差旅双场景适用。",
-      "visualClass": "visual-electronics-2"
-    }
-  ]
+  }
 }

@@ -6,10 +6,11 @@
   <title>Lynn Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Noto+Sans+SC:wght@100;200;300&family=Noto+Sans+KR:wght@100;200;300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400&family=Noto+Sans+SC:wght@100;200;300&family=Noto+Sans+KR:wght@100;200;300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="portfolio.css">
+  <link rel="stylesheet" href="projects.css">
 </head>
 <body>
   <div class="portfolio-loading" id="portfolio-loading">正在加载作品集 …</div>
@@ -28,19 +29,7 @@
     <footer class="portfolio-footer" id="portfolio-footer"></footer>
   </div>
 
-  <div class="project-modal" id="project-modal" hidden aria-hidden="true">
-    <div class="project-modal-backdrop" data-close-modal></div>
-    <div class="project-modal-panel" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
-      <button type="button" class="project-modal-close" aria-label="关闭" data-close-modal>&times;</button>
-      <header class="project-modal-header">
-        <span class="project-modal-tag" id="project-modal-tag"></span>
-        <h2 id="project-modal-title"></h2>
-        <p id="project-modal-desc"></p>
-      </header>
-      <div class="project-modal-gallery" id="project-modal-gallery"></div>
-    </div>
-  </div>
-
+  <script src="js/projects-shared.js"></script>
   <script src="portfolio.js"></script>
 </body>
 </html>

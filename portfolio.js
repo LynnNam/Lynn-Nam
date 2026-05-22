@@ -1,5 +1,6 @@
 let siteData = null;
 let osConfig = null;
+let projectsData = null;
 
 function escapeHtml(str) {
   return String(str)
@@ -15,14 +16,17 @@ function renderPortfolioImg({ src, alt, priority }) {
 }
 
 async function loadSiteData() {
-  const [siteRes, configRes] = await Promise.all([
+  const [siteRes, configRes, projectsRes] = await Promise.all([
     fetch("data/portfolio-site.json"),
     fetch("data/config.json"),
+    fetch("data/projects.json"),
   ]);
   if (!siteRes.ok) throw new Error("无法加载作品集数据");
   if (!configRes.ok) throw new Error("无法加载主页配置");
+  if (!projectsRes.ok) throw new Error("无法加载项目数据");
   siteData = await siteRes.json();
   osConfig = await configRes.json();
+  projectsData = await projectsRes.json();
 }
 
 function renderNav() {
@@ -37,7 +41,7 @@ function renderNav() {
     </button>
     <ul class="portfolio-nav-links">
       <li><a href="#about">${escapeHtml(siteData.about.title)}</a></li>
-      <li><a href="#work">${escapeHtml(siteData.work.title)}</a></li>
+      <li><a href="#work">${escapeHtml(projectsData?.section?.title || siteData.work.title)}</a></li>
     </ul>
   `;
 
@@ -179,7 +183,13 @@ function renderAbout() {
   `;
 }
 
-function renderWork() {
+function getEnrichedProjects() {
+  return projectsData.projects.map(enrichProject);
+}
+
+/** ProjectsSection — grid header + filters */
+function renderProjectsSection() {
+  const section = projectsData.section;
   const w = siteData.work;
   const filtersHtml = w.categories
     .map(
@@ -191,103 +201,52 @@ function renderWork() {
     )
     .join("");
 
-  const projectsHtml = siteData.projects
-    .map((p) => {
-      const hasGallery = p.gallery && p.gallery.length > 0;
-      const clickable = hasGallery ? " project-card--clickable" : "";
-      const hint = hasGallery ? `<span class="project-view-hint">查看详情</span>` : "";
-      return `
-      <article class="project-card${clickable}" data-category="${escapeHtml(p.category)}" data-project-id="${escapeHtml(p.id)}" ${hasGallery ? 'tabindex="0" role="button"' : ""}>
-        ${p.image
-          ? `<div class="project-visual project-visual--photo">${renderPortfolioImg({
-              src: p.image,
-              alt: p.title,
-            })}${hint}</div>`
-          : `<div class="project-visual ${escapeHtml(p.visualClass || "")}" aria-hidden="true">${hint}</div>`}
-        <div class="project-info">
-          <span class="project-tag">${escapeHtml(p.categoryLabel)}</span>
-          <h3>${escapeHtml(p.title)}</h3>
-          <p>${escapeHtml(p.description)}</p>
-        </div>
-      </article>
-    `;
-    })
-    .join("");
+  const projectsHtml = getEnrichedProjects().map((p) => renderProjectCard(p)).join("");
 
   document.getElementById("portfolio-work").innerHTML = `
-    <div class="work-header" id="work">
-      <p class="section-label">${escapeHtml(w.title)}</p>
-      <h2 class="section-title">精选项目</h2>
-      <p class="work-subtitle">${escapeHtml(w.subtitle)}</p>
+    <div class="work-header projects-section-header" id="work">
+      <p class="section-label">${escapeHtml(section.label)}</p>
+      <h2 class="section-title">${escapeHtml(section.title)}</h2>
+      <p class="work-subtitle">${escapeHtml(section.subtitle)}</p>
     </div>
     <div class="portfolio-filters" role="tablist">${filtersHtml}</div>
     <div class="projects-grid" id="projects-grid">${projectsHtml}</div>
   `;
 
+  document.getElementById("portfolio-work").classList.add("portfolio-work--projects");
   bindFilters();
-  bindProjectGallery();
 }
 
-function openProjectModal(projectId) {
-  const project = siteData.projects.find((p) => p.id === projectId);
-  if (!project || !project.gallery?.length) return;
-
-  const modal = document.getElementById("project-modal");
-  document.getElementById("project-modal-tag").textContent = project.categoryLabel;
-  document.getElementById("project-modal-title").textContent = project.title;
-  document.getElementById("project-modal-desc").textContent = project.description;
-
-  document.getElementById("project-modal-gallery").innerHTML = project.gallery
-    .map(
-      (img, i) => `
-      <figure class="project-modal-figure">
-        ${renderPortfolioImg({
-          src: img.src,
-          alt: img.alt,
-          priority: i === 0,
-        })}
-      </figure>
-    `
-    )
+/** ProjectCard — cover, title, description, keywords */
+function renderProjectCard(project) {
+  const keywordsHtml = project.keywords
+    .slice(0, 4)
+    .map((k) => `<li>${escapeHtml(k)}</li>`)
     .join("");
 
-  modal.hidden = false;
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-  modal.querySelector(".project-modal-close").focus();
+  return `
+    <a
+      href="project.html?project=${escapeHtml(project.id)}"
+      class="project-card project-card--link"
+      data-category="${escapeHtml(project.category)}"
+      data-project-id="${escapeHtml(project.id)}"
+    >
+      <div class="project-visual project-visual--photo">
+        ${renderProjectImg({
+          src: project.image,
+          alt: project.title,
+          className: "portfolio-img",
+        })}
+      </div>
+      <div class="project-info">
+        <span class="project-tag">${escapeHtml(project.categoryLabel)}</span>
+        <h3>${escapeHtml(project.title)}</h3>
+        <p>${escapeHtml(project.description)}</p>
+        <ul class="project-keywords">${keywordsHtml}</ul>
+      </div>
+    </a>
+  `;
 }
-
-function closeProjectModal() {
-  const modal = document.getElementById("project-modal");
-  modal.hidden = true;
-  modal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
-}
-
-function bindProjectGallery() {
-  const modal = document.getElementById("project-modal");
-
-  document.querySelectorAll(".project-card--clickable").forEach((card) => {
-    const open = () => openProjectModal(card.dataset.projectId);
-
-    card.addEventListener("click", open);
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        open();
-      }
-    });
-  });
-
-  modal.querySelectorAll("[data-close-modal]").forEach((el) => {
-    el.addEventListener("click", closeProjectModal);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modal.hidden) closeProjectModal();
-  });
-}
-
 function bindFilters() {
   const filterBtns = document.querySelectorAll(".filter-btn");
   const cards = document.querySelectorAll(".project-card");
@@ -321,7 +280,7 @@ async function init() {
     renderHero();
     renderHeroArchive();
     renderAbout();
-    renderWork();
+    renderProjectsSection();
     renderFooter();
     document.title = siteData.site.name;
     document.getElementById("portfolio-loading").hidden = true;
