@@ -198,7 +198,6 @@ a {
   --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
   width: 100%;
   background: var(--bg);
-  border-bottom: 1px solid var(--border);
 }
 
 .hero-archive {
@@ -366,7 +365,6 @@ a {
 /* About */
 .portfolio-about {
   padding: 6rem var(--content-padding);
-  border-top: 1px solid var(--border);
 }
 
 .section-label {
@@ -433,8 +431,7 @@ a {
 /* Work */
 .portfolio-work {
   padding: 6rem var(--content-padding) 5rem;
-  background: var(--bg-alt);
-  border-top: 1px solid var(--border);
+  background: var(--bg);
 }
 
 .work-header {
@@ -533,7 +530,7 @@ a {
 .project-visual {
   position: relative;
   aspect-ratio: 16 / 10;
-  background: var(--bg-alt);
+  background: transparent;
   overflow: hidden;
 }
 
@@ -723,7 +720,6 @@ body.modal-open {
   padding: 2rem var(--content-padding) 2.5rem;
   font-size: 0.75rem;
   color: var(--text-light);
-  border-top: 1px solid var(--border);
 }
 
 @media (min-width: 768px) {
