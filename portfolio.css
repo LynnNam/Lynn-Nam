@@ -85,11 +85,17 @@ a {
   list-style: none;
 }
 
+.portfolio-nav-download {
+  list-style: none;
+}
+
 .portfolio-download-btn {
+  display: inline-flex;
+  align-items: baseline;
   flex-shrink: 0;
+  gap: 0.35em;
   padding: 0.45rem 0.95rem;
   font-size: 0.8rem;
-  letter-spacing: 0.04em;
   color: var(--text);
   background: transparent;
   border: 1px solid var(--border-strong);
@@ -98,10 +104,25 @@ a {
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
+.portfolio-download-btn__en {
+  letter-spacing: 0.04em;
+}
+
+.portfolio-download-btn__zh {
+  font-size: 0.92em;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
 .portfolio-download-btn:hover {
   color: var(--bg);
   background: var(--text);
   border-color: var(--text);
+}
+
+.portfolio-download-btn:hover .portfolio-download-btn__zh {
+  color: inherit;
 }
 
 .menu-toggle {
@@ -779,6 +800,10 @@ body.modal-open {
   .portfolio-nav-links li {
     text-align: center;
     padding: 0.65rem;
+  }
+
+  .portfolio-nav-download {
+    padding: 0.85rem 1rem 1rem;
   }
 
   .menu-toggle {

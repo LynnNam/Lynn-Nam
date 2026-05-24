@@ -7,6 +7,7 @@
     "backLabel": "返回 Lynn OS",
     "pdfDownload": {
       "label": "Download PDF Portfolio",
+      "labelZh": "/下载 PDF 作品集",
       "href": "downloads/南玲_工业设计作品集.pdf",
       "filename": "南玲_工业设计作品集.pdf"
     }

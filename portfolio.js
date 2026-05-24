@@ -33,19 +33,19 @@ function renderNav() {
   const nav = document.getElementById("portfolio-nav");
   const pdf = siteData.site.pdfDownload;
   const pdfBtnHtml = pdf?.href
-    ? `<a class="portfolio-download-btn" href="${escapeHtml(pdf.href)}" download="${escapeHtml(pdf.filename || "")}">${escapeHtml(pdf.label || "Download PDF Portfolio")}</a>`
+    ? `<li class="portfolio-nav-download"><a class="portfolio-download-btn" href="${escapeHtml(pdf.href)}" download="${escapeHtml(pdf.filename || "")}"><span class="portfolio-download-btn__en">${escapeHtml(pdf.label || "Download PDF Portfolio")}</span>${pdf.labelZh ? `<span class="portfolio-download-btn__zh">${escapeHtml(pdf.labelZh)}</span>` : ""}</a></li>`
     : "";
 
   nav.innerHTML = `
     ${renderSiteNavLeading({ homeHref: "index.html", backLabel: siteData.site.backLabel })}
     <div class="portfolio-nav-actions">
-      ${pdfBtnHtml}
       <button class="menu-toggle" aria-label="菜单" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="portfolio-nav-links">
         <li><a href="#about">${escapeHtml(siteData.about.title)}</a></li>
         <li><a href="#work">${escapeHtml(projectsData?.section?.title || siteData.work.title)}</a></li>
+        ${pdfBtnHtml}
       </ul>
     </div>
   `;
