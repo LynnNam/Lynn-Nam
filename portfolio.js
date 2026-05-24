@@ -31,15 +31,23 @@ async function loadSiteData() {
 
 function renderNav() {
   const nav = document.getElementById("portfolio-nav");
+  const pdf = siteData.site.pdfDownload;
+  const pdfBtnHtml = pdf?.href
+    ? `<a class="portfolio-download-btn" href="${escapeHtml(pdf.href)}" download="${escapeHtml(pdf.filename || "")}">${escapeHtml(pdf.label || "Download PDF Portfolio")}</a>`
+    : "";
+
   nav.innerHTML = `
     ${renderSiteNavLeading({ homeHref: "index.html", backLabel: siteData.site.backLabel })}
-    <button class="menu-toggle" aria-label="菜单" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="portfolio-nav-links">
-      <li><a href="#about">${escapeHtml(siteData.about.title)}</a></li>
-      <li><a href="#work">${escapeHtml(projectsData?.section?.title || siteData.work.title)}</a></li>
-    </ul>
+    <div class="portfolio-nav-actions">
+      ${pdfBtnHtml}
+      <button class="menu-toggle" aria-label="菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="portfolio-nav-links">
+        <li><a href="#about">${escapeHtml(siteData.about.title)}</a></li>
+        <li><a href="#work">${escapeHtml(projectsData?.section?.title || siteData.work.title)}</a></li>
+      </ul>
+    </div>
   `;
   const menuBtn = nav.querySelector(".menu-toggle");
   const navLinks = nav.querySelector(".portfolio-nav-links");

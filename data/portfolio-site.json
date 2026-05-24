@@ -4,7 +4,12 @@
     "owner": "Lynn Nam",
     "role": "产品设计师",
     "backUrl": "index.html",
-    "backLabel": "返回 Lynn OS"
+    "backLabel": "返回 Lynn OS",
+    "pdfDownload": {
+      "label": "Download PDF Portfolio",
+      "href": "downloads/南玲_工业设计作品集.pdf",
+      "filename": "南玲_工业设计作品集.pdf"
+    }
   },
   "hero": {
     "greeting": "你好，我是",
