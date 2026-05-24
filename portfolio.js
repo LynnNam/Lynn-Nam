@@ -32,8 +32,11 @@ async function loadSiteData() {
 function renderNav() {
   const nav = document.getElementById("portfolio-nav");
   const pdf = siteData.site.pdfDownload;
+  const pdfLabel = pdf
+    ? `${pdf.label || "Download PDF Portfolio"}${pdf.labelZh || ""}`
+    : "";
   const pdfBtnHtml = pdf?.href
-    ? `<li class="portfolio-nav-download"><a class="portfolio-download-btn" href="${escapeHtml(pdf.href)}" download="${escapeHtml(pdf.filename || "")}"><span class="portfolio-download-btn__en">${escapeHtml(pdf.label || "Download PDF Portfolio")}</span>${pdf.labelZh ? `<span class="portfolio-download-btn__zh">${escapeHtml(pdf.labelZh)}</span>` : ""}</a></li>`
+    ? `<li><a href="${escapeHtml(pdf.href)}" download="${escapeHtml(pdf.filename || "")}">${escapeHtml(pdfLabel)}</a></li>`
     : "";
 
   nav.innerHTML = `
