@@ -32,12 +32,239 @@ function renderProjectDetailNav(project) {
   `;
 }
 
+function renderBoardOverlay(content) {
+  if (!content) return "";
+
+  if (content.layout === "bottom-copy") {
+    const labels = (content.iconLabels || [])
+      .map((label) => `<span class="board-slide__icon-label">${escapeHtml(label)}</span>`)
+      .join("");
+    const paragraphs = (content.paragraphs || [])
+      .map((p) => `<p>${escapeHtml(p)}</p>`)
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--bottom-copy">
+        ${labels ? `<div class="board-slide__icon-labels">${labels}</div>` : ""}
+        <div class="board-slide__copy">${paragraphs}</div>
+      </div>
+    `;
+  }
+
+  if (content.layout === "title-top") {
+    return `
+      <div class="board-slide__overlay board-slide__overlay--title-top">
+        <p class="board-slide__page-title">${escapeHtml(content.title || "")}</p>
+        ${content.hint ? `<p class="board-slide__hint">${escapeHtml(content.hint)}</p>` : ""}
+      </div>
+    `;
+  }
+
+  if (content.layout === "split-right") {
+    const features = (content.features || [])
+      .map((f) => `<li>${escapeHtml(f)}</li>`)
+      .join("");
+    const callouts = (content.callouts || [])
+      .map((c) => `<span class="board-slide__callout">${escapeHtml(c)}</span>`)
+      .join("");
+    const shiftClass =
+      content.panelShift === "left" ? " board-slide__overlay--shift-left" : "";
+    const mealClass = content.mealPanel ? " board-slide__overlay--meal-panel" : "";
+    const panelOnly = content.panelOnly === true;
+    const panelHeading = panelOnly
+      ? content.panelTitle || ""
+      : content.panelTitle || content.title || "";
+    const headingTag = content.panelTitle && content.title && !panelOnly ? "h4" : "h3";
+    return `
+      <div class="board-slide__overlay board-slide__overlay--split-right${shiftClass}${mealClass}">
+        <${headingTag} class="board-slide__panel-title">${escapeHtml(panelHeading)}</${headingTag}>
+        ${features ? `<ul class="board-slide__features">${features}</ul>` : ""}
+        ${content.body ? `<p class="board-slide__panel-body">${escapeHtml(content.body)}</p>` : ""}
+        ${callouts ? `<div class="board-slide__callouts">${callouts}</div>` : ""}
+      </div>
+    `;
+  }
+
+  if (content.layout === "quad-columns") {
+    const cols = (content.columns || [])
+      .map(
+        (col) => `
+        <div class="board-slide__quad-col">
+          <h4 class="board-slide__quad-title">${escapeHtml(col.title || "")}</h4>
+          <p class="board-slide__quad-body">${escapeHtml(col.body || "")}</p>
+        </div>
+      `
+      )
+      .join("");
+    return `<div class="board-slide__overlay board-slide__overlay--quad">${cols}</div>`;
+  }
+
+  if (content.layout === "stack-intro") {
+    return `
+      <div class="board-slide__overlay board-slide__overlay--section-label">
+        <p class="board-slide__section-title">${escapeHtml(content.sectionTitle || "")}</p>
+      </div>
+    `;
+  }
+
+  return "";
+}
+
+function renderCircleCallouts(content) {
+  if (!content?.circleCallouts?.length) return "";
+  const items = content.circleCallouts
+    .map(
+      (c) =>
+        `<span class="board-slide__circle-label" style="left:${escapeHtml(c.left)};top:${escapeHtml(c.top)}">${escapeHtml(c.label)}</span>`
+    )
+    .join("");
+  return `<div class="board-slide__overlay board-slide__overlay--circle-labels" aria-hidden="true">${items}</div>`;
+}
+
+function renderBoardCornerTitle(content) {
+  if (!content || (!content.title && !content.subtitle)) return "";
+  return `
+    <div class="board-slide__overlay board-slide__overlay--corner-title">
+      ${content.title ? `<p class="board-slide__corner-title">${escapeHtml(content.title)}</p>` : ""}
+      ${content.subtitle ? `<p class="board-slide__corner-subtitle">${escapeHtml(content.subtitle)}</p>` : ""}
+    </div>
+  `;
+}
+
+function renderBoardStackHeader(content) {
+  if (!content) return "";
+  return `
+    <div class="board-slide__header">
+      <p class="board-slide__mock-title">${escapeHtml(content.title || "")}</p>
+      ${content.subtitle ? `<p class="board-slide__mock-subtitle">${escapeHtml(content.subtitle)}</p>` : ""}
+    </div>
+  `;
+}
+
+function renderBoardFigure(img, options = {}) {
+  const content = img.content;
+  const layoutClass = content?.layout ? ` board-slide--${content.layout}` : "";
+  const priority = options.priority ?? false;
+  const className = options.className || "image-gallery__img";
+
+  if (content?.layout === "stack-header") {
+    return `
+      <figure class="board-slide board-slide--stack-header" data-board="${img.board}">
+        ${renderBoardStackHeader(content)}
+        ${renderProjectImg({
+          src: img.src,
+          alt: img.alt,
+          priority,
+          className,
+        })}
+      </figure>
+    `;
+  }
+
+  if (content?.layout === "stack-intro") {
+    return `
+      <figure class="board-slide board-slide--stack-intro" data-board="${img.board}">
+        <div class="board-slide__intro-block">
+          <p class="board-slide__intro-title">${escapeHtml(content.title || "")}</p>
+          ${content.intro ? `<p class="board-slide__intro-body">${escapeHtml(content.intro)}</p>` : ""}
+        </div>
+        <div class="board-slide__media-wrap">
+          ${renderProjectImg({
+            src: img.src,
+            alt: img.alt,
+            priority,
+            className,
+          })}
+          ${renderBoardOverlay(content)}
+        </div>
+      </figure>
+    `;
+  }
+
+  if (content?.layout === "meal-service") {
+    const platformSrc = content.platformImage || img.src;
+    const diningOverlay = {
+      layout: "split-right",
+      panelShift: content.panelShift,
+      title: content.title,
+      features: content.features,
+      body: content.body,
+      mealPanel: true,
+    };
+    return `
+      <figure class="board-slide board-slide--meal-service" data-board="${img.board}">
+        <div class="board-slide__meal-intro">
+          <h3 class="board-slide__meal-title">${escapeHtml(content.platformTitle || "")}</h3>
+          ${content.platformIntro ? `<p class="board-slide__meal-body">${escapeHtml(content.platformIntro)}</p>` : ""}
+        </div>
+        <div class="board-slide__platform-views">
+          ${renderProjectImg({
+            src: platformSrc,
+            alt: `${img.alt} — platform views`,
+            priority,
+            className: "board-slide__platform-img",
+          })}
+        </div>
+        <div class="board-slide__media-wrap">
+          ${renderProjectImg({
+            src: img.src,
+            alt: img.alt,
+            priority: false,
+            className,
+          })}
+          ${renderBoardOverlay(diningOverlay)}
+          ${renderCircleCallouts(content)}
+        </div>
+      </figure>
+    `;
+  }
+
+  if (content?.layout === "stack-split") {
+    return `
+      <figure class="board-slide board-slide--stack-split" data-board="${img.board}">
+        <div class="board-slide__media-wrap">
+          ${renderProjectImg({
+            src: img.src,
+            alt: img.alt,
+            priority,
+            className,
+          })}
+          ${renderBoardCornerTitle(content)}
+        </div>
+        <div class="board-slide__panel-caption">
+          <h3 class="board-slide__panel-caption-title">${escapeHtml(content.panelTitle || "")}</h3>
+          ${content.body ? `<p class="board-slide__panel-caption-body">${escapeHtml(content.body)}</p>` : ""}
+        </div>
+      </figure>
+    `;
+  }
+
+  return `
+    <figure class="board-slide${layoutClass}" data-board="${img.board}">
+      ${renderProjectImg({
+        src: img.src,
+        alt: img.alt,
+        priority,
+        className,
+      })}
+      ${renderBoardOverlay(content)}
+      ${renderCircleCallouts(content)}
+    </figure>
+  `;
+}
+
 function renderProjectHero(project) {
+  const coverSlide = project.gallery.find((img) => img.isCover) || {
+    board: project.coverBoard,
+    src: project.image,
+    alt: project.title,
+    content: project.boardContent?.[String(project.coverBoard)] ?? null,
+  };
+
   return `
     <header class="project-detail-hero">
       <figure class="project-detail-hero__media">
         ${renderProjectImg({
-          src: project.image,
+          src: coverSlide.src,
           alt: project.title,
           priority: true,
           className: "project-detail-hero__img",
@@ -80,8 +307,9 @@ function renderDesignHighlights(project) {
     )
     .join("");
 
+  const count = project.highlights.length;
   return `
-    <section class="project-detail-section project-highlights" aria-labelledby="highlights-heading">
+    <section class="project-detail-section project-highlights" aria-labelledby="highlights-heading" data-highlight-count="${count}">
       ${renderTriSectionTitle(pageLabels.highlights)}
       ${renderTriBlock(pageLabels.highlightsIntro, { className: "tri-block--section-intro" })}
       <div class="highlights-grid">${items}</div>
@@ -91,18 +319,7 @@ function renderDesignHighlights(project) {
 
 function renderImageGallery(project) {
   const figures = project.gallery
-    .map(
-      (img, i) => `
-      <figure class="image-gallery__figure" data-board="${img.board}">
-        ${renderProjectImg({
-          src: img.src,
-          alt: img.alt,
-          priority: i === 0,
-          className: "image-gallery__img",
-        })}
-      </figure>
-    `
-    )
+    .map((img, i) => renderBoardFigure(img, { priority: i === 0 }))
     .join("");
 
   return `

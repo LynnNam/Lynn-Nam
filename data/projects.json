@@ -40,7 +40,81 @@
       "description": "Indoor service robotics — epidemic prevention, hospitality, and public-space cleaning.",
       "keywords": ["Service Robot", "Indoor Robotics", "CMF", "Product Design", "Mock-up"],
       "coverBoard": 4,
-      "boards": [4, 5, 6, 7, 8, 10, 11, 12, 13, 15],
+      "boards": [4, 5, 8, 9, 10, 11, 12, 13, 14, 15],
+      "boardContent": {
+        "5": {
+          "layout": "stack-intro",
+          "title": "INDOORS ROBOT",
+          "intro": "室内机器人主要在智能楼宇系统中为住户服务的机器人，是一项基于人工智能和自动化技术的创新项目。这些机器人通过搭载多种传感器和导航系统，实现了精准的室内定位和路径规划。它们能够准确识别楼宇内的环境和障碍物，并通过智能避障算法进行安全、高效的移动。有防疫、消毒、广告、配送、引导、保安等组合，打造出数20多种机器人提供服务。",
+          "sectionTitle": "设计方案"
+        },
+        "8": {
+          "layout": "meal-service",
+          "platformTitle": "L机器人",
+          "platformIntro": "由移动RMP和可触显示屏组成的基础平台，迎宾服务和配送合二为一，通过承载不同的模块，用于各种用途，在动态环境中与人类并肩工作，以提高日常生活质量。",
+          "platformImage": "images/hello-robot-l-views.png",
+          "title": "开放式餐服机器人",
+          "features": ["点餐", "送餐"],
+          "body": "共装有3个开放式托盘。您可以同时为您带来多份饮料和食物，并在同一工作环境中与人无缝协作，提高效率，为您的客户提供始终如一的优质服务。",
+          "circleCallouts": [
+            { "label": "结算", "left": "64%", "top": "81%" },
+            { "label": "托盘", "left": "74%", "top": "81%" },
+            { "label": "冷藏", "left": "84%", "top": "81%" }
+          ]
+        },
+        "9": {
+          "layout": "split-right",
+          "title": "消防机器人",
+          "features": ["AED 装备", "求救", "火灾警报"],
+          "body": "您可以携带灭火器和防毒面具，在火灾检测时，从控制室将119机器人送往火灾地点，并为逃生人员提供灭火器或防毒面具，以预防人员伤亡。",
+          "callouts": ["火灾警报"]
+        },
+        "10": {
+          "layout": "split-right",
+          "title": "清洁机器人",
+          "features": ["控制室设置", "扫拖一体"],
+          "body": "使用两个刷子和强大的吸入电机的清洁机器人。与普通家用机器人吸尘器的功能相似，是一款用于清洁公共空间的大型清洁机器人。根据您的设置，您可以实时进行自动清洁，并提供舒适的环境。"
+        },
+        "11": {
+          "layout": "split-right",
+          "title": "防疫机器人",
+          "features": ["控制室防疫设置", "各楼层消毒"],
+          "body": "防疫机器人，装有可装13升液体消毒剂的罐，通过360度前向8个喷射喷嘴喷射消毒药品。可以防疫建筑物的所有公共空间，可以实时查看防疫区域和需要防疫的区域，并自动或手动设置。喷洒量设置和防疫药品可根据客户要求进行设置。"
+        },
+        "12": {
+          "layout": "quad-columns",
+          "columns": [
+            {
+              "title": "电车移动充电机器人",
+              "body": "ACR: Automatic Charging Robot 自动停车连接自动充电机器人，基于Deep learning的充电口识别坐标导出，管理位置合规性控制。"
+            },
+            {
+              "title": "医疗机器人",
+              "body": "主要在医院，根据患者的情况定时定点提供相应的药品，前面有显示屏可与医生远程会诊。"
+            },
+            {
+              "title": "零售机器人",
+              "body": "配备三段Showcase，冷、温功能。主要是销售饮料或快餐的机器人，安装了识别产品的传感器，经过支付认证后解锁，您可以购买该产品。"
+            },
+            {
+              "title": "运输机器人",
+              "body": "主要是代替重物搬运的机器人，适合在各种地方搬运物品的机器人，可以为超老龄化时代行动不便的老弱病残或酒店的客人搬运沉重的行李提供更好的服务。具有跟随人的关注功能和帮助引导的护送功能。"
+            }
+          ]
+        },
+        "13": {
+          "layout": "stack-split",
+          "title": "3D PROTOTYPES",
+          "subtitle": "设计修改",
+          "panelTitle": "SCALE MODEL (1:10) FOR PROPORTION STUDY",
+          "body": "采用1:10比例进行3D打印，用于验证产品整体比例、体量关系及结构布局，在有限成本下高效推进设计迭代。"
+        },
+        "15": {
+          "layout": "stack-header",
+          "title": "MOCK UP",
+          "subtitle": "与韩国LG工作室制作的模型"
+        }
+      },
       "tagline": {
         "en": "Future of autonomous delivery — from strategic vision to physical form.",
         "zh": "从战略愿景到实体形态，探索自主配送服务的未来。",

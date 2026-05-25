@@ -15,7 +15,7 @@ function artboardSrc(board) {
 function renderProjectImg({ src, alt, priority, className = "project-gallery-img" }) {
   const priorityAttr = priority ? ' fetchpriority="high"' : "";
   const cls = className ? ` class="${escapeHtml(className)}"` : "";
-  return `<img${cls} src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" decoding="async"${priorityAttr}>`;
+  return `<img${cls} src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" decoding="async" loading="eager"${priorityAttr}>`;
 }
 
 function isI18nBlock(value) {
@@ -28,11 +28,13 @@ function enrichProject(project) {
     ...project,
     taglineEn,
     image: artboardSrc(project.coverBoard),
+    boardContent: project.boardContent || null,
     gallery: project.boards.map((board) => ({
       board,
       src: artboardSrc(board),
       alt: `${project.title} — Board ${board}`,
       isCover: String(board) === String(project.coverBoard),
+      content: project.boardContent?.[String(board)] ?? null,
     })),
   };
 }

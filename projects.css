@@ -144,6 +144,10 @@
   border-top-color: var(--project-border);
 }
 
+.project-detail-page--omni-mobility .image-gallery .board-slide[data-board="16"] {
+  background: var(--project-bg);
+}
+
 .project-detail-page--omni-mobility .project-highlights .tri-section-title__line--en,
 .project-detail-page--omni-mobility .project-highlights .tri-block--highlight-title .tri-block__line {
   color: var(--project-text);
@@ -342,35 +346,71 @@
   max-width: 42em;
 }
 
+/* 设计亮点：多项横排（卡片内中英韩仍纵向） */
 .highlights-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.5rem, 3vw, 2rem);
-  max-width: 52em;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  max-width: 100%;
+}
+
+.project-highlights[data-highlight-count="5"] .highlights-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.project-highlights[data-highlight-count="4"] .highlights-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.project-highlights:not([data-highlight-count="4"]):not([data-highlight-count="5"]) .highlights-grid {
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.highlight-item {
+  min-width: 0;
 }
 
 .highlight-item__title-wrap {
   margin-bottom: 0.65rem;
 }
 
+.project-highlights .tri-block--highlight-text .tri-block__line {
+  font-size: clamp(0.72rem, 1.15vw, 0.88rem);
+  line-height: 1.6;
+}
+
+.project-highlights .tri-block--highlight-title .tri-block__line {
+  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+}
+
 .image-gallery__grid {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: clamp(2rem, 5vw, 3.5rem);
-  max-width: 1200px;
+  max-width: min(1600px, 100%);
   margin: 0 auto;
 }
 
-.image-gallery__figure {
+/* 作品展示图片缩小 30%，按原分辨率显示更清晰 */
+.image-gallery__grid .board-slide {
+  width: 70%;
+  max-width: 70%;
+  margin-inline: auto;
+}
+
+.image-gallery__figure,
+.board-slide {
   margin: 0;
   line-height: 0;
   background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.image-gallery__img {
+.image-gallery__img,
+.board-slide .image-gallery__img,
+.board-slide .project-detail-hero__img,
+.board-slide__platform-img {
   display: block;
   width: 100%;
   height: auto;
@@ -378,6 +418,509 @@
   margin: 0 auto;
   object-fit: contain;
   object-position: center;
+}
+
+.image-gallery__grid .board-slide img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.board-slide__overlay {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+/* 画板 4 — 底部说明文案 */
+.board-slide--bottom-copy .board-slide__overlay--bottom-copy {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.5rem, 4vw, 2.5rem);
+  color: #fff;
+  text-align: center;
+}
+
+.board-slide__icon-labels {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 8vw, 6rem);
+  margin-bottom: 0.85rem;
+  font-size: clamp(0.65rem, 1.2vw, 0.78rem);
+  letter-spacing: 0.12em;
+}
+
+.board-slide__copy {
+  max-width: 52rem;
+  margin: 0 auto;
+  font-size: clamp(0.62rem, 1.05vw, 0.72rem);
+  line-height: 1.65;
+  opacity: 0.92;
+}
+
+.board-slide__copy p + p {
+  margin-top: 0.55rem;
+}
+
+/* 画板 5 — 标题与提示 */
+.board-slide--title-top .board-slide__overlay--title-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1.25rem, 3vw, 2rem);
+  color: #111;
+  text-align: left;
+}
+
+.board-slide__page-title {
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.board-slide__hint {
+  position: absolute;
+  top: 32%;
+  left: 11%;
+  margin: 0;
+  padding: 0.2rem 0.55rem;
+  font-size: clamp(0.55rem, 0.95vw, 0.68rem);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.78);
+  line-height: 1.4;
+}
+
+/* 画板 8 / 10 / 11 — 右侧说明（无背景，仅文字） */
+.board-slide--split-right .board-slide__overlay--split-right {
+  top: 0;
+  right: 0;
+  width: 38%;
+  height: 100%;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem) clamp(1rem, 2.5vw, 1.75rem);
+  color: #fff;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  line-height: 1.55;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+.board-slide__panel-title {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.board-slide__features {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  font-size: clamp(0.72rem, 1.2vw, 0.85rem);
+}
+
+.board-slide__features li + li {
+  margin-top: 0.45rem;
+}
+
+.board-slide__panel-body {
+  font-size: clamp(0.62rem, 1.05vw, 0.74rem);
+  line-height: 1.7;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.board-slide__callouts {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: clamp(0.62rem, 1vw, 0.72rem);
+  opacity: 0.85;
+}
+
+/* 画板 8 — L 平台 + 餐服机器人 */
+.board-slide--meal-service {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  background: var(--bg, #faf7f0);
+}
+
+.board-slide__meal-intro {
+  padding: 0 0 clamp(0.75rem, 1.5vw, 1rem);
+  color: #111;
+  text-align: left;
+}
+
+.board-slide__meal-title {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.board-slide__meal-body {
+  margin: 0;
+  max-width: 52rem;
+  font-size: clamp(0.62rem, 1.05vw, 0.74rem);
+  line-height: 1.65;
+  color: var(--text-muted, #444);
+}
+
+.board-slide__platform-views {
+  line-height: 0;
+  margin: 0 0 clamp(0.5rem, 1.5vw, 1rem);
+  background: transparent;
+}
+
+.board-slide__platform-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.board-slide--meal-service .board-slide__media-wrap {
+  position: relative;
+  line-height: 0;
+}
+
+/* 画板 8 餐服图 — 右侧灰底区文案（对齐参考稿） */
+.board-slide--meal-service .board-slide__overlay--meal-panel {
+  top: 0;
+  right: auto;
+  left: 52%;
+  width: 36%;
+  height: 100%;
+  padding: 7% 10% 5% 2%;
+  justify-content: flex-start;
+  color: #fff;
+}
+
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-title,
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features,
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features li,
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-body {
+  color: #fff;
+}
+
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-title {
+  margin-bottom: 0.65rem;
+}
+
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features li + li {
+  margin-top: 0;
+}
+
+.board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-body {
+  flex: 1;
+  max-width: 100%;
+  opacity: 1;
+}
+
+.board-slide--meal-service .board-slide__circle-label {
+  color: #fff;
+  font-size: clamp(0.55rem, 0.9vw, 0.68rem);
+  font-weight: 500;
+}
+
+/* 画板 8 — 三个圆形图下方标签 */
+.board-slide__overlay--circle-labels {
+  inset: 0;
+  pointer-events: none;
+}
+
+.board-slide__circle-label {
+  position: absolute;
+  transform: translate(-50%, 0);
+  font-size: clamp(0.58rem, 0.95vw, 0.7rem);
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* 画板 8 — 餐服机器人说明左移 */
+.board-slide__overlay--split-right.board-slide__overlay--shift-left {
+  right: auto;
+  left: 50%;
+  width: 34%;
+  padding-left: clamp(0.75rem, 1.5vw, 1.25rem);
+  padding-right: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* 画板 5 — 顶部导语 + 图上「设计方案」 */
+.board-slide--stack-intro {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  background: var(--bg, #faf7f0);
+}
+
+.board-slide--stack-intro .board-slide__media-wrap {
+  background: var(--bg, #faf7f0);
+}
+
+.board-slide__intro-block {
+  padding: 0 0 clamp(0.85rem, 2vw, 1.25rem);
+  color: #111;
+}
+
+.board-slide__intro-title {
+  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.5rem;
+}
+
+.board-slide__intro-body {
+  margin: 0;
+  font-size: clamp(0.62rem, 1.05vw, 0.74rem);
+  line-height: 1.65;
+  color: var(--text-muted, #444);
+  max-width: 52rem;
+}
+
+.board-slide__media-wrap {
+  position: relative;
+  line-height: 0;
+}
+
+.board-slide--stack-intro .board-slide__overlay--section-label {
+  top: 32%;
+  bottom: auto;
+  left: 0;
+  right: auto;
+  width: auto;
+  max-width: 28%;
+  padding: 0 0 0 clamp(1rem, 2.5vw, 1.75rem);
+  color: #111;
+  text-shadow: none;
+}
+
+.board-slide__section-title {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+}
+
+/* 画板 12 — 白底 + 四列底部说明 */
+.board-slide--quad-columns {
+  background: #fff;
+}
+
+.board-slide--quad-columns .image-gallery__img {
+  background: #fff;
+}
+
+.board-slide--quad-columns .board-slide__overlay--quad {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(0.5rem, 1.5vw, 1rem);
+  color: #111;
+  text-shadow: none;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.75) 70%, transparent 100%);
+}
+
+.board-slide__quad-title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(0.58rem, 0.95vw, 0.7rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.board-slide__quad-body {
+  margin: 0;
+  font-size: clamp(0.5rem, 0.82vw, 0.62rem);
+  line-height: 1.55;
+  color: #333;
+}
+
+/* 画板 13 — 左上标题在图上，SCALE MODEL 说明在图下 */
+.board-slide--stack-split {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.45;
+}
+
+.board-slide__panel-caption {
+  padding: clamp(0.75rem, 1.5vw, 1.1rem) 0 0;
+  color: #333;
+  max-width: 36em;
+}
+
+.board-slide__panel-caption-title {
+  margin: 0 0 0.45rem;
+  font-size: clamp(0.62rem, 1vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+
+.board-slide__panel-caption-body {
+  margin: 0;
+  font-size: clamp(0.62rem, 1.05vw, 0.74rem);
+  line-height: 1.55;
+  color: #444;
+}
+
+.board-slide--stack-split .board-slide__overlay--corner-title {
+  top: 6%;
+  left: 4%;
+  right: auto;
+  width: auto;
+  max-width: 42%;
+  color: #111;
+  text-shadow: none;
+  text-align: left;
+}
+
+.board-slide__corner-title {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.board-slide__corner-subtitle {
+  margin: 0.2rem 0 0;
+  font-size: clamp(0.72rem, 1.2vw, 0.88rem);
+  font-weight: 300;
+  color: #333;
+}
+
+/* 画板 15 — 标题在图片上方，不重叠 */
+.board-slide--stack-header {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.45;
+}
+
+.board-slide__header {
+  padding: 0 0 clamp(0.65rem, 1.5vw, 1rem);
+  color: #111;
+  text-align: left;
+}
+
+.board-slide--stack-header .board-slide__mock-title {
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.board-slide--stack-header .board-slide__mock-subtitle {
+  margin: 0.25rem 0 0;
+  font-size: clamp(0.62rem, 1vw, 0.72rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #6b6b6b);
+}
+
+@media (max-width: 720px) {
+  .board-slide--split-right .board-slide__overlay--split-right {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    color: var(--text, #1a1a1a);
+    text-shadow: none;
+    padding: 1rem 0 0;
+  }
+
+  .board-slide--split-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .board-slide--title-top .board-slide__hint {
+    top: 24%;
+    left: 6%;
+  }
+
+  .board-slide--quad-columns .board-slide__overlay--quad {
+    position: relative;
+    grid-template-columns: 1fr;
+    background: transparent;
+    padding: 1rem 0 0;
+  }
+
+  .board-slide__overlay--split-right.board-slide__overlay--shift-left {
+    left: auto;
+    width: 100%;
+  }
+
+  .board-slide__circle-label {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    transform: none;
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  .board-slide__overlay--circle-labels {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+    padding: 0.75rem 0 0;
+    color: var(--text, #1a1a1a);
+  }
+
+  .board-slide--stack-split .board-slide__overlay--corner-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 0 0 0.5rem;
+  }
+
+  .board-slide--stack-intro .board-slide__overlay--section-label {
+    position: relative;
+    bottom: auto;
+    padding: 0.5rem 0 0;
+  }
+
+  .board-slide--meal-service .board-slide__platform-views {
+    margin-bottom: 0.75rem;
+  }
+
+  .board-slide--meal-service .board-slide__overlay--meal-panel,
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-title,
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features,
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features li,
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-body,
+  .board-slide--meal-service .board-slide__circle-label {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  }
+
+  .board-slide--meal-service .board-slide__overlay--circle-labels {
+    color: #fff;
+  }
 }
 
 .end-section {
@@ -408,9 +951,22 @@
   border-bottom-color: var(--text);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1100px) {
+  .project-highlights[data-highlight-count="5"] .highlights-grid,
+  .project-highlights[data-highlight-count="4"] .highlights-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
   .highlights-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .highlights-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
