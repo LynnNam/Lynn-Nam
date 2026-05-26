@@ -8,8 +8,12 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
-function artboardSrc(board) {
-  return encodeURI(`images/画板 ${board}.png`);
+function artboardSrc(board, imageBase) {
+  const key = String(board);
+  if (imageBase) {
+    return encodeURI(`${imageBase}/${key}.png`);
+  }
+  return encodeURI(`images/画板 ${key}.png`);
 }
 
 function renderProjectImg({ src, alt, priority, className = "project-gallery-img" }) {
@@ -27,11 +31,11 @@ function enrichProject(project) {
   return {
     ...project,
     taglineEn,
-    image: artboardSrc(project.coverBoard),
+    image: artboardSrc(project.coverBoard, project.imageBase),
     boardContent: project.boardContent || null,
     gallery: project.boards.map((board) => ({
       board,
-      src: artboardSrc(board),
+      src: artboardSrc(board, project.imageBase),
       alt: `${project.title} — Board ${board}`,
       isCover: String(board) === String(project.coverBoard),
       content: project.boardContent?.[String(board)] ?? null,

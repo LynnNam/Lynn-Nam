@@ -46,7 +46,8 @@
     "categories": [
       { "key": "all", "label": "All" },
       { "key": "robot", "label": "Robot" },
-      { "key": "wearable", "label": "Wearable" }
+      { "key": "wearable", "label": "Wearable" },
+      { "key": "interactive", "label": "Interactive" }
     ]
   }
 }

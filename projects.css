@@ -99,6 +99,195 @@
 }
 
 /* Top nav shell: same light theme as other project pages */
+/* Aura Watch — 透明底图与页面背景融合 */
+.project-detail-page--aura-watch-collection .project-detail-hero__media,
+.project-detail-page--aura-watch-collection .image-gallery .board-slide {
+  background: var(--bg, #faf7f0);
+}
+
+.project-detail-page--aura-watch-collection .project-detail-hero__media {
+  position: relative;
+  line-height: 0;
+}
+
+.board-slide--watch-keywords .board-slide__overlay--watch-keywords {
+  top: 15%;
+  left: 0;
+  right: 0;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 0 2%;
+  padding: 0 3%;
+  color: #111;
+  text-align: center;
+}
+
+.board-slide__watch-keywords {
+  margin: 0;
+  font-size: clamp(0.52rem, 0.95vw, 0.7rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.board-slide--watch-corner-title .board-slide__overlay--watch-corner-title {
+  top: 15%;
+  left: 5%;
+  width: auto;
+  color: #111;
+  text-align: left;
+}
+
+.board-slide__watch-section-title {
+  margin: 0;
+  font-size: clamp(0.8rem, 1.6vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* VOICE BROOCH — 图1 标题区（图2 产品分解） */
+.board-slide--voice-header .board-slide__overlay--voice-header {
+  top: 4%;
+  left: 4%;
+  width: 42%;
+  color: #111;
+  text-align: left;
+}
+
+.board-slide__voice-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+}
+
+.board-slide__voice-subtitle {
+  margin: 0.35rem 0 0.65rem;
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.board-slide__voice-intro {
+  font-size: clamp(0.55rem, 0.92vw, 0.68rem);
+  line-height: 1.65;
+  max-width: 22rem;
+}
+
+.board-slide__voice-intro p {
+  margin: 0;
+}
+
+.board-slide__voice-intro p + p {
+  margin-top: 0.45rem;
+}
+
+/* VOICE BROOCH — 图4 趋势信息图 */
+.board-slide--voice-trends .board-slide__overlay--voice-trends {
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.voice-trends__track {
+  position: absolute;
+  left: 2%;
+  width: 52%;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+
+.voice-trends__track--top {
+  top: 18%;
+}
+
+.voice-trends__track--bottom {
+  top: 52%;
+}
+
+.voice-trends__mega {
+  margin: 0;
+  font-size: clamp(0.7rem, 1.35vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.voice-trends__caption {
+  margin: 0.25rem 0 0;
+  font-size: clamp(0.52rem, 0.9vw, 0.65rem);
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+.voice-trends__scenario {
+  position: absolute;
+  top: 38%;
+  left: 48%;
+  margin: 0;
+  font-size: clamp(0.48rem, 0.8vw, 0.58rem);
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.voice-trends__conclusion {
+  position: absolute;
+  top: 22%;
+  right: 4%;
+  width: 38%;
+  text-align: center;
+  color: #333;
+}
+
+.voice-trends__headline {
+  margin: 0;
+  font-size: clamp(0.72rem, 1.35vw, 0.95rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.voice-trends__accent {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: clamp(1rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  color: #d14b7a;
+  letter-spacing: 0.02em;
+}
+
+.voice-trends__sublines {
+  margin-top: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(0.5rem, 0.85vw, 0.62rem);
+  color: #666;
+  line-height: 1.5;
+}
+
+.voice-trends__sublines p {
+  margin: 0;
+}
+
+.voice-trends__sublines p + p {
+  margin-top: 0.2rem;
+}
+
+.project-detail-page--voice-brooch .project-detail-hero__media,
+.project-detail-page--voice-brooch .image-gallery .board-slide {
+  background: var(--bg, #faf7f0);
+}
+
+.project-detail-page--voice-brooch .project-detail-hero__media {
+  position: relative;
+  line-height: 0;
+}
+
+/* MAY DAY — hero / 图1 与页面米色背景融合 */
+.project-detail-page--may-day .project-detail-hero__media,
+.project-detail-page--may-day .image-gallery .board-slide[data-board="1"] {
+  background: var(--bg, #faf7f0);
+}
+
 .project-detail-page--omni-mobility .site-nav-shell {
   background: var(--bg);
   border-bottom-color: rgba(26, 26, 26, 0.06);
@@ -811,6 +1000,110 @@
   color: #333;
 }
 
+/* MAY DAY — 图1 左上引言（黑色区域） */
+.board-slide--overlay-intro-top .board-slide__overlay--overlay-intro-top {
+  top: 0;
+  left: 0;
+  width: 46%;
+  height: 52%;
+  padding: clamp(1.25rem, 3.5vw, 2.5rem) clamp(1rem, 2.5vw, 2rem);
+  display: flex;
+  align-items: flex-start;
+  color: #c8c8c8;
+  text-align: left;
+}
+
+.board-slide__mayday-intro-copy {
+  font-size: clamp(0.62rem, 1.05vw, 0.78rem);
+  line-height: 1.75;
+  max-width: 22rem;
+}
+
+.board-slide__mayday-intro-copy p {
+  margin: 0;
+}
+
+/* MAY DAY — 图2 左侧 ENDANGERED 文案 */
+.board-slide--endangered-split .board-slide__overlay--endangered-split {
+  top: 0;
+  left: 0;
+  width: 44%;
+  height: 100%;
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1rem, 2.5vw, 1.75rem);
+  display: flex;
+  align-items: flex-start;
+  color: #b8b8b8;
+  text-align: left;
+}
+
+.board-slide__endangered-title {
+  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: #9a3838;
+  text-transform: uppercase;
+}
+
+.board-slide__endangered-copy {
+  font-size: clamp(0.58rem, 0.95vw, 0.72rem);
+  line-height: 1.75;
+  max-width: 26rem;
+}
+
+.board-slide__endangered-copy p {
+  margin: 0;
+}
+
+.board-slide__endangered-copy p + p {
+  margin-top: 0.85rem;
+}
+
+/* MAY DAY — 图3 右侧说明 + MAY DAY 标题 */
+.board-slide--copy-right .board-slide__overlay--copy-right {
+  top: 0;
+  right: 0;
+  width: 36%;
+  height: 100%;
+  padding: clamp(1rem, 2.5vw, 2rem) clamp(0.85rem, 2vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #111;
+  text-align: right;
+}
+
+.board-slide__mayday-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.board-slide__mayday-right-copy {
+  font-size: clamp(0.55rem, 0.9vw, 0.68rem);
+  line-height: 1.7;
+}
+
+.board-slide__mayday-right-copy p {
+  margin: 0;
+}
+
+.board-slide__mayday-right-copy p + p {
+  margin-top: 0.65rem;
+}
+
+.board-slide__mayday-display-title {
+  margin: clamp(0.75rem, 2vw, 1.25rem) 0 0;
+  font-size: clamp(1.5rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #111;
+}
+
 /* 画板 15 — 标题在图片上方，不重叠 */
 .board-slide--stack-header {
   display: flex;
@@ -920,6 +1213,88 @@
 
   .board-slide--meal-service .board-slide__overlay--circle-labels {
     color: #fff;
+  }
+
+  .board-slide--overlay-intro-top .board-slide__overlay--overlay-intro-top,
+  .board-slide--endangered-split .board-slide__overlay--endangered-split,
+  .board-slide--copy-right .board-slide__overlay--copy-right {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 1rem 0 0;
+    color: var(--text, #1a1a1a);
+  }
+
+  .board-slide--overlay-intro-top,
+  .board-slide--endangered-split,
+  .board-slide--copy-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .board-slide__endangered-title {
+    color: #9a3838;
+  }
+
+  .board-slide--copy-right .board-slide__mayday-right {
+    text-align: left;
+  }
+
+  .board-slide--watch-keywords .board-slide__overlay--watch-keywords {
+    position: relative;
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: 0.75rem 0 0;
+    text-align: left;
+  }
+
+  .board-slide--watch-keywords {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .board-slide--watch-corner-title .board-slide__overlay--watch-corner-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 0.75rem 0 0;
+  }
+
+  .board-slide--watch-corner-title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .board-slide--voice-header .board-slide__overlay--voice-header,
+  .board-slide--voice-trends .board-slide__overlay--voice-trends {
+    position: relative;
+    width: 100%;
+    inset: auto;
+    padding: 0.75rem 0 0;
+    color: var(--text, #1a1a1a);
+    text-shadow: none;
+  }
+
+  .board-slide--voice-header,
+  .board-slide--voice-trends {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .voice-trends__track,
+  .voice-trends__scenario,
+  .voice-trends__conclusion {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .voice-trends__accent {
+    display: inline;
+    margin-top: 0;
   }
 }
 

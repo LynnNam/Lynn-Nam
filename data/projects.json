@@ -255,6 +255,68 @@
       ]
     },
     {
+      "id": "chronos-wearable",
+      "category": "wearable",
+      "categoryLabel": "Smartwatch · Straps",
+      "title": "Chronos Precision Wearable",
+      "description": "Leica-inspired case CMF and AirFlow / leather / sport strap systems.",
+      "keywords": ["Smartwatch", "Strap Design", "CMF", "Leica-Inspired", "Product Visualization"],
+      "coverBoard": "24",
+      "boards": ["24", "24-02", "24-04", "24-05", "24-06", "24-07", "24-03"],
+      "tagline": {
+        "en": "Heritage optics meet ultra-thin smartwatch architecture and strap innovation.",
+        "zh": "光学传统遇见超薄智能腕表架构与表带创新。",
+        "kr": "광학 헤리티지와 초슬림 스마트워치 구조, 스트랩 이노베이션의 만남."
+      },
+      "overview": {
+        "en": "Chronos Precision Wearable brings optical-instrument heritage into smart hardware. The study spans knurled crown tactility, a 9 mm ultra-thin profile, curved heart-rate ergonomics, and three strap architectures—AirFlow breathability, dual-tone lychee leather for business, and Summit woven band for sport—unified under a restrained premium industrial language.",
+        "zh": "Chronos 精密可穿戴项目将光学仪器传统引入智能硬件。研究涵盖滚花表冠触感、9 mm 超薄轮廓、曲面心率佩戴工学，以及三种表带架构——AirFlow 透气结构、商务双色荔枝纹皮革与 Summit 运动编织带——在克制的高级工业语言下形成统一表达。",
+        "kr": "Chronos Precision Wearable은 광학 기기 헤리티지를 스마트 하드웨어에 접목합니다. 너링 크라운 촉감, 9mm 초슬림 프로파일, 곡면 심박 인체공학, AirFlow 통기 구조, 비즈니스 투톤 리치 레더, 스포츠 Summit 위븐 밴드를 절제된 프리미엄 산업 언어로 통합했습니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Mechanical Heritage", "zh": "机械传承", "kr": "메커니컬 헤리티지" },
+          "text": {
+            "en": "Dial knurling and camera-inspired CMF translated into crown interaction.",
+            "zh": "表盘滚花与相机启发 CMF，转化为表冠交互语言。",
+            "kr": "다이얼 너링과 카메라 CMF를 크라운 인터랙션으로 번역."
+          }
+        },
+        {
+          "title": { "en": "Ultra-thin Architecture", "zh": "超薄架构", "kr": "초슬림 아키텍처" },
+          "text": {
+            "en": "9 mm profile with curved sensor platform for precision and comfort.",
+            "zh": "9 mm 机身与曲面传感器平台，兼顾精度与舒适。",
+            "kr": "9mm 프로파일과 곡면 센서 플랫폼으로 정밀함과 편안함 확보."
+          }
+        },
+        {
+          "title": { "en": "AirFlow Strap System", "zh": "AirFlow 表带系统", "kr": "AirFlow 스트랩 시스템" },
+          "text": {
+            "en": "3D grooves and dual-breath perforation for active sweat management.",
+            "zh": "立体凹槽与双重透气，优化运动排汗体验。",
+            "kr": "3D 그루브와 이중 통기로 액티브 땀 배출 관리."
+          }
+        },
+        {
+          "title": { "en": "Business Leather CMF", "zh": "商务皮革 CMF", "kr": "비즈니스 레더 CMF" },
+          "text": {
+            "en": "Two-tone lychee grain strap with contrast stitching for premium wear.",
+            "zh": "双色荔枝纹表带与对比缝线，适配商务佩戴。",
+            "kr": "투톤 리치 그레인 스트랩과 대비 스티칭으로 프리미엄 착용."
+          }
+        },
+        {
+          "title": { "en": "Summit Sport Band", "zh": "Summit 运动表带", "kr": "Summit 스포츠 밴드" },
+          "text": {
+            "en": "Ultra-light woven textile validated through high-performance lifestyle scenes.",
+            "zh": "超轻编织面料，经高性能生活场景验证。",
+            "kr": "초경량 위븐 텍스타일, 하이퍼포먼스 라이프스타일로 검증."
+          }
+        }
+      ]
+    },
+    {
       "id": "leica-watch-render",
       "category": "wearable",
       "categoryLabel": "Smartwatch",
@@ -262,7 +324,7 @@
       "description": "Premium smartwatch visualization inspired by classic camera dial mechanics.",
       "keywords": ["Smartwatch", "Product Rendering", "CMF", "Wearable", "Industrial Design"],
       "coverBoard": 27,
-      "boards": [27],
+      "boards": [27, "27-02"],
       "tagline": {
         "en": "Precision dial texture meets ultra-thin wearable architecture.",
         "zh": "精密拨轮肌理，遇见超薄可穿戴架构。",
@@ -316,7 +378,7 @@
       "description": "Rugged outdoor smartwatch with integrated lighting and hybrid UI.",
       "keywords": ["Outdoor Watch", "Rugged Design", "Exploration", "Wearable", "Hybrid UI"],
       "coverBoard": 28,
-      "boards": [28, 29],
+      "boards": [28, 29, 30],
       "tagline": {
         "en": "Rugged tools for night trails, altitude, and off-road exploration.",
         "zh": "为夜行、高海拔与越野探索而生的硬核装备。",
@@ -369,8 +431,47 @@
       "title": "Aura Watch Collection",
       "description": "Series smartwatch exploration across CMF, UI, and lifestyle positioning.",
       "keywords": ["Watch Collection", "CMF", "Series Design", "Wearable", "Young Sport"],
-      "coverBoard": 30,
-      "boards": [30, 31, 32],
+      "imageBase": "images/aura",
+      "coverBoard": "1",
+      "boards": ["1", "2", "3", "4", "5"],
+      "boardContent": {
+        "1": {
+          "layout": "watch-corner-title",
+          "title": "智能手环"
+        },
+        "2": {
+          "layout": "watch-keywords",
+          "columns": [
+            { "keywords": ["年轻", "运动", "装饰表耳", "科技感"] },
+            { "keywords": ["运动", "小蛮腰", "差异化按键", "时尚表带"] },
+            { "keywords": ["高端", "八边形", "金属拉丝丝印", "曲面屏"] }
+          ]
+        },
+        "3": {
+          "layout": "watch-keywords",
+          "columns": [
+            { "keywords": ["年轻", "浅蓝硅胶", "渐变数字屏", "银壳圆角"] },
+            { "keywords": ["运动", "哑光黑壳", "大刻度指针", "橙色按键"] },
+            { "keywords": ["高端", "八边形", "金属拉丝", "极简圆盘"] }
+          ]
+        },
+        "4": {
+          "layout": "watch-keywords",
+          "columns": [
+            { "keywords": ["三防", "户外战术", "螺丝表圈", "复杂表盘"] },
+            { "keywords": ["商务", "圆表身形", "运动数据", "一体表带"] },
+            { "keywords": ["简约", "金属白壳", "大字数字", "橙色环显"] }
+          ]
+        },
+        "5": {
+          "layout": "watch-keywords",
+          "columns": [
+            { "keywords": ["三防", "户外越野", "编织表带", "科技感"] },
+            { "keywords": ["简约时尚", "商务", "流畅曲面", "一体表带"] },
+            { "keywords": ["金属机身", "简约硬朗", "刻度表盘"] }
+          ]
+        }
+      },
       "tagline": {
         "en": "Three design directions — youthful sport, fashion motion, and premium geometry.",
         "zh": "三条设计方向——年轻运动、时尚动感与高端几何。",
@@ -425,63 +526,143 @@
       ]
     },
     {
-      "id": "chronos-wearable",
-      "category": "wearable",
-      "categoryLabel": "Smartwatch · Straps",
-      "title": "Chronos Precision Wearable",
-      "description": "Leica-inspired case CMF and AirFlow / leather / sport strap systems.",
-      "keywords": ["Smartwatch", "Strap Design", "CMF", "Leica-Inspired", "Product Visualization"],
-      "coverBoard": "24",
-      "boards": ["24", "24-02", "24-03", "24-04", "24-05", "24-06"],
+      "id": "may-day",
+      "category": "interactive",
+      "categoryLabel": "Interactive Art Toy",
+      "title": "MAY DAY",
+      "description": "Interactive art toys that raise awareness for endangered animals through play, registration, and digital companionship.",
+      "keywords": ["Interactive Toy", "Endangered Species", "Character Design", "App Experience", "Social Impact"],
+      "imageBase": "images/mayday",
+      "coverBoard": "1",
+      "boards": ["1", "2", "3"],
+      "boardContent": {
+        "1": {
+          "layout": "overlay-intro-top",
+          "paragraphs": [
+            "MAYDAY是一款唤醒濒危动物意识的互动艺术玩具。与现有的捐赠方式相比，通过更有趣的过程和直接的反馈鼓励人们的参与。"
+          ]
+        },
+        "2": {
+          "layout": "endangered-split",
+          "paragraphs": [
+            "野生动物是大自然的产物，保护野生动物也一直是一个全球都在强调的问题。世界自然基金会9月发布报告，自1970至2016年间全球脊椎动物种群数量平均减少68%，保护野生动物刻不容缓！",
+            "濒危野生动物是指在其整个分布区或分布区的主要部分中处于有灭绝危险的野生动物；这些野生动物物种的种群已经减少到勉强可以繁殖后代的地步，其地理分布狭窄，仅仅存在于典型地方或出现在有限的、脆弱的环境中。如果不利于其生长和繁殖的因素继续存在或发生，便会很快灭绝。按照世界公认的标准，一个物种的数量少到以百计算时，即为濒危野生动物。"
+          ]
+        },
+        "3": {
+          "layout": "copy-right",
+          "paragraphs": [
+            "MAYDAY是一款互动艺术玩具，唤醒人们对濒危动物的认识。与现有的捐赠方式相比，它通过一个更有趣的过程和直接的反馈来鼓励人们的参与。",
+            "“MAY DAY!” 濒临灭绝的动物呼喊着生命的希望。这种希望通过一棵生命之树，以一种名为“PANPAN”的生物的形式重新诞生。它们生活在生与死的边界，如果人们关注濒危动物，它们可能会继续它们的生活。但是，如果人们不记得，它们就会消失在一个狂热的世界里。",
+            "这个屏幕显示了潘的诞生。用户可以通过游戏应用程序注册购买的潘。当用户将艺术玩具的序列码注册到生命树中时，他们就可以获得自己的潘。",
+            "用户可以在游戏中享受各种活动——拍打或喂食潘、装饰岛屿、用自己的潘玩迷你游戏等。用户可以通过在应用程序中培育购买的艺术玩具进行捐赠。"
+          ]
+        }
+      },
       "tagline": {
-        "en": "Heritage optics meet ultra-thin smartwatch architecture and strap innovation.",
-        "zh": "光学传统遇见超薄智能腕表架构与表带创新。",
-        "kr": "광학 헤리티지와 초슬림 스마트워치 구조, 스트랩 이노베이션의 만남."
+        "en": "Interactive art toys that give endangered species a second life through play and care.",
+        "zh": "通过互动与陪伴，让濒危动物以艺术玩具的形式获得第二次生命。",
+        "kr": "놀이와 돌봄을 통해 멸종 위기 종에게 두 번째 생명을 선사하는 인터랙티브 아트 토이입니다."
       },
       "overview": {
-        "en": "Chronos Precision Wearable brings optical-instrument heritage into smart hardware. The study spans knurled crown tactility, a 9 mm ultra-thin profile, curved heart-rate ergonomics, and three strap architectures—AirFlow breathability, dual-tone lychee leather for business, and Summit woven band for sport—unified under a restrained premium industrial language.",
-        "zh": "Chronos 精密可穿戴项目将光学仪器传统引入智能硬件。研究涵盖滚花表冠触感、9 mm 超薄轮廓、曲面心率佩戴工学，以及三种表带架构——AirFlow 透气结构、商务双色荔枝纹皮革与 Summit 运动编织带——在克制的高级工业语言下形成统一表达。",
-        "kr": "Chronos Precision Wearable은 광학 기기 헤리티지를 스마트 하드웨어에 접목합니다. 너링 크라운 촉감, 9mm 초슬림 프로파일, 곡면 심박 인체공학, AirFlow 통기 구조, 비즈니스 투톤 리치 레더, 스포츠 Summit 위븐 밴드를 절제된 프리미엄 산업 언어로 통합했습니다."
+        "en": "MAY DAY is an interactive art-toy ecosystem connecting physical collectibles with a digital companion world. The project spans character design for PANPAN reborn creatures, an ENDANGERED awareness narrative, and an app-driven registration and donation loop—turning conservation into tangible, emotional participation.",
+        "zh": "MAY DAY 是连接实体收藏玩具与数字伴侣世界的互动艺术玩具生态。项目涵盖 PANPAN 重生角色设计、ENDANGERED 濒危意识叙事，以及应用驱动的注册与捐赠闭环——让保护行动变成可感知的情感参与。",
+        "kr": "MAY DAY는 피지컬 컬렉터블과 디지털 컴패니언 세계를 연결하는 인터랙티브 아트 토이 생태계입니다. PANPAN 리본 캐릭터 디자인, ENDANGERED 인식 내러티브, 앱 기반 등록·기부 루프를 아우르며 보전 참여를 감각적 경험으로 전환합니다."
       },
       "highlights": [
         {
-          "title": { "en": "Mechanical Heritage", "zh": "机械传承", "kr": "메커니컬 헤리티지" },
+          "title": { "en": "Character System", "zh": "角色体系", "kr": "캐릭터 시스템" },
           "text": {
-            "en": "Dial knurling and camera-inspired CMF translated into crown interaction.",
-            "zh": "表盘滚花与相机启发 CMF，转化为表冠交互语言。",
-            "kr": "다이얼 너링과 카메라 CMF를 크라운 인터랙션으로 번역."
+            "en": "Twenty PANPAN species with stitched, reborn aesthetics across pastel CMF tiles.",
+            "zh": "二十种 PANPAN 物种，缝线重生美学与粉彩 CMF 网格体系。",
+            "kr": "파스텔 CMF 타일 위 20종 PANPAN, 스티치 리본 미학."
           }
         },
         {
-          "title": { "en": "Ultra-thin Architecture", "zh": "超薄架构", "kr": "초슬림 아키텍처" },
+          "title": { "en": "Awareness Narrative", "zh": "意识叙事", "kr": "인식 내러티브" },
           "text": {
-            "en": "9 mm profile with curved sensor platform for precision and comfort.",
-            "zh": "9 mm 机身与曲面传感器平台，兼顾精度与舒适。",
-            "kr": "9mm 프로파일과 곡면 센서 플랫폼으로 정밀함과 편안함 확보."
+            "en": "ENDANGERED storytelling bridges wildlife facts with emotional industrial design.",
+            "zh": "ENDANGERED 叙事连接野生动物事实与情感化工业设计。",
+            "kr": "ENDANGERED 스토리텔링으로 사실과 감성 디자인 연결."
           }
         },
         {
-          "title": { "en": "AirFlow Strap System", "zh": "AirFlow 表带系统", "kr": "AirFlow 스트랩 시스템" },
+          "title": { "en": "Physical + Digital", "zh": "实体与数字", "kr": "피지컬 + 디지털" },
           "text": {
-            "en": "3D grooves and dual-breath perforation for active sweat management.",
-            "zh": "立体凹槽与双重透气，优化运动排汗体验。",
-            "kr": "3D 그루브와 이중 통기로 액티브 땀 배출 관리."
+            "en": "Serial-code registration links collectible toys to in-app PAN companions.",
+            "zh": "序列码注册将实体玩具与应用内 PAN 伙伴相连。",
+            "kr": "시리얼 코드 등록으로 토이와 앱 PAN 연동."
           }
         },
         {
-          "title": { "en": "Business Leather CMF", "zh": "商务皮革 CMF", "kr": "비즈니스 레더 CMF" },
+          "title": { "en": "Participatory Donation", "zh": "参与式捐赠", "kr": "참여형 기부" },
           "text": {
-            "en": "Two-tone lychee grain strap with contrast stitching for premium wear.",
-            "zh": "双色荔枝纹表带与对比缝线，适配商务佩戴。",
-            "kr": "투톤 리치 그레인 스트랩과 대비 스티칭으로 프리미엄 착용."
+            "en": "Gameplay loops—feeding, decorating, mini-games—encourage sustained engagement.",
+            "zh": "喂食、装饰、迷你游戏等玩法循环鼓励持续参与。",
+            "kr": "먹이주기, 꾸미기, 미니게임으로 지속 참여 유도."
           }
         },
         {
-          "title": { "en": "Summit Sport Band", "zh": "Summit 运动表带", "kr": "Summit 스포츠 밴드" },
+          "title": { "en": "Product Line", "zh": "产品线", "kr": "제품 라인" },
           "text": {
-            "en": "Ultra-light woven textile validated through high-performance lifestyle scenes.",
-            "zh": "超轻编织面料，经高性能生活场景验证。",
-            "kr": "초경량 위븐 텍스타일, 하이퍼포먼스 라이프스타일로 검증."
+            "en": "Vinyl-style figures on clear bases for display and collection.",
+            "zh": "透明底座乙烯风格形象，适于展示与收藏。",
+            "kr": "클리어 베이스 비닐 스타일 피규어로 컬렉션."
+          }
+        }
+      ]
+    },
+    {
+      "id": "voice-brooch",
+      "category": "interactive",
+      "categoryLabel": "Interactive Wearable",
+      "title": "VOICE BROOCH",
+      "description": "Voice makeover wearable for Gen Z—brooch and ring system using white-noise technology to build speaking confidence.",
+      "keywords": ["Wearable", "Voice Tech", "Gen Z", "Product Design", "Social Confidence"],
+      "imageBase": "images/voice-brooch",
+      "coverBoard": "3",
+      "boards": ["2", "3", "4"],
+      "tagline": {
+        "en": "A brooch-and-ring system that helps Gen Z reshape voice confidence through playful control.",
+        "zh": "胸针与戒指协同，用白噪音与光谱交互帮助 Z 世代重塑声音自信。",
+        "kr": "브로치와 링이 협력해 화이트 노이즈·스펙트럼 인터랙션으로 Z세대의 목소리 자신감을 재구성합니다."
+      },
+      "overview": {
+        "en": "VOICE BROOCH responds to a generation that invests in self-expression but rarely gets tools for vocal confidence. The concept pairs a knurled circular brooch with a spectrum ring controller—translating mega-trends in digital communication and beauty markets into a tangible voice makeover ritual for timid speakers becoming charming communicators.",
+        "zh": "VOICE BROOCH 回应 Z 世代重视自我表达却缺少声音自信工具的现状。概念将数字沟通与自我表达市场趋势，落实为胸针与光谱戒指协同的「声音整容」仪式——帮助怯场者走向从容表达。",
+        "kr": "VOICE BROOCH는 자기표현에 투자하지만 목소리 자신감 도구는 부족한 Z세대를 위한 제안입니다. 디지털 커뮤니케이션·뷰티 시장 메가트렌드를 너링 원형 브로치와 스펙트럼 링 컨트롤러로 구현해 소극적 화자를 매력적인 커뮤니케이터로 전환합니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Mega-Trend Mapping", "zh": "趋势映射", "kr": "메가트렌드 매핑" },
+          "text": {
+            "en": "Physical-to-digital communication and self-expression growth drive the product thesis.",
+            "zh": "从实体到数字沟通、自我表达市场增长，推导产品命题。",
+            "kr": "피지컬-디지털 커뮤니케이션과 자기표현 시장 성장에서 제품 논리 도출."
+          }
+        },
+        {
+          "title": { "en": "Brooch + Ring", "zh": "胸针与戒指", "kr": "브로치 + 링" },
+          "text": {
+            "en": "Touch sensor, ring controller, and filter module in a compact stacked form.",
+            "zh": "触摸传感器、戒指控制器与滤波模块的紧凑堆叠形态。",
+            "kr": "터치 센서, 링 컨트롤러, 필터 모듈의 컴팩트 스택 폼."
+          }
+        },
+        {
+          "title": { "en": "Scenario Storyboard", "zh": "场景故事板", "kr": "시나리오 스토리보드" },
+          "text": {
+            "en": "Person-to-person and presentation arcs from timid to charming communication.",
+            "zh": "人际与演讲场景，从怯场到从容表达的情绪弧线。",
+            "kr": "대인·프레젠테이션 장면에서 소극에서 매력적 커뮤니케이션으로."
+          }
+        },
+        {
+          "title": { "en": "White-Noise Control", "zh": "白噪音控制", "kr": "화이트 노이즈 제어" },
+          "text": {
+            "en": "Spectrum and volume gestures for a new hearing and speaking experience.",
+            "zh": "光谱与音量手势，塑造新的听感与表达体验。",
+            "kr": "스펙트럼·볼륨 제스처로 새로운 청취·발화 경험."
           }
         }
       ]

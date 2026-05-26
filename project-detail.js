@@ -106,6 +106,123 @@ function renderBoardOverlay(content) {
     `;
   }
 
+  if (content.layout === "overlay-intro-top") {
+    const paragraphs = (content.paragraphs || [])
+      .map((p) => `<p>${escapeHtml(p)}</p>`)
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--overlay-intro-top">
+        <div class="board-slide__mayday-intro-copy">${paragraphs}</div>
+      </div>
+    `;
+  }
+
+  if (content.layout === "endangered-split") {
+    const paragraphs = (content.paragraphs || [])
+      .map((p) => `<p>${escapeHtml(p)}</p>`)
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--endangered-split">
+        <div class="board-slide__endangered-block">
+          ${content.title ? `<p class="board-slide__endangered-title">${escapeHtml(content.title)}</p>` : ""}
+          <div class="board-slide__endangered-copy">${paragraphs}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (content.layout === "copy-right") {
+    const paragraphs = (content.paragraphs || [])
+      .map((p) => `<p>${escapeHtml(p)}</p>`)
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--copy-right">
+        <div class="board-slide__mayday-right">
+          <div class="board-slide__mayday-right-copy">${paragraphs}</div>
+          ${content.displayTitle ? `<p class="board-slide__mayday-display-title">${escapeHtml(content.displayTitle)}</p>` : ""}
+        </div>
+      </div>
+    `;
+  }
+
+  if (content.layout === "watch-keywords") {
+    const cols = (content.columns || [])
+      .map((col) => {
+        const text = (col.keywords || []).join(" / ");
+        return `<p class="board-slide__watch-keywords">${escapeHtml(text)}</p>`;
+      })
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--watch-keywords">
+        ${cols}
+      </div>
+    `;
+  }
+
+  if (content.layout === "watch-corner-title") {
+    return `
+      <div class="board-slide__overlay board-slide__overlay--watch-corner-title">
+        <p class="board-slide__watch-section-title">${escapeHtml(content.title || "")}</p>
+      </div>
+    `;
+  }
+
+  if (content.layout === "voice-header") {
+    const paragraphs = (content.paragraphs || [])
+      .map((p) => `<p>${escapeHtml(p)}</p>`)
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--voice-header">
+        <p class="board-slide__voice-title">${escapeHtml(content.title || "")}</p>
+        ${content.subtitle ? `<p class="board-slide__voice-subtitle">${escapeHtml(content.subtitle)}</p>` : ""}
+        ${paragraphs ? `<div class="board-slide__voice-intro">${paragraphs}</div>` : ""}
+      </div>
+    `;
+  }
+
+  if (content.layout === "voice-trends") {
+    const tracks = (content.tracks || [])
+      .map(
+        (t) => `
+        <div class="voice-trends__track voice-trends__track--${escapeHtml(t.zone || "top")}">
+          <p class="voice-trends__mega">${escapeHtml(t.label || "")}</p>
+          <p class="voice-trends__caption">${escapeHtml(t.caption || "")}</p>
+        </div>
+      `
+      )
+      .join("");
+    const sublines = (content.sublines || [])
+      .map((s) => `<p>${escapeHtml(s)}</p>`)
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--voice-trends">
+        ${tracks}
+        ${content.scenario ? `<p class="voice-trends__scenario">${escapeHtml(content.scenario)}</p>` : ""}
+        <div class="voice-trends__conclusion">
+          <p class="voice-trends__headline">
+            ${escapeHtml(content.headline || "")}
+            ${content.headlineAccent ? `<span class="voice-trends__accent">${escapeHtml(content.headlineAccent)}</span>` : ""}
+          </p>
+          ${sublines ? `<div class="voice-trends__sublines">${sublines}</div>` : ""}
+        </div>
+      </div>
+    `;
+  }
+
+  if (content.layout === "voice-callouts") {
+    const items = (content.callouts || [])
+      .map(
+        (c) =>
+          `<span class="board-slide__voice-callout" style="left:${escapeHtml(c.left)};top:${escapeHtml(c.top)}">${escapeHtml(c.label)}</span>`
+      )
+      .join("");
+    return `
+      <div class="board-slide__overlay board-slide__overlay--voice-callouts" aria-hidden="true">
+        ${items}
+      </div>
+    `;
+  }
+
   return "";
 }
 
@@ -262,13 +379,14 @@ function renderProjectHero(project) {
 
   return `
     <header class="project-detail-hero">
-      <figure class="project-detail-hero__media">
+      <figure class="project-detail-hero__media${coverSlide.content?.layout ? ` board-slide board-slide--${coverSlide.content.layout}` : ""}">
         ${renderProjectImg({
           src: coverSlide.src,
           alt: project.title,
           priority: true,
           className: "project-detail-hero__img",
         })}
+        ${renderBoardOverlay(coverSlide.content)}
       </figure>
       <div class="project-detail-hero__text">
         <p class="project-detail-hero__label">${escapeHtml(project.categoryLabel)}</p>
