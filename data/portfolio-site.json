@@ -2,7 +2,7 @@
   "site": {
     "name": "Lynn Portfolio",
     "owner": "Lynn Nam",
-    "role": "产品设计师",
+    "role": "Product / Industrial Designer",
     "backUrl": "index.html",
     "backLabel": "返回 Lynn OS",
     "pdfDownload": {
@@ -19,35 +19,31 @@
     "focus": "智能穿戴 · 机器人 · 电子产品 ID · CMF"
   },
   "about": {
-    "title": "关于我",
-    "lead": "我专注于智能穿戴、机器人与消费电子产品的工业设计，从概念草图到 CMF 落地，用系统化的设计思维连接技术与人的感知。",
-    "text": "多年硬件产品设计经验，让我习惯在工程约束与美学表达之间寻找平衡。我擅长将复杂的交互与结构，收敛为清晰、克制、可被记住的产品形态；并通过材质、色彩与表面处理，为科技产品注入温度与品牌辨识度。",
-    "strengths": [
-      {
-        "num": "01",
-        "title": "智能穿戴",
-        "text": "腕表、手环等可穿戴设备的形态、佩戴感与界面协同设计。"
-      },
-      {
-        "num": "02",
-        "title": "机器人",
-        "text": "家用与商用机器人的外观语言、情感化表达与人机关系塑造。"
-      },
-      {
-        "num": "03",
-        "title": "电子产品 ID & CMF",
-        "text": "从 ID 造型到材质配色与工艺定义，完整把控产品视觉与触感体验。"
-      }
-    ]
+    "title": "About",
+    "intro": {
+      "enLead": "Lynn Nam is a product / industrial designer based in Shenzhen, focused on smart wearables, CMF, robotics, and consumer electronics.",
+      "enDetail": "She connects visual design with manufacturing feasibility — from concept development to supplier samples and mass-production refinement.",
+      "zh": "Lynn Nam 是一名在深圳工作的产品 / 工业设计师，专注智能穿戴、CMF、机器人与消费电子产品设计，擅长在外观美学、用户体验与量产可行性之间建立平衡。",
+      "kr": "Lynn Nam은 선전에서 활동하는 제품 / 산업 디자이너로, 스마트 웨어러블, CMF, 로봇 및 소비자 전자제품 디자인에 집중하고 있습니다."
+    }
   },
   "work": {
     "title": "Projects",
-    "subtitle": "Selected works in robotics and wearables",
+    "subtitle": "Smart wearables · CMF · Robotics · Consumer electronics",
     "categories": [
       { "key": "all", "label": "All" },
       { "key": "robot", "label": "Robot" },
       { "key": "wearable", "label": "Wearable" },
       { "key": "interactive", "label": "Interactive" }
     ]
+  },
+  "contact": {
+    "email": "nanly04@gmail.com",
+    "linkedin": "",
+    "behance": "",
+    "instagram": "",
+    "location": "Based in Shenzhen, China",
+    "availability": "Available for product / industrial design opportunities",
+    "languages": "Chinese · Korean · English"
   }
 }

@@ -102,7 +102,7 @@
 /* Aura Watch — 透明底图与页面背景融合 */
 .project-detail-page--aura-watch-collection .project-detail-hero__media,
 .project-detail-page--aura-watch-collection .image-gallery .board-slide {
-  background: var(--bg, #faf7f0);
+  background: var(--bg, #f5f2ec);
 }
 
 .project-detail-page--aura-watch-collection .project-detail-hero__media {
@@ -274,7 +274,7 @@
 
 .project-detail-page--voice-brooch .project-detail-hero__media,
 .project-detail-page--voice-brooch .image-gallery .board-slide {
-  background: var(--bg, #faf7f0);
+  background: var(--bg, #f5f2ec);
 }
 
 .project-detail-page--voice-brooch .project-detail-hero__media {
@@ -285,7 +285,7 @@
 /* MAY DAY — hero / 图1 与页面米色背景融合 */
 .project-detail-page--may-day .project-detail-hero__media,
 .project-detail-page--may-day .image-gallery .board-slide[data-board="1"] {
-  background: var(--bg, #faf7f0);
+  background: var(--bg, #f5f2ec);
 }
 
 .project-detail-page--omni-mobility .site-nav-shell {
@@ -596,6 +596,10 @@
   overflow: hidden;
 }
 
+.project-detail-page--exa-robotics-mobility .image-gallery .board-slide {
+  background: #fff;
+}
+
 .image-gallery__img,
 .board-slide .image-gallery__img,
 .board-slide .project-detail-hero__img,
@@ -738,7 +742,7 @@
   display: flex;
   flex-direction: column;
   line-height: 1.5;
-  background: var(--bg, #faf7f0);
+  background: var(--bg, #f5f2ec);
 }
 
 .board-slide__meal-intro {
@@ -858,11 +862,11 @@
   display: flex;
   flex-direction: column;
   line-height: 1.5;
-  background: var(--bg, #faf7f0);
+  background: var(--bg, #f5f2ec);
 }
 
 .board-slide--stack-intro .board-slide__media-wrap {
-  background: var(--bg, #faf7f0);
+  background: var(--bg, #f5f2ec);
 }
 
 .board-slide__intro-block {
@@ -1356,4 +1360,64 @@
   .project-detail-hero__media {
     margin-bottom: 0;
   }
+}
+
+/* —— Unified case study (01–07) for project detail —— */
+.project-case-study {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) var(--content-padding, 2rem);
+}
+
+.project-case-block {
+  padding: clamp(1.75rem, 4vw, 2.5rem) 0;
+  border-top: 1px solid rgba(26, 26, 26, 0.06);
+}
+
+.project-case-block:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.project-case-block .tri-section-title {
+  margin-bottom: 1rem;
+}
+
+.tri-block--case-body .tri-block__line {
+  white-space: pre-wrap;
+}
+
+.project-case-block--role .project-role-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: clamp(0.78rem, 1.2vw, 0.88rem);
+  line-height: 1.65;
+  color: var(--text-muted, #6b6b6b);
+}
+
+.project-case-block--role .project-role-list li {
+  position: relative;
+  padding-left: 1rem;
+  margin: 0.35rem 0;
+}
+
+.project-case-block--role .project-role-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text, #1a1a1a);
+  opacity: 0.35;
+}
+
+.project-detail-hero__keywords {
+  opacity: 0.55;
+}
+
+.project-detail-hero__keywords li {
+  font-size: 0.72rem;
 }

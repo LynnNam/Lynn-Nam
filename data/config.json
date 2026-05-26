@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Lynn OS",
-    "owner": "Lynn",
+    "owner": "Lynn Nam",
     "tagline": "你的每日信息工作台",
     "logo": "images/lynn-nam-logo.png",
     "logoAlt": "LYNN NAM industrial design",
@@ -24,7 +24,7 @@
       { "text": "MATERIAL INTELLIGENCE", "href": "#design-workbench" }
     ],
     "bottom": [
-      { "label": "SHENZHEN", "num": "04", "href": "#welcome" },
+      { "label": "SHENZHEN", "num": "04", "href": "#about" },
       { "text": "DESIGN x TECHNOLOGY x HUMAN", "href": "#workbench-heading" },
       { "text": "CRAFTING MEANINGFUL PRODUCTS PEOPLE LOVE", "href": "portfolio.html" }
     ]
@@ -64,7 +64,6 @@
     "dailyTips": [
       "今天优先推进智能穿戴项目的 CMF 定稿。",
       "上午适合处理英文输入与资讯阅读，下午留给深度设计。",
-      "检查资产组合占比，黄金仓位是否仍在目标区间。",
       "给 NAVER 新闻留 15 分钟，快速扫描行业动态即可。",
       "今日提醒：下午三点与设计团队 sync 表带方案。",
       "保持工作台简洁，只打开今天需要的三个标签页。"
@@ -336,5 +335,22 @@
       { "time": "14:30", "text": "基金定投日 — 仅记录，不自动交易" },
       { "time": "18:00", "text": "导出今日工作台笔记" }
     ]
+  },
+  "homeLanding": {
+    "roleEn": "Product / Industrial Designer specializing in smart wearable devices, CMF, and consumer electronics.",
+    "roleZh": "专注智能穿戴、CMF 与消费电子产品体验的产品 / 工业设计师。",
+    "roleKr": "스마트 웨어러블, CMF, 소비자 전자제품 경험을 중심으로 하는 제품 / 산업 디자이너입니다.",
+    "portfolioHref": "portfolio.html#work",
+    "pdfHref": "downloads/南玲_工业设计作品集.pdf",
+    "pdfFilename": "南玲_工业设计作品集.pdf"
+  },
+  "contact": {
+    "email": "nanly04@gmail.com",
+    "linkedin": "",
+    "behance": "",
+    "instagram": "",
+    "location": "Based in Shenzhen, China",
+    "availability": "Available for product / industrial design opportunities",
+    "languages": "Chinese · Korean · English"
   }
 }

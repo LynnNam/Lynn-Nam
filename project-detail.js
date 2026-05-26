@@ -24,6 +24,111 @@ function renderTriSectionTitle(i18n) {
   `;
 }
 
+/** Normalize i18n blocks (fallback to EN for missing ZH/KR). */
+function normalizeTri(t) {
+  if (!t || typeof t !== "object") return { en: "", zh: "", kr: "" };
+  const en = String(t.en || "");
+  return { en, zh: String(t.zh || en), kr: String(t.kr || en) };
+}
+
+/**
+ * Unified case study narrative for recruiters (structured 01–07).
+ * Bodies are composed from project JSON so copy stays maintainable in one place.
+ */
+function buildCaseStudySections(project) {
+  const L = pageLabels.caseStudy;
+  const o = normalizeTri(project.overview);
+  const tg = normalizeTri(project.tagline);
+  const desc = String(project.description || "");
+
+  const problem = {
+    en: `${desc} The opportunity sits at the intersection of user expectation, CMF credibility, stack-up limits, and supplier-ready documentation.`,
+    zh: `（背景与切入点）${tg.zh} 在堆叠、开模与工艺窗口内校准体验与可量产性。`,
+    kr: `${desc} 사용자 기대, CMF 신뢰도, 스택업 한계, 공급망 문서화가 교차하는 지점에서 기회를 정의합니다.`,
+  };
+
+  const direction = { en: tg.en, zh: tg.zh, kr: tg.kr };
+
+  const hl = project.highlights || [];
+  const process = {
+    en: hl.length
+      ? hl.map((h) => `• ${normalizeTri(h.text).en}`).join("\n")
+      : "Sketch iteration, CMF exploration, engineering feedback, and prototype refinement loops.",
+    zh: hl.length
+      ? hl.map((h) => `• ${normalizeTri(h.text).zh}`).join("\n")
+      : "草图迭代、CMF 探索、工程反馈与样机打磨循环。",
+    kr: hl.length
+      ? hl.map((h) => `• ${normalizeTri(h.text).kr}`).join("\n")
+      : "스케치 반복, CMF 탐색, 엔지니어링 피드백, 프로토타입 정제 루프.",
+  };
+
+  const finalDesign = {
+    en: "Final CMF, hero visuals, and in-context photography are collected in the gallery below.",
+    zh: "最终 CMF、主视觉与情境摄影见下方图库。",
+    kr: "최종 CMF, 히어로 비주얼, 컨텍스트 사진은 아래 갤러리에 모았습니다.",
+  };
+
+  const roles = project.myRole && project.myRole.length ? project.myRole : ["Industrial Design", "CMF direction"];
+
+  const takeEn = hl
+    .slice(0, 3)
+    .map((h) => normalizeTri(h.text).en)
+    .join(" ");
+  const takeZh = hl
+    .slice(0, 3)
+    .map((h) => normalizeTri(h.text).zh)
+    .join(" ");
+  const takeKr = hl
+    .slice(0, 3)
+    .map((h) => normalizeTri(h.text).kr)
+    .join(" ");
+  const line = project.portfolioLine || "ID, CMF, and manufacturing alignment";
+  const takeaways = {
+    en: `${takeEn || o.en} Focus: ${line}.`,
+    zh: `${takeZh || o.zh} 重点：${line}。`,
+    kr: `${takeKr || o.kr} 포커스: ${line}.`,
+  };
+
+  return [
+    { key: "overview", title: L.overview, body: o },
+    { key: "problem", title: L.problem, body: problem },
+    { key: "direction", title: L.direction, body: direction },
+    { key: "process", title: L.process, body: process },
+    { key: "final", title: L.final, body: finalDesign },
+    { key: "role", title: L.role, roles },
+    { key: "takeaways", title: L.takeaways, body: takeaways },
+  ];
+}
+
+function renderCaseStudyBlock(section) {
+  const title = renderTriSectionTitle(section.title);
+  if (section.roles) {
+    const list = section.roles.map((r) => `<li>${escapeHtml(r)}</li>`).join("");
+    return `
+      <section class="project-case-block project-case-block--role" aria-labelledby="case-${escapeHtml(section.key)}">
+        ${title}
+        <ul class="project-role-list">${list}</ul>
+      </section>
+    `;
+  }
+  const body = normalizeTri(section.body);
+  return `
+    <section class="project-case-block" aria-labelledby="case-${escapeHtml(section.key)}">
+      ${title}
+      ${renderTriBlock(body, { className: "tri-block--case-body" })}
+    </section>
+  `;
+}
+
+function renderProjectCaseStudy(project) {
+  const sections = buildCaseStudySections(project);
+  return `
+    <div class="project-case-study" aria-label="Case study">
+      ${sections.map(renderCaseStudyBlock).join("")}
+    </div>
+  `;
+}
+
 function renderProjectDetailNav(project) {
   const nav = document.getElementById("project-detail-nav");
   nav.innerHTML = `
@@ -402,39 +507,6 @@ function renderProjectHero(project) {
   `;
 }
 
-function renderProjectOverview(project) {
-  return `
-    <section class="project-detail-section project-overview" aria-labelledby="overview-heading">
-      ${renderTriSectionTitle(pageLabels.overview)}
-      ${renderTriBlock(project.overview, { className: "tri-block--overview" })}
-    </section>
-  `;
-}
-
-function renderDesignHighlights(project) {
-  const items = project.highlights
-    .map(
-      (h) => `
-      <article class="highlight-item">
-        <div class="highlight-item__title-wrap">
-          ${renderTriBlock(h.title, { compact: true, className: "tri-block--highlight-title" })}
-        </div>
-        ${renderTriBlock(h.text, { className: "tri-block--highlight-text" })}
-      </article>
-    `
-    )
-    .join("");
-
-  const count = project.highlights.length;
-  return `
-    <section class="project-detail-section project-highlights" aria-labelledby="highlights-heading" data-highlight-count="${count}">
-      ${renderTriSectionTitle(pageLabels.highlights)}
-      ${renderTriBlock(pageLabels.highlightsIntro, { className: "tri-block--section-intro" })}
-      <div class="highlights-grid">${items}</div>
-    </section>
-  `;
-}
-
 function renderImageGallery(project) {
   const figures = project.gallery
     .map((img, i) => renderBoardFigure(img, { priority: i === 0 }))
@@ -466,10 +538,11 @@ function applyProjectTheme(project) {
   body.style.removeProperty("--project-text-light");
   body.style.removeProperty("--project-border");
 
+  body.classList.add(`project-detail-page--${project.id}`);
+
   const theme = project.theme;
   if (!theme?.bg && !theme?.text) return;
 
-  body.classList.add(`project-detail-page--${project.id}`);
   if (theme.bg) body.style.setProperty("--project-bg", theme.bg);
   if (theme.text) body.style.setProperty("--project-text", theme.text);
 }
@@ -478,8 +551,7 @@ function renderProjectDetail(project) {
   applyProjectTheme(project);
   document.getElementById("project-detail-root").innerHTML = `
     ${renderProjectHero(project)}
-    ${renderProjectOverview(project)}
-    ${renderDesignHighlights(project)}
+    ${renderProjectCaseStudy(project)}
     ${renderImageGallery(project)}
     ${renderEndSection()}
   `;

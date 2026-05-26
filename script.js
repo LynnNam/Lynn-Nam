@@ -18,6 +18,50 @@ async function loadData() {
   config = await configRes.json();
 }
 
+/** Contact block (config.contact). Social links omitted when URL empty. */
+function renderHomeContact() {
+  const c = config.contact;
+  const el = document.getElementById("contact");
+  if (!c || !el) return;
+
+  const socialParts = [];
+  if (c.linkedin) {
+    socialParts.push(
+      `<a class="home-contact__link" href="${escapeHtml(c.linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`
+    );
+  }
+  if (c.behance) {
+    socialParts.push(
+      `<a class="home-contact__link" href="${escapeHtml(c.behance)}" target="_blank" rel="noopener noreferrer">Behance</a>`
+    );
+  }
+  if (c.instagram) {
+    socialParts.push(
+      `<a class="home-contact__link" href="${escapeHtml(c.instagram)}" target="_blank" rel="noopener noreferrer">Instagram</a>`
+    );
+  }
+  const socialRow = socialParts.length
+    ? `<p class="home-contact__social">${socialParts.join(" · ")}</p>`
+    : "";
+
+  const emailHtml = c.email
+    ? `<a class="home-contact__email" href="mailto:${escapeHtml(c.email)}">${escapeHtml(c.email)}</a>`
+    : "";
+
+  el.innerHTML = `
+    <div class="home-contact__inner">
+      <p class="home-contact__label">Contact</p>
+      <p class="home-contact__location">${escapeHtml(c.location || "")}</p>
+      <p class="home-contact__availability">${escapeHtml(c.availability || "")}</p>
+      <div class="home-contact__meta">
+        <p class="home-contact__languages">${escapeHtml(c.languages || "")}</p>
+        ${emailHtml}
+      </div>
+      ${socialRow}
+    </div>
+  `;
+}
+
 function getTimeGreeting() {
   const hour = new Date().getHours();
   const g = config.greeting;
@@ -201,7 +245,7 @@ function scheduleWeatherMidnightRefresh() {
 function renderBrand() {
   const s = config.site;
   document.getElementById("brand").innerHTML = `
-    <a href="#welcome" class="brand-logo-link" aria-label="${escapeHtml(s.name)}">
+    <a href="#top" class="brand-logo-link" aria-label="${escapeHtml(s.name)}">
       <img class="brand-logo" src="${escapeHtml(s.logo)}" alt="${escapeHtml(s.logoAlt || s.name)}" width="353" height="101" decoding="async">
     </a>
   `;
@@ -209,11 +253,9 @@ function renderBrand() {
 
 function renderSidebar() {
   const navItems = [
-    { href: "#welcome", label: "首页" },
-    { href: "#morning-brief", label: "Brief" },
-    { href: "#design-workbench", label: "设计网站" },
+    { href: "#top", label: "Home" },
     { href: "portfolio.html", label: "Portfolio" },
-    { href: "#today", label: "Today" },
+    { href: "#contact", label: "Contact" },
   ];
 
   document.getElementById("sidebar-nav").innerHTML = navItems
@@ -239,7 +281,6 @@ function renderQuickLaunchHtml() {
 
   return `
     <div class="quick-launch" aria-label="快捷入口">
-      <p class="welcome-tagline">This system was built with form, function, and feeling.</p>
       <div class="quick-launch-grid">
         ${items
           .map(
@@ -262,7 +303,7 @@ function renderWelcome() {
   const owner = config.site.owner;
   const greeting = getTimeGreeting();
 
-  document.getElementById("welcome").innerHTML = `
+  document.getElementById("about").innerHTML = `
     <div class="welcome-hero">
       <h1 class="welcome-greeting">${escapeHtml(greeting)}, ${escapeHtml(owner)}</h1>
       <p class="welcome-meta" id="welcome-meta">${escapeHtml(formatWelcomeMeta(null))}</p>
@@ -466,8 +507,9 @@ function bindTodoEvents() {
 }
 
 function renderFooter() {
+  const owner = config.site.owner || "Lynn Nam";
   document.getElementById("footer").textContent =
-    `© ${new Date().getFullYear()} ${config.site.name} · Mock Data Only`;
+    `© ${new Date().getFullYear()} ${owner} · Product & Industrial Design`;
 }
 
 function isHeroKeywordVisible(kw) {
@@ -475,7 +517,7 @@ function isHeroKeywordVisible(kw) {
 }
 
 function updateHeroMapLines() {
-  const hero = document.getElementById("hero-map");
+  const hero = document.getElementById("top");
   if (!hero) return;
 
   const inner = hero.querySelector(".hero-map__inner");
@@ -544,7 +586,7 @@ function updateHeroMapLines() {
 }
 
 function initHeroMap() {
-  const hero = document.getElementById("hero-map");
+  const hero = document.getElementById("top");
   if (!hero) return;
 
   const keywords = hero.querySelectorAll(".hero-keyword");
@@ -641,6 +683,7 @@ async function init() {
     renderMorningBrief();
     renderDesignWorkbench();
     renderToday();
+    renderHomeContact();
     renderFooter();
     document.title = config.site.name;
     hideLoading();

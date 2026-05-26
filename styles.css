@@ -1,10 +1,10 @@
 :root {
-  /* Sampled from images/lynn-hero-portrait.png corners */
-  --bg: #faf7f0;
+  /* Portfolio / OS shared canvas */
+  --bg: #f5f2ec;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
-  --hero-fade: #faf7f0;
+  --hero-fade: #f5f2ec;
   --bg-card: #ffffff;
-  --bg-soft: #fbfaf7;
+  --bg-soft: #f7f5ef;
   --text: #1a1a1a;
   --text-muted: #6f6f6f;
   --text-light: #9a9690;
@@ -18,7 +18,7 @@
   --radius: 12px;
   --radius-sm: 8px;
   --topbar-h: 7.85rem;
-  --topbar-bg: rgba(250, 247, 240, 0.5);
+  --topbar-bg: rgba(245, 242, 236, 0.55);
   --content-padding: clamp(2.5rem, 5vw, 4.5rem);
   --grid-gap: 1.75rem;
   --section-gap: 3.5rem;
@@ -292,6 +292,7 @@ a {
   transition: color 0.35s ease;
   animation: fadeInSoft 1s ease-out both;
   animation-delay: 0.15s;
+  opacity: 0.42;
 }
 
 .hero-keyword:nth-child(2) { animation-delay: 0.22s; color: var(--text-light); }
@@ -340,8 +341,154 @@ a {
   transform: translate(-50%, -50%);
   z-index: 3;
   text-align: center;
-  width: min(92%, 36rem);
-  pointer-events: none;
+  width: min(94%, 38rem);
+  pointer-events: auto;
+}
+
+.hero-map-role {
+  font-family: var(--font);
+  font-size: clamp(0.68rem, 1.15vw, 0.82rem);
+  font-weight: var(--fw-light);
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0.35rem 0 0;
+  letter-spacing: 0.01em;
+}
+
+.hero-map-role--en {
+  margin-top: 0.75rem;
+  color: var(--text);
+  opacity: 0.88;
+}
+
+.hero-map-role--zh,
+.hero-map-role--kr {
+  font-size: clamp(0.62rem, 1.05vw, 0.76rem);
+  opacity: 0.72;
+}
+
+.hero-map-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.85rem;
+  justify-content: center;
+  margin-top: 1.35rem;
+}
+
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.25rem;
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-hero--primary {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.btn-hero--primary:hover {
+  opacity: 0.88;
+}
+
+.btn-hero--ghost {
+  background: transparent;
+  color: var(--text);
+}
+
+.btn-hero--ghost:hover {
+  background: rgba(26, 26, 26, 0.04);
+}
+
+.home-contact {
+  border-top: 1px solid var(--border);
+  padding: clamp(2.25rem, 5vw, 3.25rem) var(--content-padding);
+  background: var(--bg);
+}
+
+.home-contact__inner {
+  max-width: 36rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-contact__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: clamp(1rem, 2vw, 1.35rem);
+}
+
+.home-contact__location {
+  font-size: clamp(0.95rem, 1.35vw, 1.05rem);
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.home-contact__availability {
+  font-size: clamp(0.8rem, 1.1vw, 0.88rem);
+  font-weight: var(--fw-light);
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 auto clamp(1.1rem, 2.5vw, 1.5rem);
+  max-width: 28em;
+}
+
+.home-contact__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.home-contact__languages {
+  font-size: clamp(0.78rem, 1.05vw, 0.84rem);
+  font-weight: var(--fw-light);
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.home-contact__email {
+  font-size: clamp(0.78rem, 1.05vw, 0.84rem);
+  font-weight: var(--fw-light);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.home-contact__email:hover {
+  color: var(--text);
+  border-bottom-color: var(--text-muted);
+}
+
+.home-contact__social {
+  font-size: 0.8rem;
+  margin: 1.15rem 0 0;
+  color: var(--text-muted);
+}
+
+.home-contact__link {
+  border-bottom: 1px solid transparent;
+}
+
+.home-contact__link:hover {
+  border-bottom-color: var(--text-muted);
 }
 
 .hero-map-title {

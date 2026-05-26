@@ -32,9 +32,7 @@ async function loadSiteData() {
 function renderNav() {
   const nav = document.getElementById("portfolio-nav");
   const pdf = siteData.site.pdfDownload;
-  const pdfLabel = pdf
-    ? `${pdf.label || "Download PDF Portfolio"}${pdf.labelZh || ""}`
-    : "";
+  const pdfLabel = pdf ? `${pdf.label || "Download PDF Portfolio"}` : "";
   const pdfBtnHtml = pdf?.href
     ? `<li><a href="${escapeHtml(pdf.href)}" download="${escapeHtml(pdf.filename || "")}">${escapeHtml(pdfLabel)}</a></li>`
     : "";
@@ -46,8 +44,10 @@ function renderNav() {
         <span></span><span></span><span></span>
       </button>
       <ul class="portfolio-nav-links">
+        <li><a href="index.html#top">Home</a></li>
+        <li><a href="#work">Projects</a></li>
         <li><a href="#about">${escapeHtml(siteData.about.title)}</a></li>
-        <li><a href="#work">${escapeHtml(projectsData?.section?.title || siteData.work.title)}</a></li>
+        <li><a href="#contact">Contact</a></li>
         ${pdfBtnHtml}
       </ul>
     </div>
@@ -71,6 +71,16 @@ function renderNav() {
 function portfolioHref(href) {
   if (!href) return href;
   if (href.startsWith("#")) return `index.html${href}`;
+  return href;
+}
+
+/** Same-page anchor for portfolio CTAs (config uses `portfolio.html#work`). */
+function portfolioPageAnchorHref(href) {
+  if (!href) return "#work";
+  if (href.startsWith("#")) return href;
+  const idx = href.indexOf("#");
+  if (href.includes("portfolio.html") && idx >= 0) return href.slice(idx);
+  if (href.includes("portfolio.html")) return "#work";
   return href;
 }
 
@@ -156,27 +166,42 @@ function renderHeroArchive() {
   `;
 }
 
+/** Role lines + CTAs under portfolio hero (data/config.json homeLanding). */
+function renderPortfolioHeroRoleCta() {
+  const h = osConfig?.homeLanding;
+  const el = document.getElementById("portfolio-hero-role-cta");
+  if (!h || !el) return;
+  const pfHref = portfolioPageAnchorHref(h.portfolioHref);
+  const pdfHref = h.pdfHref || "#";
+  const pdfName = h.pdfFilename || "";
+  el.innerHTML = `
+    <div class="portfolio-hero-role-cta__inner">
+      <div class="portfolio-hero-role-cta__roles">
+        <p class="portfolio-hero-role-cta__line portfolio-hero-role-cta__line--en">${escapeHtml(h.roleEn || "")}</p>
+        <p class="portfolio-hero-role-cta__line portfolio-hero-role-cta__line--zh">${escapeHtml(h.roleZh || "")}</p>
+        <p class="portfolio-hero-role-cta__line portfolio-hero-role-cta__line--kr">${escapeHtml(h.roleKr || "")}</p>
+      </div>
+      <div class="portfolio-hero-role-cta__actions">
+        <a class="portfolio-strip-cta__primary" href="${escapeHtml(pfHref)}">VIEW PORTFOLIO</a>
+        <a class="portfolio-strip-cta__ghost" href="${escapeHtml(pdfHref)}" download="${escapeHtml(pdfName)}">DOWNLOAD PDF PORTFOLIO</a>
+      </div>
+    </div>
+  `;
+}
+
 function renderAbout() {
   const a = siteData.about;
-  const strengthsHtml = a.strengths
-    .map(
-      (item) => `
-      <li>
-        <span class="strength-num">${escapeHtml(item.num)}</span>
-        <div>
-          <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.text)}</p>
-        </div>
-      </li>
-    `
-    )
-    .join("");
+  const i = a.intro;
+  if (!i) return;
 
-  document.getElementById("portfolio-about").innerHTML = `
-    <p class="section-label">${escapeHtml(a.title)}</p>
-    <p class="about-lead">${escapeHtml(a.lead)}</p>
-    <p class="about-text">${escapeHtml(a.text)}</p>
-    <ul class="strengths-list">${strengthsHtml}</ul>
+  document.getElementById("about").innerHTML = `
+    <p class="section-label about-section-label">${escapeHtml(a.title)}</p>
+    <div class="about-brief" lang="multi">
+      <p class="about-brief__en-lead">${escapeHtml(i.enLead)}</p>
+      <p class="about-brief__en-detail">${escapeHtml(i.enDetail)}</p>
+      <p class="about-brief__zh">${escapeHtml(i.zh)}</p>
+      <p class="about-brief__kr">${escapeHtml(i.kr)}</p>
+    </div>
   `;
 }
 
@@ -215,12 +240,16 @@ function renderProjectsSection() {
   bindFilters();
 }
 
-/** ProjectCard — cover, title, description, keywords */
+/** ProjectCard — cover, title, keywords line, role, year */
 function renderProjectCard(project) {
   const keywordsHtml = project.keywords
-    .slice(0, 4)
+    .slice(0, 5)
     .map((k) => `<li>${escapeHtml(k)}</li>`)
     .join("");
+  const displayTitle = project.displayTitle || project.title;
+  const line = project.portfolioLine || project.categoryLabel || "";
+  const role = project.role || "Industrial Designer";
+  const year = project.year || "";
 
   return `
     <a
@@ -230,17 +259,18 @@ function renderProjectCard(project) {
       data-project-id="${escapeHtml(project.id)}"
     >
       <div class="project-visual project-visual--photo">
-        ${renderProjectImg({
+        ${renderPortfolioImg({
           src: project.image,
-          alt: project.title,
-          className: "portfolio-img",
+          alt: displayTitle,
+          priority: false,
         })}
       </div>
       <div class="project-info">
-        <span class="project-tag">${escapeHtml(project.categoryLabel)}</span>
-        <h3>${escapeHtml(project.title)}</h3>
-        <p>${escapeHtml(project.description)}</p>
-        <ul class="project-keywords">${keywordsHtml}</ul>
+        <span class="project-tag project-tag--quiet">${escapeHtml(project.categoryLabel)}</span>
+        <h3>${escapeHtml(displayTitle)}</h3>
+        <p class="project-card__line">${escapeHtml(line)}</p>
+        <p class="project-card__meta"><span>Role: ${escapeHtml(role)}</span>${year ? ` · <span>${escapeHtml(year)}</span>` : ""}</p>
+        <ul class="project-keywords project-keywords--quiet">${keywordsHtml}</ul>
       </div>
     </a>
   `;
@@ -266,9 +296,48 @@ function bindFilters() {
   });
 }
 
+function renderContactSocialLinks(c, linkClass) {
+  const parts = [];
+  if (c.linkedin) {
+    parts.push(
+      `<a class="${linkClass}" href="${escapeHtml(c.linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn</a>`
+    );
+  }
+  if (c.behance) {
+    parts.push(
+      `<a class="${linkClass}" href="${escapeHtml(c.behance)}" target="_blank" rel="noopener noreferrer">Behance</a>`
+    );
+  }
+  if (c.instagram) {
+    parts.push(
+      `<a class="${linkClass}" href="${escapeHtml(c.instagram)}" target="_blank" rel="noopener noreferrer">Instagram</a>`
+    );
+  }
+  return parts.length ? `<p class="portfolio-contact__social">${parts.join(" · ")}</p>` : "";
+}
+
 function renderFooter() {
-  document.getElementById("portfolio-footer").textContent =
-    `© ${new Date().getFullYear()} ${siteData.site.owner} · ${siteData.site.role}`;
+  const c = siteData.contact || {};
+  const el = document.getElementById("contact");
+  if (!el) return;
+
+  const emailHtml = c.email
+    ? `<a class="portfolio-contact__email" href="mailto:${escapeHtml(c.email)}">${escapeHtml(c.email)}</a>`
+    : "";
+
+  el.innerHTML = `
+    <div class="portfolio-contact">
+      <p class="portfolio-contact__label">Contact</p>
+      <p class="portfolio-contact__location">${escapeHtml(c.location || "")}</p>
+      <p class="portfolio-contact__availability">${escapeHtml(c.availability || "")}</p>
+      <div class="portfolio-contact__meta">
+        <p class="portfolio-contact__languages">${escapeHtml(c.languages || "")}</p>
+        ${emailHtml}
+      </div>
+      ${renderContactSocialLinks(c, "portfolio-contact__link")}
+    </div>
+    <p class="portfolio-footer__copy">© ${new Date().getFullYear()} ${escapeHtml(siteData.site.owner)} · Product & Industrial Design</p>
+  `;
 }
 
 /** Scroll to Selected Works (#work) after dynamic content is rendered */
@@ -294,6 +363,7 @@ async function init() {
     await loadSiteData();
     renderNav();
     renderHeroArchive();
+    renderPortfolioHeroRoleCta();
     renderAbout();
     renderProjectsSection();
     renderFooter();
