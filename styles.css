@@ -1,10 +1,10 @@
 :root {
-  /* Portfolio / OS shared canvas */
-  --bg: #f5f2ec;
+  /* Lynn OS — aligned with lynn-nam.com */
+  --bg: #faf7f0;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
-  --hero-fade: #f5f2ec;
+  --hero-fade: #faf7f0;
   --bg-card: #ffffff;
-  --bg-soft: #f7f5ef;
+  --bg-soft: #fbfaf7;
   --text: #1a1a1a;
   --text-muted: #6f6f6f;
   --text-light: #9a9690;
@@ -18,7 +18,7 @@
   --radius: 12px;
   --radius-sm: 8px;
   --topbar-h: 7.85rem;
-  --topbar-bg: rgba(245, 242, 236, 0.55);
+  --topbar-bg: rgba(250, 247, 240, 0.5);
   --content-padding: clamp(2.5rem, 5vw, 4.5rem);
   --grid-gap: 1.75rem;
   --section-gap: 3.5rem;
