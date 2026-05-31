@@ -243,8 +243,11 @@ function scheduleWeatherMidnightRefresh() {
 }
 
 function renderBrand() {
-  const s = config.site;
-  document.getElementById("brand").innerHTML = `
+  const s = config?.site;
+  if (!s) return;
+  const brandEl = getEl("brand");
+  if (!brandEl) return;
+  brandEl.innerHTML = `
     <a href="#top" class="brand-logo-link" aria-label="${escapeHtml(s.name)}">
       <img class="brand-logo" src="${escapeHtml(s.logo)}" alt="${escapeHtml(s.logoAlt || s.name)}" width="353" height="101" decoding="async">
     </a>
@@ -258,7 +261,9 @@ function renderSidebar() {
     { href: "#contact", label: "Contact" },
   ];
 
-  document.getElementById("sidebar-nav").innerHTML = navItems
+  const navEl = getEl("sidebar-nav");
+  if (!navEl) return;
+  navEl.innerHTML = navItems
     .map((item) => `<a href="${item.href}">${item.label}</a>`)
     .join("");
 }
@@ -300,10 +305,14 @@ function renderQuickLaunchHtml() {
 }
 
 function renderWelcome() {
+  if (!config?.site) return;
+  const welcomeEl = getEl("about") || getEl("welcome");
+  if (!welcomeEl) return;
+
   const owner = config.site.owner;
   const greeting = getTimeGreeting();
 
-  document.getElementById("about").innerHTML = `
+  welcomeEl.innerHTML = `
     <div class="welcome-hero">
       <h1 class="welcome-greeting">${escapeHtml(greeting)}, ${escapeHtml(owner)}</h1>
       <p class="welcome-meta" id="welcome-meta">${escapeHtml(formatWelcomeMeta(null))}</p>
@@ -388,9 +397,12 @@ function renderYoutubeCard(module) {
 }
 
 function renderMorningBrief() {
-  const brief = config.morningBrief;
+  const brief = config?.morningBrief;
+  if (!brief) return;
+  const el = getEl("morning-brief");
+  if (!el) return;
 
-  document.getElementById("morning-brief").innerHTML = `
+  el.innerHTML = `
     ${renderSectionHeader({
       num: "01",
       title: "Morning Brief",
@@ -406,7 +418,10 @@ function renderMorningBrief() {
 }
 
 function renderDesignWorkbench() {
-  const wb = config.designWorkbench;
+  const wb = config?.designWorkbench;
+  if (!wb?.groups) return;
+  const el = getEl("design-workbench");
+  if (!el) return;
 
   const groupsHtml = wb.groups
     .map((group) => {
@@ -422,7 +437,7 @@ function renderDesignWorkbench() {
     })
     .join("");
 
-  document.getElementById("design-workbench").innerHTML = `
+  el.innerHTML = `
     ${renderSectionHeader({
       num: "02",
       title: "Design Workbench",
@@ -434,9 +449,12 @@ function renderDesignWorkbench() {
 }
 
 function renderToday() {
-  const today = config.today;
+  const today = config?.today;
+  if (!today) return;
+  const el = getEl("today");
+  if (!el) return;
 
-  const todosHtml = today.todos
+  const todosHtml = (today.todos || [])
     .map(
       (todo) => `
       <li class="todo-item${todo.done ? " done" : ""}" data-id="${escapeHtml(todo.id)}">
@@ -447,7 +465,7 @@ function renderToday() {
     )
     .join("");
 
-  const linksHtml = today.links
+  const linksHtml = (today.links || [])
     .map(
       (link) => `
       <li><a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.name)}</a></li>
@@ -455,7 +473,7 @@ function renderToday() {
     )
     .join("");
 
-  const remindersHtml = today.reminders
+  const remindersHtml = (today.reminders || [])
     .map(
       (r) => `
       <li class="reminder-item">
@@ -466,7 +484,7 @@ function renderToday() {
     )
     .join("");
 
-  document.getElementById("today").innerHTML = `
+  el.innerHTML = `
     ${renderSectionHeader({
       num: "03",
       title: "Today",
@@ -495,6 +513,7 @@ function renderToday() {
 function bindTodoEvents() {
   document.querySelectorAll(".todo-item").forEach((item) => {
     const checkbox = item.querySelector("input");
+    if (!checkbox) return;
     checkbox.addEventListener("change", () => {
       item.classList.toggle("done", checkbox.checked);
     });
@@ -507,9 +526,8 @@ function bindTodoEvents() {
 }
 
 function renderFooter() {
-  const owner = config.site.owner || "Lynn Nam";
-  document.getElementById("footer").textContent =
-    `© ${new Date().getFullYear()} ${owner} · Product & Industrial Design`;
+  const owner = config?.site?.owner || "Lynn Nam";
+  setTextContent("footer", `© ${new Date().getFullYear()} ${owner} · Product & Industrial Design`);
 }
 
 function isHeroKeywordVisible(kw) {
@@ -616,10 +634,11 @@ function initHeroMap() {
 
   scheduleLineUpdate();
   window.addEventListener("resize", scheduleLineUpdate);
-  if (inner && "ResizeObserver" in window) {
+  const centerEl = hero.querySelector(".hero-map__center");
+  if (inner && centerEl && "ResizeObserver" in window) {
     const ro = new ResizeObserver(scheduleLineUpdate);
     ro.observe(inner);
-    ro.observe(hero.querySelector(".hero-map__center"));
+    ro.observe(centerEl);
   }
 
   document.fonts?.ready?.then(scheduleLineUpdate);
@@ -685,7 +704,7 @@ async function init() {
     renderToday();
     renderHomeContact();
     renderFooter();
-    document.title = config.site.name;
+    if (config?.site?.name) document.title = config.site.name;
     hideLoading();
   } catch (err) {
     const isFileProtocol = window.location.protocol === "file:";
@@ -697,8 +716,4 @@ async function init() {
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
-  init();
-}
+runOnDomReady(init);

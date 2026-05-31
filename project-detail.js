@@ -130,7 +130,8 @@ function renderProjectCaseStudy(project) {
 }
 
 function renderProjectDetailNav(project) {
-  const nav = document.getElementById("project-detail-nav");
+  const nav = getEl("project-detail-nav");
+  if (!nav || !pageLabels) return;
   nav.innerHTML = `
     ${renderSiteNavLeading({ homeHref: "index.html", backLabel: pageLabels.endBack.en })}
     <span class="project-detail-nav-title">${escapeHtml(project.title)}</span>
@@ -569,7 +570,9 @@ function renderProjectNarrative(project) {
 
 function renderProjectDetail(project) {
   applyProjectTheme(project);
-  document.getElementById("project-detail-root").innerHTML = `
+  const root = getEl("project-detail-root");
+  if (!root) return;
+  root.innerHTML = `
     ${renderProjectHero(project)}
     ${renderProjectNarrative(project)}
     ${renderImageGallery(project)}
@@ -579,8 +582,8 @@ function renderProjectDetail(project) {
 }
 
 async function init() {
-  const loading = document.getElementById("project-loading");
-  const app = document.getElementById("project-detail-app");
+  const loading = getEl("project-loading");
+  const app = getEl("project-detail-app");
   const params = new URLSearchParams(window.location.search);
   const id = params.get("project");
   if (id === "omni-mobility") {
@@ -593,18 +596,18 @@ async function init() {
     const project = getProjectById(projects, id);
 
     if (!project) {
-      loading.textContent = "未找到该项目";
+      if (loading) loading.textContent = "未找到该项目";
       return;
     }
 
     renderProjectDetailNav(project);
     renderProjectDetail(project);
-    loading.hidden = true;
-    app.hidden = false;
+    if (loading) loading.hidden = true;
+    if (app) app.hidden = false;
   } catch (err) {
-    loading.textContent = `${err.message} · 请通过本地服务器打开`;
+    if (loading) loading.textContent = `${err.message} · 请通过本地服务器打开`;
     console.error("[Project Detail]", err);
   }
 }
 
-init();
+runOnDomReady(init);

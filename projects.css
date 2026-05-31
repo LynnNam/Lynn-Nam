@@ -1241,22 +1241,71 @@
     padding: 0.5rem 0 0;
   }
 
-  .board-slide--meal-service .board-slide__platform-views {
-    margin-bottom: 0.75rem;
+  /* 餐服机器人 — 手机端与消防/清洁等 split-right 一致：全宽图 + 下方文案 */
+  .board-slide--meal-service {
+    display: flex;
+    flex-direction: column;
   }
 
-  .board-slide--meal-service .board-slide__overlay--meal-panel,
-  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-title,
-  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features,
-  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features li,
-  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-body,
-  .board-slide--meal-service .board-slide__circle-label {
-    color: #fff;
+  .board-slide--meal-service .board-slide__meal-intro {
+    padding: 0 clamp(1rem, 2.5vw, 1.5rem) clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  .board-slide--meal-service .board-slide__platform-views {
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+    padding: 0 clamp(1rem, 2.5vw, 1.5rem);
+  }
+
+  .board-slide--meal-service .board-slide__media-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .board-slide--meal-service .board-slide__overlay--meal-panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: clamp(1rem, 2.5vw, 1.25rem) clamp(1rem, 2.5vw, 1.5rem) 0;
+    color: var(--text, #1a1a1a);
+    background: transparent;
     text-shadow: none;
   }
 
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-title,
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features,
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features li,
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-body {
+    color: var(--text, #1a1a1a);
+  }
+
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-title {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features {
+    display: block;
+    flex-wrap: nowrap;
+    gap: 0;
+    margin-bottom: 1rem;
+  }
+
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__features li + li {
+    margin-top: 0.45rem;
+  }
+
+  .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-body {
+    opacity: 1;
+    color: var(--text-muted, #444);
+  }
+
   .board-slide--meal-service .board-slide__overlay--circle-labels {
-    color: #fff;
+    position: relative;
+    display: none;
   }
 
   .board-slide--overlay-intro-top .board-slide__overlay--overlay-intro-top,

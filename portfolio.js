@@ -30,7 +30,8 @@ async function loadSiteData() {
 }
 
 function renderNav() {
-  const nav = document.getElementById("portfolio-nav");
+  const nav = getEl("portfolio-nav");
+  if (!nav || !siteData?.site) return;
   const pdf = siteData.site.pdfDownload;
   const pdfLabel = pdf ? `${pdf.label || "Download PDF Portfolio"}` : "";
   const pdfBtnHtml = pdf?.href
@@ -54,6 +55,7 @@ function renderNav() {
   `;
   const menuBtn = nav.querySelector(".menu-toggle");
   const navLinks = nav.querySelector(".portfolio-nav-links");
+  if (!menuBtn || !navLinks) return;
 
   menuBtn.addEventListener("click", () => {
     const open = navLinks.classList.toggle("open");
@@ -190,11 +192,12 @@ function renderPortfolioHeroRoleCta() {
 }
 
 function renderAbout() {
-  const a = siteData.about;
-  const i = a.intro;
-  if (!i) return;
+  const a = siteData?.about;
+  const i = a?.intro;
+  const aboutEl = getEl("about");
+  if (!i || !aboutEl) return;
 
-  document.getElementById("about").innerHTML = `
+  aboutEl.innerHTML = `
     <p class="section-label about-section-label">${escapeHtml(a.title)}</p>
     <div class="about-brief" lang="multi">
       <p class="about-brief__en-lead">${escapeHtml(i.enLead)}</p>
@@ -225,7 +228,8 @@ function renderProjectsSection() {
 
   const projectsHtml = getEnrichedProjects().map((p) => renderProjectCard(p)).join("");
 
-  const workEl = document.getElementById("work");
+  const workEl = getEl("work");
+  if (!workEl) return;
   workEl.innerHTML = `
     <div class="work-header projects-section-header">
       <p class="section-label">${escapeHtml(section.label)}</p>
@@ -359,6 +363,9 @@ function handleWorkHashScroll() {
 }
 
 async function init() {
+  const loading = getEl("portfolio-loading");
+  const app = getEl("portfolio-app");
+
   try {
     await loadSiteData();
     renderNav();
@@ -367,16 +374,17 @@ async function init() {
     renderAbout();
     renderProjectsSection();
     renderFooter();
-    document.title = siteData.site.name;
-    document.getElementById("portfolio-loading").hidden = true;
-    document.getElementById("portfolio-app").hidden = false;
+    if (siteData?.site?.name) document.title = siteData.site.name;
+    if (loading) loading.hidden = true;
+    if (app) app.hidden = false;
     handleWorkHashScroll();
     window.addEventListener("hashchange", handleWorkHashScroll);
   } catch (err) {
-    document.getElementById("portfolio-loading").textContent =
-      `${err.message} · 请通过本地服务器打开`;
+    if (loading) {
+      loading.textContent = `${err.message} · 请通过本地服务器打开`;
+    }
     console.error("[Lynn Portfolio]", err);
   }
 }
 
-init();
+runOnDomReady(init);
