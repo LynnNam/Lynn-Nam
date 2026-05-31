@@ -383,12 +383,20 @@ function renderBoardFigure(img, options = {}) {
   }
 
   if (content?.layout === "stack-intro") {
+    const sketchBlock = content.sketchImage
+      ? `
+        <div class="board-slide__sketch-wrap">
+          ${content.sketchLabel ? `<p class="board-slide__sketch-label">${escapeHtml(content.sketchLabel)}</p>` : ""}
+          ${renderProjectImg({
+            src: content.sketchImage,
+            alt: `${img.alt} — sketches`,
+            priority: false,
+            className,
+          })}
+        </div>`
+      : "";
     return `
       <figure class="board-slide board-slide--stack-intro" data-board="${img.board}">
-        <div class="board-slide__intro-block">
-          <p class="board-slide__intro-title">${escapeHtml(content.title || "")}</p>
-          ${content.intro ? `<p class="board-slide__intro-body">${escapeHtml(content.intro)}</p>` : ""}
-        </div>
         <div class="board-slide__media-wrap">
           ${renderProjectImg({
             src: img.src,
@@ -398,6 +406,11 @@ function renderBoardFigure(img, options = {}) {
           })}
           ${renderBoardOverlay(content)}
         </div>
+        <div class="board-slide__intro-block">
+          <p class="board-slide__intro-title">${escapeHtml(content.title || "")}</p>
+          ${content.intro ? `<p class="board-slide__intro-body">${escapeHtml(content.intro)}</p>` : ""}
+        </div>
+        ${sketchBlock}
       </figure>
     `;
   }
@@ -547,11 +560,18 @@ function applyProjectTheme(project) {
   if (theme.text) body.style.setProperty("--project-text", theme.text);
 }
 
+function renderProjectNarrative(project) {
+  if (project.designFramework) {
+    return renderDesignFramework(project);
+  }
+  return renderProjectCaseStudy(project);
+}
+
 function renderProjectDetail(project) {
   applyProjectTheme(project);
   document.getElementById("project-detail-root").innerHTML = `
     ${renderProjectHero(project)}
-    ${renderProjectCaseStudy(project)}
+    ${renderProjectNarrative(project)}
     ${renderImageGallery(project)}
     ${renderEndSection()}
   `;

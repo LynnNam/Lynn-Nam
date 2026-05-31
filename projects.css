@@ -77,6 +77,11 @@
   background: var(--bg);
 }
 
+.project-detail-page,
+.project-detail-page * {
+  text-shadow: none;
+}
+
 /* OMNI-D Mobility — dark charcoal page */
 .project-detail-page--omni-mobility {
   --project-bg: #333333;
@@ -197,7 +202,7 @@
   left: 2%;
   width: 52%;
   color: #fff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+  text-shadow: none;
 }
 
 .voice-trends__track--top {
@@ -229,7 +234,7 @@
   margin: 0;
   font-size: clamp(0.48rem, 0.8vw, 0.58rem);
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
 }
 
 .voice-trends__conclusion {
@@ -700,7 +705,7 @@
   justify-content: flex-start;
   text-align: left;
   line-height: 1.55;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  text-shadow: none;
 }
 
 .board-slide__panel-title {
@@ -843,7 +848,7 @@
   transform: translate(-50%, 0);
   font-size: clamp(0.58rem, 0.95vw, 0.7rem);
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
   white-space: nowrap;
   line-height: 1.2;
 }
@@ -857,20 +862,48 @@
   padding-right: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-/* 画板 5 — 顶部导语 + 图上「设计方案」 */
+/* 画板 5 — 主图 → 导语 → 手绘图，图上「设计方案」 */
 .board-slide--stack-intro {
   display: flex;
   flex-direction: column;
   line-height: 1.5;
-  background: var(--bg, #f5f2ec);
+  background: var(--bg);
 }
 
-.board-slide--stack-intro .board-slide__media-wrap {
-  background: var(--bg, #f5f2ec);
+.board-slide--stack-intro .board-slide__media-wrap,
+.board-slide--stack-intro .board-slide__sketch-wrap {
+  background: var(--bg);
+}
+
+.board-slide--stack-intro .board-slide__intro-block {
+  padding: clamp(1rem, 2.5vw, 1.5rem) 0 0;
+  color: #111;
+}
+
+.board-slide__sketch-wrap {
+  line-height: normal;
+  text-align: center;
+  margin-top: clamp(2rem, 5vw, 3.25rem);
+  padding-top: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.board-slide__sketch-label {
+  margin: 0 0 clamp(0.75rem, 2vw, 1.1rem);
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.2vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text, #1a1a1a);
+  text-align: center;
+}
+
+.board-slide__sketch-wrap .image-gallery__img {
+  display: block;
+  margin-inline: auto;
 }
 
 .board-slide__intro-block {
-  padding: 0 0 clamp(0.85rem, 2vw, 1.25rem);
   color: #111;
 }
 
@@ -958,7 +991,7 @@
 }
 
 .board-slide__panel-caption {
-  padding: clamp(0.75rem, 1.5vw, 1.1rem) 0 0;
+  padding: clamp(0.85rem, 1.5vw, 1.15rem) clamp(1.25rem, 3vw, 2rem) 0;
   color: #333;
   max-width: 36em;
 }
@@ -980,11 +1013,12 @@
 }
 
 .board-slide--stack-split .board-slide__overlay--corner-title {
-  top: 6%;
-  left: 4%;
+  top: 8%;
+  left: clamp(1.25rem, 3vw, 2rem);
   right: auto;
   width: auto;
   max-width: 42%;
+  padding-right: clamp(0.5rem, 1vw, 1rem);
   color: #111;
   text-shadow: none;
   text-align: left;
@@ -1116,7 +1150,7 @@
 }
 
 .board-slide__header {
-  padding: 0 0 clamp(0.65rem, 1.5vw, 1rem);
+  padding: clamp(0.35rem, 1vw, 0.6rem) clamp(1.25rem, 3vw, 2rem) clamp(0.65rem, 1.5vw, 1rem);
   color: #111;
   text-align: left;
 }
@@ -1192,7 +1226,13 @@
     position: relative;
     top: auto;
     left: auto;
-    padding: 0 0 0.5rem;
+    padding: 0 clamp(1rem, 2.5vw, 1.5rem) 0.5rem;
+  }
+
+  .board-slide--stack-split .board-slide__panel-caption,
+  .board-slide--stack-header .board-slide__header {
+    padding-left: clamp(1rem, 2.5vw, 1.5rem);
+    padding-right: clamp(1rem, 2.5vw, 1.5rem);
   }
 
   .board-slide--stack-intro .board-slide__overlay--section-label {
@@ -1212,7 +1252,7 @@
   .board-slide--meal-service .board-slide__overlay--meal-panel .board-slide__panel-body,
   .board-slide--meal-service .board-slide__circle-label {
     color: #fff;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    text-shadow: none;
   }
 
   .board-slide--meal-service .board-slide__overlay--circle-labels {

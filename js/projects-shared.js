@@ -33,13 +33,16 @@ function enrichProject(project) {
     taglineEn,
     image: artboardSrc(project.coverBoard, project.imageBase),
     boardContent: project.boardContent || null,
-    gallery: project.boards.map((board) => ({
+    gallery: project.boards.map((board) => {
+      const content = project.boardContent?.[String(board)] ?? null;
+      return {
       board,
-      src: artboardSrc(board, project.imageBase),
+      src: content?.src || artboardSrc(board, project.imageBase),
       alt: `${project.title} — Board ${board}`,
       isCover: String(board) === String(project.coverBoard),
-      content: project.boardContent?.[String(board)] ?? null,
-    })),
+      content,
+    };
+    }),
   };
 }
 
