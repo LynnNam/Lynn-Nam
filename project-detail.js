@@ -495,10 +495,11 @@ function renderProjectHero(project) {
     alt: project.title,
     content: project.boardContent?.[String(project.coverBoard)] ?? null,
   };
+  const coverArtClass = project.coverImage ? " project-detail-hero__media--cover-art" : "";
 
   return `
     <header class="project-detail-hero">
-      <figure class="project-detail-hero__media${coverSlide.content?.layout ? ` board-slide board-slide--${coverSlide.content.layout}` : ""}">
+      <figure class="project-detail-hero__media${coverArtClass}${coverSlide.content?.layout ? ` board-slide board-slide--${coverSlide.content.layout}` : ""}">
         ${renderProjectImg({
           src: coverSlide.src,
           alt: project.title,
@@ -568,10 +569,74 @@ function renderProjectNarrative(project) {
   return renderProjectCaseStudy(project);
 }
 
+function initProjectDeckIframe() {
+  const iframe = document.querySelector(".project-deck-iframe");
+  if (!iframe) return;
+
+  function setHeight(height) {
+    if (typeof height === "number" && height > 0) {
+      iframe.style.height = `${Math.ceil(height)}px`;
+    }
+  }
+
+  window.addEventListener("message", (event) => {
+    if (event.data?.type === "lyndeck-height") setHeight(event.data.height);
+  });
+
+  iframe.addEventListener("load", () => {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc) return;
+      const measure = () =>
+        setHeight(
+          Math.max(
+            doc.documentElement?.scrollHeight || 0,
+            doc.body?.scrollHeight || 0
+          )
+        );
+      measure();
+      iframe.contentWindow?.addEventListener("resize", measure);
+    } catch {
+      /* cross-origin — height via postMessage from embed deck */
+    }
+  });
+}
+
+function renderDeckPresentation(project) {
+  const deckPath = project.deckPath || "";
+  return `
+    <section class="project-detail-section project-deck-host" aria-labelledby="gallery-heading">
+      ${renderTriSectionTitle(pageLabels.gallery)}
+      <iframe
+        class="project-deck-iframe"
+        src="${escapeHtml(deckPath)}?embed=1"
+        title="${escapeHtml(project.title)} — 16:9 portfolio deck"
+        loading="lazy"
+        scrolling="no"
+      ></iframe>
+      <p class="project-deck-host__hint">
+        <a href="${escapeHtml(deckPath)}" target="_blank" rel="noopener">全屏查看</a>
+        · 可使用页面内 Export PDF 导出 16:9 文稿
+      </p>
+    </section>
+  `;
+}
+
 function renderProjectDetail(project) {
   applyProjectTheme(project);
   const root = getEl("project-detail-root");
   if (!root) return;
+
+  if (project.deckPresentation && project.deckPath) {
+    root.innerHTML = `
+      ${renderProjectHero(project)}
+      ${renderDeckPresentation(project)}
+      ${renderEndSection()}
+    `;
+    document.title = `${project.title} — Lynn Portfolio`;
+    return;
+  }
+
   root.innerHTML = `
     ${renderProjectHero(project)}
     ${renderProjectNarrative(project)}
@@ -602,6 +667,7 @@ async function init() {
 
     renderProjectDetailNav(project);
     renderProjectDetail(project);
+    initProjectDeckIframe();
     if (loading) loading.hidden = true;
     if (app) app.hidden = false;
   } catch (err) {

@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>realme Watch S5 — Lynn Nam</title>
+<style>
+@page { size: 16in 9in; margin: 0; }
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5f2ec;
+  color: #1f1f1f;
+  font-family: "Avenir Next", "Inter", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.deck-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem clamp(1rem, 3vw, 2rem);
+  background: rgba(245, 242, 236, 0.92);
+  border-bottom: 1px solid rgba(32, 32, 32, 0.08);
+  backdrop-filter: blur(8px);
+}
+body.is-embed .deck-toolbar { display: none; }
+body.is-embed {
+  overflow: visible;
+  background: #f5f2ec;
+}
+html:has(body.is-embed) {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.deck-toolbar a, .deck-toolbar button {
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: #4a4844;
+  background: transparent;
+  border: 1px solid rgba(32, 32, 32, 0.12);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.deck-toolbar button:hover, .deck-toolbar a:hover { background: rgba(255, 255, 255, 0.5); }
+.deck-document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  padding: clamp(1rem, 3vw, 2rem) var(--content-padding, clamp(3rem, 4vw, 4rem))
+    clamp(3rem, 6vw, 4rem);
+}
+.deck-scaler {
+  width: 70%;
+  max-width: min(1120px, 100%);
+  margin-inline: auto;
+  overflow: hidden;
+}
+/* 嵌入项目详情页时，iframe 外层已是 70%，文稿铺满 iframe 即可 */
+body.is-embed .deck-document {
+  padding-left: 0;
+  padding-right: 0;
+}
+body.is-embed .deck-scaler {
+  width: 100%;
+  max-width: 100%;
+}
+.page {
+  position: relative;
+  width: 1600px;
+  height: 900px;
+  background: #f7f5f1;
+  page-break-after: always;
+  overflow: hidden;
+  transform-origin: top left;
+}
+.page:last-child { page-break-after: auto; }
+.topline {
+  position: absolute;
+  left: 52px;
+  top: 40px;
+  font-size: 15px;
+  color: #6f6b64;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.topline .bar {
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin-top: 12px;
+  background: #7d7a74;
+  opacity: 0.8;
+  border-radius: 2px;
+}
+.page-no {
+  position: absolute;
+  right: 74px;
+  top: 42px;
+  font-size: 14px;
+  color: #9a978f;
+  letter-spacing: 0.04em;
+}
+.title {
+  font-size: 78px;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  font-weight: 450;
+  margin: 0;
+}
+.subtitle {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #6e6a64;
+}
+.desc {
+  font-size: 19px;
+  line-height: 1.82;
+  color: #5d5a55;
+}
+.card {
+  background: rgba(255, 255, 255, 0.44);
+  border: 1px solid rgba(32, 32, 32, 0.06);
+  border-radius: 24px;
+}
+.imgbox {
+  overflow: hidden;
+  border-radius: 26px;
+  background: #efede8;
+}
+.imgbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: auto;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: auto;
+}
+.imgbox.contain {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imgbox.contain img {
+  object-fit: contain;
+}
+.page[data-page="2"] .imgbox img,
+.page[data-page="3"] .imgbox img,
+.page[data-page="4"] .imgbox img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: center;
+}
+.imgbox--product {
+  background: #f7f5f1;
+}
+.imgbox--thumb {
+  background: #f2efea;
+}
+.page-01__hero {
+  position: absolute;
+  right: 86px;
+  top: 78px;
+  width: 720px;
+  height: 650px;
+  background: #f7f5f1;
+}
+.page-01__thumb {
+  position: absolute;
+  bottom: 78px;
+  width: 355px;
+  height: 185px;
+  border-radius: 24px;
+}
+.page-01__thumb--dark { left: 52px; }
+.page-01__thumb--wrist { left: 430px; }
+.page-01__thumb--wrist img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page-01__copy {
+  position: absolute;
+  left: 52px;
+  top: 132px;
+  width: 655px;
+}
+.kv-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  width: 510px;
+  margin-top: 38px;
+}
+.kv {
+  padding-right: 12px;
+  border-right: 1px solid rgba(32, 32, 32, 0.1);
+}
+.kv:last-child { border-right: none; }
+.kv .k { font-size: 14px; color: #9a958c; margin-bottom: 10px; }
+.kv .v { font-size: 22px; color: #262626; font-weight: 500; }
+.tagrow {
+  display: flex;
+  gap: 12px;
+  position: absolute;
+  left: 280px;
+  bottom: 28px;
+}
+.tag {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #f0ede7;
+  color: #8f8a82;
+  font-size: 14px;
+}
+.listline {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(32, 32, 32, 0.08);
+}
+.listline:last-child { border-bottom: none; }
+.numdot {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #f1eee8;
+  color: #77736c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.listline h4 {
+  margin: 0 0 8px;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.listline p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.62;
+  color: #66625c;
+}
+.swatch-item {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 34px;
+  align-items: flex-start;
+  padding: 18px 0 30px;
+}
+.swatch {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 1px solid rgba(32, 32, 32, 0.08);
+}
+.swatch-title {
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 450;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+.swatch-meta { font-size: 19px; color: #3d3d3d; margin-bottom: 18px; }
+.swatch-desc {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #615d57;
+  max-width: 420px;
+}
+.icon-labels { display: flex; gap: 44px; margin-top: 40px; }
+.icon-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #706d66;
+}
+.icon-label .mini {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f1eee8;
+  border: 1px solid rgba(32, 32, 32, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.icon-label span { font-size: 16px; }
+.section-title {
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(32, 32, 32, 0.08);
+  border-left: 1px solid rgba(32, 32, 32, 0.08);
+  margin-top: 18px;
+}
+.product-grid .cell {
+  padding: 18px 10px 14px;
+  text-align: center;
+  border-right: 1px solid rgba(32, 32, 32, 0.08);
+  border-bottom: 1px solid rgba(32, 32, 32, 0.08);
+}
+.product-grid .ico {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(32, 32, 32, 0.12);
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #55514b;
+}
+.product-grid .big { font-size: 16px; line-height: 1.25; color: #303030; }
+.product-grid .small { font-size: 13px; line-height: 1.28; color: #7e7a72; margin-top: 3px; }
+.bullets { margin: 10px 0 0; padding-left: 22px; }
+.bullets li { font-size: 17px; line-height: 1.6; color: #5f5c56; margin: 2px 0; }
+.hero-accent {
+  position: absolute;
+  right: 665px;
+  top: 118px;
+  width: 34px;
+  height: 34px;
+  border-right: 6px solid #f0b344;
+  border-top: 6px solid #f0b344;
+  border-radius: 10px;
+  transform: rotate(20deg);
+  opacity: 0.95;
+}
+.hero-loop {
+  position: absolute;
+  right: 320px;
+  bottom: 92px;
+  width: 120px;
+  height: 48px;
+  border-bottom: 3px solid #e0d7c8;
+  border-radius: 0 0 80px 80px;
+  transform: rotate(8deg);
+  opacity: 0.7;
+}
+.hero-dots {
+  position: absolute;
+  right: 80px;
+  bottom: 136px;
+  display: grid;
+  grid-template-columns: repeat(4, 8px);
+  gap: 14px;
+  opacity: 0.4;
+}
+.hero-dots span {
+  width: 4px;
+  height: 4px;
+  background: #bdb7ad;
+  border-radius: 50%;
+  display: block;
+}
+.caption {
+  font-size: 15px;
+  color: #7b7770;
+}
+
+.page--cover {
+  padding: 0;
+  background: #f0eeea;
+}
+
+.page-cover-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-no--cover {
+  color: rgba(255, 255, 255, 0.72);
+  mix-blend-mode: difference;
+}
+
+@media print {
+  .deck-toolbar { display: none !important; }
+  .deck-document {
+    gap: 0;
+    padding: 0;
+  }
+  .deck-scaler {
+    width: 1600px;
+    overflow: visible;
+  }
+  .page {
+    transform: none !important;
+    margin: 0;
+  }
+}
+
+@media screen {
+  body { overflow-x: hidden; }
+}
+</style>
+</head>
+<body>
+<header class="deck-toolbar" id="deck-toolbar">
+  <a href="../portfolio.html#work">← Back to Projects</a>
+  <div>
+    <button type="button" onclick="window.print()">Export PDF</button>
+  </div>
+</header>
+
+<main class="deck-document" id="deck-document">
+
+<div class="deck-scaler"><section class="page page--01" data-page="1">
+  <div class="topline">量产项目<span class="bar"></span></div>
+  <div class="page-no">01 / 05</div>
+  <div class="page-01__copy">
+    <h1 class="title" style="font-size:84px;">realme Watch S5</h1>
+    <div class="subtitle" style="font-size:18px; margin-top:20px;">智能手表量产项目 / 工业设计 / 2025–2026</div>
+    <div class="desc" style="margin-top:44px; width:600px; font-size:21px;">以博朗式功能主义为灵感，<br>构建更轻盈、年轻、易佩戴的智能手表体验。</div>
+    <div class="kv-row">
+      <div class="kv"><div class="k">客户</div><div class="v">realme</div></div>
+      <div class="kv"><div class="k">角色</div><div class="v">工业设计</div></div>
+      <div class="kv"><div class="k">状态</div><div class="v">已上市</div></div>
+      <div class="kv"><div class="k">市场</div><div class="v">全球</div></div>
+    </div>
+  </div>
+  <div class="imgbox contain imgbox--product page-01__hero">
+    <img
+      src="../assets/hero_white_cutout.png"
+      alt="realme Watch S5 — Sand White"
+      width="1434"
+      height="1365"
+      decoding="sync"
+      loading="eager"
+    >
+  </div>
+  <div class="hero-accent" aria-hidden="true"></div>
+  <div class="hero-loop" aria-hidden="true"></div>
+  <div class="hero-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+</section></div>
+
+<div class="deck-scaler"><section class="page" data-page="2">
+  <div class="topline">量产项目</div>
+  <div class="page-no">02 / 05</div>
+  <div style="position:absolute; left:52px; top:104px; width:420px;">
+    <h1 class="title" style="font-size:76px;">设计方向</h1>
+    <div class="desc" style="margin-top:18px; width:390px; font-size:19px;">项目希望在功能感与柔和力之间找到平衡：保留清晰、克制的表盘秩序，同时通过更柔和的体量与配色，让产品更适合日常佩戴。</div>
+    <div style="margin-top:38px; width:420px;">
+      <div class="listline">
+        <div class="numdot">01</div>
+        <div><h4>均衡比例</h4><p>窄表圈与克制厚度，塑造更轻盈的腕上观感。</p></div>
+      </div>
+      <div class="listline">
+        <div class="numdot">02</div>
+        <div><h4>功能层级</h4><p>表冠、按键与刻度关系清晰，提升识别与操作感。</p></div>
+      </div>
+      <div class="listline">
+        <div class="numdot">03</div>
+        <div><h4>年轻极简</h4><p>减少视觉噪音，以柔和圆形语言传达友好气质。</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="imgbox" style="position:absolute; left:540px; top:114px; width:545px; height:650px;"><img src="../assets/wrist.jpg" alt="Wrist lifestyle" width="1090" height="1300" decoding="async" loading="lazy"></div>
+  <div class="imgbox" style="position:absolute; right:84px; top:114px; width:410px; height:300px;"><img src="../assets/front_dark.jpg" alt="Dark variant close-up" width="820" height="600" decoding="async" loading="lazy"></div>
+  <div class="imgbox" style="position:absolute; right:84px; bottom:136px; width:410px; height:300px;"><img src="../assets/front_white.jpg" alt="Light variant close-up" width="820" height="600" decoding="async" loading="lazy"></div>
+</section></div>
+
+<div class="deck-scaler"><section class="page" data-page="3">
+  <div class="topline">量产项目</div>
+  <div class="page-no">03 / 05</div>
+  <div style="position:absolute; left:52px; top:110px; width:550px;">
+    <h1 class="title" style="font-size:82px;">CMF策略</h1>
+    <div class="desc" style="margin-top:20px; width:520px; font-size:20px;">通过两种主色方向，建立从温和日常到运动科技的视觉层次。</div>
+    <div class="swatch-item" style="margin-top:42px; border-bottom:1px solid rgba(32,32,32,.09);">
+      <div class="swatch" style="background:#efebe0;"></div>
+      <div>
+        <h3 class="swatch-title">沙白 Sand White</h3>
+        <div class="swatch-meta">安静 / 亲和 / 轻盈</div>
+        <div class="swatch-desc">低对比配色与浅色表带，让整机更柔和，适合日常与通勤场景。</div>
+      </div>
+    </div>
+    <div class="swatch-item" style="margin-top:12px;">
+      <div class="swatch" style="background:#5f636d;"></div>
+      <div>
+        <h3 class="swatch-title">岩灰 Rock Grey</h3>
+        <div class="swatch-meta">专注 / 运动 / 稳定</div>
+        <div class="swatch-desc">更深的机身与表带组合，强化运动属性与科技感。</div>
+      </div>
+    </div>
+    <div class="icon-labels">
+      <div class="icon-label"><div class="mini" aria-hidden="true">◯</div><span>喷砂金属中框</span></div>
+      <div class="icon-label"><div class="mini" aria-hidden="true">⌁</div><span>亲肤硅胶表带</span></div>
+      <div class="icon-label"><div class="mini" aria-hidden="true">◔</div><span>克制图形语言</span></div>
+    </div>
+  </div>
+  <div class="imgbox" style="position:absolute; right:88px; top:110px; width:740px; height:405px;"><img src="../assets/cmf_dark.jpg" alt="Rock Grey CMF" width="1480" height="810" decoding="async" loading="lazy"></div>
+  <div class="imgbox" style="position:absolute; right:458px; bottom:90px; width:370px; height:248px;"><img src="../assets/cmf_light.jpg" alt="Sand White CMF" width="740" height="496" decoding="async" loading="lazy"></div>
+  <div class="imgbox" style="position:absolute; right:88px; bottom:90px; width:350px; height:248px;"><img src="../assets/glass_samples.jpg" alt="Glass samples" width="700" height="496" decoding="async" loading="lazy"></div>
+</section></div>
+
+<div class="deck-scaler"><section class="page" data-page="4">
+  <div class="topline">量产项目</div>
+  <div class="page-no">04 / 05</div>
+  <div style="position:absolute; left:52px; top:104px; width:420px;">
+    <h1 class="title" style="font-size:76px;">开发与验证</h1>
+    <div class="desc" style="margin-top:18px; width:420px; font-size:19px;">除外观设计外，项目还涉及比例验证、结构协同、图形整合与配件落地等多轮推进。</div>
+    <div style="margin-top:26px; width:420px;">
+      <div class="listline">
+        <div class="numdot">01</div>
+        <div><h4>形态验证</h4><p>通过3D mockup反复校验比例、表圈厚度与按键关系。</p></div>
+      </div>
+      <div class="listline">
+        <div class="numdot">02</div>
+        <div><h4>结构协同</h4><p>围绕机身、后盖与内部件关系，持续优化装配与整体平衡。</p></div>
+      </div>
+      <div class="listline">
+        <div class="numdot">03</div>
+        <div><h4>图形整合</h4><p>统一表圈刻度、底部铭牌与法规信息，兼顾识别度与生产可行性。</p></div>
+      </div>
+      <div class="listline">
+        <div class="numdot">04</div>
+        <div><h4>配件落地</h4><p>配合表带与充电配件细节，使整机语言更加完整一致。</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="imgbox" style="position:absolute; left:530px; top:286px; width:315px; height:420px;"><img src="../assets/model_process.jpg" alt="3D proportion study" width="630" height="840" decoding="async" loading="lazy"></div>
+  <div class="imgbox" style="position:absolute; left:865px; top:286px; width:392px; height:420px;"><img src="../assets/parts_flatlay.png" alt="Parts flatlay" width="784" height="840" decoding="async" loading="lazy"></div>
+  <div class="imgbox" style="position:absolute; right:82px; top:286px; width:260px; height:420px;"><img src="../assets/laser_artwork.jpg" alt="Regulatory artwork" width="520" height="840" decoding="async" loading="lazy"></div>
+  <div class="caption" style="position:absolute; left:530px; top:726px; width:315px;">3D比例验证</div>
+  <div class="caption" style="position:absolute; left:865px; top:726px; width:392px;">样机拆解与部件梳理</div>
+  <div class="caption" style="position:absolute; right:82px; top:726px; width:260px;">法规图形确认</div>
+</section></div>
+
+<div class="deck-scaler"><section class="page" data-page="5">
+  <div class="topline">量产项目</div>
+  <div class="page-no">05 / 05</div>
+  <div style="position:absolute; left:52px; top:110px; width:540px;">
+    <h1 class="title" style="font-size:68px;">最终成果与我的贡献</h1>
+    <div class="desc" style="margin-top:18px; width:500px; font-size:18px;">项目从概念探索走向正式上市，将设计意图稳定转化为可量产产品。</div>
+    <div style="margin-top:20px; width:500px;">
+      <div class="section-title" style="font-size:24px; margin-bottom:6px;">我的贡献</div>
+      <ul class="bullets" style="margin-top:0; padding-left:20px;">
+        <li style="font-size:16px; line-height:1.45;">工业设计方向定义</li>
+        <li style="font-size:16px; line-height:1.45;">CMF方案推进</li>
+        <li style="font-size:16px; line-height:1.45;">机身 / 表冠 / 表圈 / 表带细节优化</li>
+        <li style="font-size:16px; line-height:1.45;">供应商跟进与量产支持</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-top:18px; padding:22px 24px 18px; width:500px;">
+      <div class="section-title">产品亮点</div>
+      <div class="product-grid">
+        <div class="cell"><div class="ico" aria-hidden="true">☼</div><div class="big">1.43'' AMOLED</div><div class="small">显示</div></div>
+        <div class="cell"><div class="ico" aria-hidden="true">☀</div><div class="big">1500nit</div><div class="small">高亮屏</div></div>
+        <div class="cell"><div class="ico" aria-hidden="true">⌖</div><div class="big">GPS</div><div class="small">+ 5 GNSS</div></div>
+        <div class="cell"><div class="ico" aria-hidden="true">🏃</div><div class="big">110种</div><div class="small">运动模式</div></div>
+        <div class="cell"><div class="ico" aria-hidden="true">▣</div><div class="big">20天</div><div class="small">超长续航</div></div>
+        <div class="cell"><div class="ico" aria-hidden="true">◔</div><div class="big">5ATM</div><div class="small">防水</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="imgbox contain" style="position:absolute; right:88px; top:118px; width:850px; height:600px;"><img src="../assets/watch_flat.jpg" alt="Final product lineup" width="1700" height="1200" decoding="async" loading="lazy"></div>
+</section></div>
+
+</main>
+
+<script>
+(function () {
+  var embed = new URLSearchParams(window.location.search).get("embed") === "1";
+  if (embed) document.body.classList.add("is-embed");
+
+  function reportEmbedHeight() {
+    if (!embed || !window.parent || window.parent === window) return;
+    var h = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: "lyndeck-height", height: h }, "*");
+  }
+
+  function fitDeckPages() {
+    if (window.matchMedia("print").matches) return;
+    document.querySelectorAll(".deck-scaler").forEach(function (wrap) {
+      var page = wrap.querySelector(".page");
+      if (!page) return;
+      var scale = wrap.clientWidth / 1600;
+      page.style.transform = "scale(" + scale + ")";
+      wrap.style.height = 900 * scale + "px";
+      wrap.querySelectorAll("img").forEach(function (img) {
+        img.style.imageRendering = "auto";
+      });
+    });
+    reportEmbedHeight();
+  }
+
+  fitDeckPages();
+  window.addEventListener("resize", fitDeckPages);
+  if (embed) {
+    window.addEventListener("load", reportEmbedHeight);
+    if (typeof ResizeObserver !== "undefined") {
+      new ResizeObserver(reportEmbedHeight).observe(document.body);
+    }
+  }
+  window.addEventListener("beforeprint", function () {
+    document.querySelectorAll(".page").forEach(function (p) {
+      p.style.transform = "none";
+    });
+  });
+})();
+</script>
+</body>
+</html>

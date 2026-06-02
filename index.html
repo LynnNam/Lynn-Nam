@@ -60,6 +60,36 @@
     </div>
   </div>
 
+  <div class="portfolio-gate" id="portfolio-gate" hidden>
+    <div class="portfolio-gate__backdrop" data-portfolio-gate-close aria-hidden="true"></div>
+    <div
+      class="portfolio-gate__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="portfolio-gate-title"
+      aria-describedby="portfolio-gate-desc"
+    >
+      <button type="button" class="portfolio-gate__close" id="portfolio-gate-close" aria-label="Close">×</button>
+      <h2 class="portfolio-gate__title" id="portfolio-gate-title">Private Portfolio</h2>
+      <p class="portfolio-gate__desc" id="portfolio-gate-desc">Please enter the password to view my portfolio.</p>
+      <form class="portfolio-gate__form" id="portfolio-gate-form">
+        <label class="portfolio-gate__field">
+          <span class="visually-hidden">Password</span>
+          <input
+            type="password"
+            id="portfolio-gate-password"
+            name="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            required
+          >
+        </label>
+        <p class="portfolio-gate__error" id="portfolio-gate-error" hidden>密码不正确，请重新输入</p>
+        <button type="submit" class="portfolio-gate__submit">Enter</button>
+      </form>
+    </div>
+  </div>
+
   <script src="js/dom-safe.js"></script>
   <script src="script.js"></script>
 </body>

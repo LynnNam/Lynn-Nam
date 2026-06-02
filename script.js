@@ -254,17 +254,106 @@ function renderBrand() {
   `;
 }
 
+const PORTFOLIO_GATE_PASSWORD = "Lynn2026";
+const PORTFOLIO_GATE_STORAGE_KEY = "lynn-portfolio-unlocked";
+const PORTFOLIO_PAGE_URL = "portfolio.html";
+
+function isPortfolioUnlocked() {
+  try {
+    return localStorage.getItem(PORTFOLIO_GATE_STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function setPortfolioUnlocked() {
+  try {
+    localStorage.setItem(PORTFOLIO_GATE_STORAGE_KEY, "1");
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
+
+function goToPortfolioPage() {
+  window.location.href = PORTFOLIO_PAGE_URL;
+}
+
+function openPortfolioGateModal() {
+  const modal = getEl("portfolio-gate");
+  if (!modal) return;
+  modal.hidden = false;
+  document.body.classList.add("portfolio-gate-open");
+  const err = getEl("portfolio-gate-error");
+  const input = getEl("portfolio-gate-password");
+  if (err) err.hidden = true;
+  if (input) {
+    input.value = "";
+    input.focus();
+  }
+}
+
+function closePortfolioGateModal() {
+  const modal = getEl("portfolio-gate");
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.classList.remove("portfolio-gate-open");
+}
+
+function initPortfolioGate() {
+  const link = getEl("portfolioProtectedLink");
+  if (!link) return;
+
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (isPortfolioUnlocked()) {
+      goToPortfolioPage();
+      return;
+    }
+    openPortfolioGateModal();
+  });
+
+  const form = getEl("portfolio-gate-form");
+  const modal = getEl("portfolio-gate");
+  const input = getEl("portfolio-gate-password");
+  const err = getEl("portfolio-gate-error");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!input) return;
+    if (input.value === PORTFOLIO_GATE_PASSWORD) {
+      setPortfolioUnlocked();
+      goToPortfolioPage();
+      return;
+    }
+    if (err) err.hidden = false;
+    input.focus();
+    input.select();
+  });
+
+  modal?.querySelectorAll("[data-portfolio-gate-close]").forEach((el) => {
+    el.addEventListener("click", closePortfolioGateModal);
+  });
+  getEl("portfolio-gate-close")?.addEventListener("click", closePortfolioGateModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal && !modal.hidden) closePortfolioGateModal();
+  });
+}
+
 function renderSidebar() {
   const navItems = [
     { href: "#top", label: "Home" },
-    { href: "portfolio.html", label: "Portfolio" },
+    { href: "#", label: "Portfolio", id: "portfolioProtectedLink" },
     { href: "#contact", label: "Contact" },
   ];
 
   const navEl = getEl("sidebar-nav");
   if (!navEl) return;
   navEl.innerHTML = navItems
-    .map((item) => `<a href="${item.href}">${item.label}</a>`)
+    .map((item) => {
+      const idAttr = item.id ? ` id="${item.id}"` : "";
+      return `<a href="${item.href}"${idAttr}>${item.label}</a>`;
+    })
     .join("");
 }
 
@@ -696,6 +785,7 @@ async function init() {
     await loadData();
     renderBrand();
     renderSidebar();
+    initPortfolioGate();
     renderWelcome();
     initHeroMap();
     initShenzhenWeather();

@@ -82,6 +82,53 @@
   text-shadow: none;
 }
 
+/* Cover art hero (e.g. realme Watch S5) — same block structure, 16:9 key visual */
+.project-detail-hero__media--cover-art {
+  background: #ebe8e3;
+  overflow: hidden;
+}
+
+.project-detail-hero__media--cover-art .project-detail-hero__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 16:9 deck presentation (e.g. realme Watch S5) */
+.project-deck-host.project-detail-section {
+  border-top: 1px solid rgba(26, 26, 26, 0.06);
+}
+
+/* 与 .image-gallery__grid .board-slide 相同：区块内 70% 宽、水平居中 */
+.project-deck-host .project-deck-iframe,
+.project-deck-host .project-deck-host__hint {
+  width: 70%;
+  max-width: 70%;
+  margin-inline: auto;
+}
+
+.project-deck-iframe {
+  display: block;
+  min-height: 0;
+  height: 720px;
+  border: none;
+  background: #f5f2ec;
+  overflow: hidden;
+}
+
+.project-deck-host__hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.72rem;
+  color: var(--text-muted, #6b6b6b);
+  text-align: center;
+}
+
+.project-deck-host__hint a {
+  color: inherit;
+}
+
 /* OMNI-D Mobility — dark charcoal page */
 .project-detail-page--omni-mobility {
   --project-bg: #333333;
@@ -367,8 +414,20 @@
   border-bottom-color: var(--project-text);
 }
 
-.project-detail-app {
-  min-height: 100vh;
+/* 整页滚动：顶栏 / 内容 / END 随文档一起滚动（与经典项目详情一致） */
+.project-detail-page {
+  overflow-x: hidden;
+}
+
+.project-detail-page .site-nav-shell {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+}
+
+.project-detail-page .project-detail-app {
+  min-height: 0;
 }
 
 .project-detail-nav {
@@ -395,7 +454,7 @@
 }
 
 .project-detail-page #project-detail-root {
-  padding-top: var(--site-nav-shell-h, 4.85rem);
+  padding-top: 0;
 }
 
 .project-detail-hero {

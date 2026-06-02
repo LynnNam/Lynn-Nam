@@ -70,6 +70,82 @@
   },
   "projects": [
     {
+      "id": "realme-watch-s5",
+      "category": "wearable",
+      "categoryLabel": "Smart Wearable",
+      "title": "realme Watch S5",
+      "displayTitle": "realme Watch S5",
+      "description": "Mass-production smartwatch — industrial design, CMF, and global launch.",
+      "keywords": [
+        "Smartwatch",
+        "CMF",
+        "Mass Production",
+        "realme"
+      ],
+      "coverImage": "assets/cover.jpg",
+      "deckPresentation": true,
+      "deckPath": "projects/realme-watch-s5.html",
+      "boards": [],
+      "tagline": {
+        "en": "Balanced proportion, clear hierarchy, and youth-minimal CMF for a global mass-production smartwatch.",
+        "zh": "以均衡比例、功能层级与年轻极简 CMF，完成全球量产智能手表工业设计。",
+        "kr": "균형 잡힌 비례, 명확한 기능 계층, 젊은 미니멀 CMF로 글로벌 양산 스마트워치를 완성했습니다."
+      },
+      "overview": {
+        "en": "realme Watch S5 is a mass-production smartwatch program from direction definition through CMF, detailing, supplier follow-up, and launch support. The work balances Braun-inspired functional clarity with soft, everyday wearability across Sand White and Rock Grey narratives.",
+        "zh": "realme Watch S5 为量产智能手表项目，涵盖设计方向、CMF、细节优化、供应商跟进与上市支持。在博朗式功能清晰与日常亲和之间，完成沙白与岩灰双主线表达。",
+        "kr": "realme Watch S5는 방향 정의부터 CMF, 디테일, 공급망, 양산 지원까지 아우르는 스마트워치 프로그램입니다. 브라운식 기능 명료함과 일상 착용감 사이에서 샌드 화이트·록 그레이 내러티브를 구축했습니다."
+      },
+      "highlights": [
+        {
+          "title": { "en": "Design Direction", "zh": "设计方向", "kr": "디자인 방향" },
+          "text": {
+            "en": "Balanced proportion, functional hierarchy, and youth-minimal form language.",
+            "zh": "均衡比例、功能层级与年轻极简形态语言。",
+            "kr": "균형 비례, 기능 계층, 젊은 미니멀 형태 언어."
+          }
+        },
+        {
+          "title": { "en": "CMF Strategy", "zh": "CMF 策略", "kr": "CMF 전략" },
+          "text": {
+            "en": "Sand White and Rock Grey with blasted metal frame and skin-friendly silicone.",
+            "zh": "沙白与岩灰双主线，喷砂金属中框与亲肤硅胶表带。",
+            "kr": "샌드 화이트·록 그레이, 블라스트 메탈 프레임, 스킨프렌들리 실리콘."
+          }
+        },
+        {
+          "title": { "en": "Development", "zh": "开发验证", "kr": "개발 검증" },
+          "text": {
+            "en": "Form validation, structure alignment, graphics integration, and accessory rollout.",
+            "zh": "形态验证、结构协同、图形整合与配件落地。",
+            "kr": "형태 검증, 구조 협업, 그래픽 통합, 액세서리 롤아웃."
+          }
+        },
+        {
+          "title": { "en": "Launch", "zh": "上市成果", "kr": "출시 성과" },
+          "text": {
+            "en": "Shipped globally with AMOLED display, multi-GNSS, and 20-day battery positioning.",
+            "zh": "全球上市，AMOLED、多星定位与 20 天续航等产品亮点。",
+            "kr": "AMOLED, 멀티 GNSS, 20일 배터리 포지셔닝으로 글로벌 출시."
+          }
+        }
+      ],
+      "portfolioLine": "ID · CMF · Mass Production · realme · 2025–2026",
+      "role": "Industrial Designer",
+      "year": "2025",
+      "cardSummary": {
+        "en": "Mass-production smartwatch — industrial design, CMF, and global launch.",
+        "zh": "量产智能手表 — 工业设计、CMF 与全球上市。",
+        "kr": "양산 스마트워치 — 산업디자인, CMF, 글로벌 출시."
+      },
+      "myRole": [
+        "Industrial design direction",
+        "CMF development",
+        "Body / crown / bezel / strap detailing",
+        "Supplier follow-up and mass-production support"
+      ]
+    },
+    {
       "id": "chronos-wearable",
       "category": "wearable",
       "categoryLabel": "Smart Wearable",

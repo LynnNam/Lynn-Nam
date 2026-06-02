@@ -28,12 +28,15 @@ function isI18nBlock(value) {
 
 function enrichProject(project) {
   const taglineEn = isI18nBlock(project.tagline) ? project.tagline.en : project.tagline || "";
+  const boards = project.boards || [];
+  const coverSrc =
+    project.coverImage || artboardSrc(project.coverBoard, project.imageBase);
   return {
     ...project,
     taglineEn,
-    image: artboardSrc(project.coverBoard, project.imageBase),
+    image: coverSrc,
     boardContent: project.boardContent || null,
-    gallery: project.boards.map((board) => {
+    gallery: boards.map((board) => {
       const content = project.boardContent?.[String(board)] ?? null;
       return {
       board,
