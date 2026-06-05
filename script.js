@@ -255,13 +255,19 @@ function renderBrand() {
 }
 
 function initPortfolioGate() {
-  initPortfolioGateLink("portfolioProtectedLink");
+  initHomePortfolioGate();
 }
 
 function renderSidebar() {
   const navItems = [
     { href: "#top", label: "Home" },
-    { href: "#", label: "Portfolio", id: "portfolioProtectedLink" },
+    {
+      href: "#",
+      label: "Portfolio",
+      id: "portfolioProtectedLink",
+      gate: true,
+      gateHref: "portfolio.html",
+    },
     { href: "#contact", label: "Contact" },
   ];
 
@@ -270,7 +276,10 @@ function renderSidebar() {
   navEl.innerHTML = navItems
     .map((item) => {
       const idAttr = item.id ? ` id="${item.id}"` : "";
-      return `<a href="${item.href}"${idAttr}>${item.label}</a>`;
+      const gateAttrs = item.gate
+        ? ` data-portfolio-gate-link data-portfolio-href="${item.gateHref || "portfolio.html"}"`
+        : "";
+      return `<a href="${item.href}"${idAttr}${gateAttrs}>${item.label}</a>`;
     })
     .join("");
 }
@@ -703,7 +712,6 @@ async function init() {
     await loadData();
     renderBrand();
     renderSidebar();
-    initPortfolioGate();
     renderWelcome();
     initHeroMap();
     initShenzhenWeather();
@@ -714,6 +722,7 @@ async function init() {
     renderFooter();
     if (config?.site?.name) document.title = config.site.name;
     hideLoading();
+    initPortfolioGate();
   } catch (err) {
     const isFileProtocol = window.location.protocol === "file:";
     const msg = isFileProtocol
