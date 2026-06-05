@@ -3,9 +3,18 @@
 :root {
   --font: "Inter", "DM Sans", "Noto Sans SC", "Noto Sans KR", system-ui, sans-serif;
   --font-avenir: "Avenir Next", "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-oppo: "OPPO Sans", "OPPO Sans 4.0", var(--font);
   --fw-light: 300;
   --fw-regular: 400;
   --fw-medium: 500;
+}
+
+@font-face {
+  font-family: "OPPO Sans";
+  src: url("fonts/OPPOSans-4.0-GB2312.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 html {

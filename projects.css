@@ -82,18 +82,20 @@
   text-shadow: none;
 }
 
-/* Cover art hero (e.g. realme Watch S5) — same block structure, 16:9 key visual */
 .project-detail-hero__media--cover-art {
   background: #ebe8e3;
   overflow: hidden;
+  max-width: min(2048px, 100%);
+  margin-inline: auto;
 }
 
 .project-detail-hero__media--cover-art .project-detail-hero__img {
+  display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: center;
+  max-width: 2048px;
+  object-fit: contain;
+  object-position: center top;
 }
 
 /* 16:9 deck presentation (e.g. realme Watch S5) */

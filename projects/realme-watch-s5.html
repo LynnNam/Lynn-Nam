@@ -391,15 +391,17 @@ body.is-embed .deck-scaler {
 }
 
 .page--cover {
+  width: 2048px;
+  height: 1210px;
   padding: 0;
   background: #f0eeea;
 }
 
 .page-cover-img {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 2048px;
+  height: 1210px;
+  object-fit: fill;
   object-position: center;
 }
 
@@ -439,33 +441,17 @@ body.is-embed .deck-scaler {
 
 <main class="deck-document" id="deck-document">
 
-<div class="deck-scaler"><section class="page page--01" data-page="1">
-  <div class="topline">量产项目<span class="bar"></span></div>
-  <div class="page-no">01 / 05</div>
-  <div class="page-01__copy">
-    <h1 class="title" style="font-size:84px;">realme Watch S5</h1>
-    <div class="subtitle" style="font-size:18px; margin-top:20px;">智能手表量产项目 / 工业设计 / 2025–2026</div>
-    <div class="desc" style="margin-top:44px; width:600px; font-size:21px;">以博朗式功能主义为灵感，<br>构建更轻盈、年轻、易佩戴的智能手表体验。</div>
-    <div class="kv-row">
-      <div class="kv"><div class="k">客户</div><div class="v">realme</div></div>
-      <div class="kv"><div class="k">角色</div><div class="v">工业设计</div></div>
-      <div class="kv"><div class="k">状态</div><div class="v">已上市</div></div>
-      <div class="kv"><div class="k">市场</div><div class="v">全球</div></div>
-    </div>
-  </div>
-  <div class="imgbox contain imgbox--product page-01__hero">
-    <img
-      src="../assets/hero_white_cutout.png"
-      alt="realme Watch S5 — Sand White"
-      width="1434"
-      height="1365"
-      decoding="sync"
-      loading="eager"
-    >
-  </div>
-  <div class="hero-accent" aria-hidden="true"></div>
-  <div class="hero-loop" aria-hidden="true"></div>
-  <div class="hero-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="deck-scaler"><section class="page page--cover" data-page="1">
+  <img
+    class="page-cover-img"
+    src="../assets/cover.jpg"
+    alt="realme Watch S5 — Mass Production Project"
+    width="2048"
+    height="1210"
+    decoding="sync"
+    loading="eager"
+  >
+  <div class="page-no page-no--cover">01 / 05</div>
 </section></div>
 
 <div class="deck-scaler"><section class="page" data-page="2">
@@ -608,12 +594,11 @@ body.is-embed .deck-scaler {
     document.querySelectorAll(".deck-scaler").forEach(function (wrap) {
       var page = wrap.querySelector(".page");
       if (!page) return;
-      var scale = wrap.clientWidth / 1600;
+      var designW = page.classList.contains("page--cover") ? 2048 : 1600;
+      var designH = page.classList.contains("page--cover") ? 1210 : 900;
+      var scale = wrap.clientWidth / designW;
       page.style.transform = "scale(" + scale + ")";
-      wrap.style.height = 900 * scale + "px";
-      wrap.querySelectorAll("img").forEach(function (img) {
-        img.style.imageRendering = "auto";
-      });
+      wrap.style.height = designH * scale + "px";
     });
     reportEmbedHeight();
   }
