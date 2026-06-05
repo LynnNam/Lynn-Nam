@@ -368,4 +368,4 @@ async function init() {
   }
 }
 
-runOnDomReady(init);
+runOnDomReady(() => requirePortfolioUnlock(init));
