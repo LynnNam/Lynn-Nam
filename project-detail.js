@@ -627,6 +627,10 @@ async function init() {
   const app = getEl("project-detail-app");
   const params = new URLSearchParams(window.location.search);
   const id = params.get("project");
+  if (!id) {
+    window.location.replace("portfolio.html#work");
+    return;
+  }
   if (id === "omni-mobility") {
     document.body.classList.add("project-detail-page--omni-mobility");
   }
@@ -637,7 +641,9 @@ async function init() {
     const project = getProjectById(projects, id);
 
     if (!project) {
-      if (loading) loading.textContent = "未找到该项目";
+      if (loading) {
+        loading.innerHTML = `未找到该项目 · <a href="portfolio.html#work">返回作品集</a>`;
+      }
       return;
     }
 
