@@ -47,7 +47,6 @@ function renderNav() {
       <ul class="portfolio-nav-links">
         <li><a href="index.html#top">Home</a></li>
         <li><a href="#work">Projects</a></li>
-        <li><a href="#about">${escapeHtml(siteData.about.title)}</a></li>
         <li><a href="#contact">Contact</a></li>
         ${pdfBtnHtml}
       </ul>
@@ -187,23 +186,6 @@ function renderPortfolioHeroRoleCta() {
         <a class="portfolio-strip-cta__primary" href="${escapeHtml(pfHref)}">VIEW PORTFOLIO</a>
         <a class="portfolio-strip-cta__ghost" href="${escapeHtml(pdfHref)}" download="${escapeHtml(pdfName)}">DOWNLOAD PDF PORTFOLIO</a>
       </div>
-    </div>
-  `;
-}
-
-function renderAbout() {
-  const a = siteData?.about;
-  const i = a?.intro;
-  const aboutEl = getEl("about");
-  if (!i || !aboutEl) return;
-
-  aboutEl.innerHTML = `
-    <p class="section-label about-section-label">${escapeHtml(a.title)}</p>
-    <div class="about-brief" lang="multi">
-      <p class="about-brief__en-lead">${escapeHtml(i.enLead)}</p>
-      <p class="about-brief__en-detail">${escapeHtml(i.enDetail)}</p>
-      <p class="about-brief__zh">${escapeHtml(i.zh)}</p>
-      <p class="about-brief__kr">${escapeHtml(i.kr)}</p>
     </div>
   `;
 }
@@ -371,7 +353,6 @@ async function init() {
     renderNav();
     renderHeroArchive();
     renderPortfolioHeroRoleCta();
-    renderAbout();
     renderProjectsSection();
     renderFooter();
     if (siteData?.site?.name) document.title = siteData.site.name;
