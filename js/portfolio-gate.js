@@ -1,4 +1,4 @@
-/** Portfolio password gate — shared by index.html and portfolio.html */
+/** Portfolio password gate — shared by index.html, portfolio.html, and project.html */
 
 const PORTFOLIO_GATE_PASSWORD = "Lynn2026";
 const PORTFOLIO_GATE_STORAGE_KEY = "lynn-portfolio-unlocked";
@@ -98,7 +98,7 @@ function initPortfolioGateLink(linkId = "portfolioProtectedLink") {
   });
 }
 
-/** portfolio.html: block page until unlocked (same localStorage key). */
+/** portfolio.html / project.html: block page until unlocked (same localStorage key). */
 function requirePortfolioUnlock(onUnlocked) {
   bindPortfolioGateModal({
     onSuccess: onUnlocked,
@@ -112,8 +112,8 @@ function requirePortfolioUnlock(onUnlocked) {
     return;
   }
 
-  const loading = getEl("portfolio-loading");
-  const app = getEl("portfolio-app");
+  const loading = getEl("portfolio-loading") || getEl("project-loading");
+  const app = getEl("portfolio-app") || getEl("project-detail-app");
   if (loading) loading.hidden = true;
   if (app) app.hidden = true;
   openPortfolioGateModal();

@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="portfolio-gate.css">
   <link rel="stylesheet" href="site-nav.css">
   <link rel="stylesheet" href="portfolio.css">
   <link rel="stylesheet" href="projects.css">
@@ -23,7 +24,38 @@
     <main id="project-detail-root"></main>
   </div>
 
+  <div class="portfolio-gate" id="portfolio-gate" hidden>
+    <div class="portfolio-gate__backdrop" data-portfolio-gate-close aria-hidden="true"></div>
+    <div
+      class="portfolio-gate__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="portfolio-gate-title"
+      aria-describedby="portfolio-gate-desc"
+    >
+      <button type="button" class="portfolio-gate__close" id="portfolio-gate-close" aria-label="Close">×</button>
+      <h2 class="portfolio-gate__title" id="portfolio-gate-title">Private Portfolio</h2>
+      <p class="portfolio-gate__desc" id="portfolio-gate-desc">Please enter the password to view my portfolio.</p>
+      <form class="portfolio-gate__form" id="portfolio-gate-form">
+        <label class="portfolio-gate__field">
+          <span class="visually-hidden">Password</span>
+          <input
+            type="password"
+            id="portfolio-gate-password"
+            name="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            required
+          >
+        </label>
+        <p class="portfolio-gate__error" id="portfolio-gate-error" hidden>密码不正确，请重新输入</p>
+        <button type="submit" class="portfolio-gate__submit">Enter</button>
+      </form>
+    </div>
+  </div>
+
   <script src="js/dom-safe.js"></script>
+  <script src="js/portfolio-gate.js"></script>
   <script src="js/site-nav.js"></script>
   <script src="js/projects-shared.js"></script>
   <script src="js/world-map-dots.js"></script>
