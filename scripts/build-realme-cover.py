@@ -71,13 +71,22 @@ def paste_watch(canvas: Image.Image, watch_src: Path) -> None:
     canvas.alpha_composite(watch, (WATCH_X, WATCH_Y))
 
 
+SIDE_LINE_GAP = 8
+SIDE_LINE_LEN = 56  # single rule; prior dash+20px extend + 20px more
+
+
 def draw_sidebar(canvas: Image.Image, font: ImageFont.FreeTypeFont) -> None:
-    label = Image.new("RGBA", (520, 64), (0, 0, 0, 0))
-    ImageDraw.Draw(label).text(
-        (0, 0),
-        "★ Mass Production Project —",
+    label = Image.new("RGBA", (620, 64), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(label)
+    text = "★ Mass Production Project"
+    draw.text((0, 0), text, fill=(55, 55, 55, 255), font=font)
+    bb = draw.textbbox((0, 0), text, font=font)
+    line_y = (bb[1] + bb[3]) // 2
+    x0 = bb[2] + SIDE_LINE_GAP
+    draw.line(
+        [(x0, line_y), (x0 + SIDE_LINE_LEN, line_y)],
         fill=(55, 55, 55, 255),
-        font=font,
+        width=2,
     )
     label = label.rotate(SIDE_ROTATE, expand=True)
     canvas.alpha_composite(label, (SIDE_X, SIDE_Y))

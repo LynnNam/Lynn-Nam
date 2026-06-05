@@ -62,41 +62,14 @@ function buildCaseStudySections(project) {
       : "스케치 반복, CMF 탐색, 엔지니어링 피드백, 프로토타입 정제 루프.",
   };
 
-  const finalDesign = {
-    en: "Final CMF, hero visuals, and in-context photography are collected in the gallery below.",
-    zh: "最终 CMF、主视觉与情境摄影见下方图库。",
-    kr: "최종 CMF, 히어로 비주얼, 컨텍스트 사진은 아래 갤러리에 모았습니다.",
-  };
-
   const roles = project.myRole && project.myRole.length ? project.myRole : ["Industrial Design", "CMF direction"];
-
-  const takeEn = hl
-    .slice(0, 3)
-    .map((h) => normalizeTri(h.text).en)
-    .join(" ");
-  const takeZh = hl
-    .slice(0, 3)
-    .map((h) => normalizeTri(h.text).zh)
-    .join(" ");
-  const takeKr = hl
-    .slice(0, 3)
-    .map((h) => normalizeTri(h.text).kr)
-    .join(" ");
-  const line = project.portfolioLine || "ID, CMF, and manufacturing alignment";
-  const takeaways = {
-    en: `${takeEn || o.en} Focus: ${line}.`,
-    zh: `${takeZh || o.zh} 重点：${line}。`,
-    kr: `${takeKr || o.kr} 포커스: ${line}.`,
-  };
 
   return [
     { key: "overview", title: L.overview, body: o },
     { key: "problem", title: L.problem, body: problem },
     { key: "direction", title: L.direction, body: direction },
     { key: "process", title: L.process, body: process },
-    { key: "final", title: L.final, body: finalDesign },
     { key: "role", title: L.role, roles },
-    { key: "takeaways", title: L.takeaways, body: takeaways },
   ];
 }
 
@@ -523,7 +496,10 @@ function renderProjectHero(project) {
 }
 
 function renderImageGallery(project) {
-  const figures = project.gallery
+  const slides = project.gallery.filter((img) => !img.isCover);
+  if (!slides.length) return "";
+
+  const figures = slides
     .map((img, i) => renderBoardFigure(img, { priority: i === 0 }))
     .join("");
 

@@ -127,14 +127,14 @@ a {
   --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", "Consolas", monospace;
   width: 100%;
   background: var(--hero-portrait-bg);
-  padding-top: calc(var(--site-nav-shell-h, 4.85rem) + 0.75rem);
+  padding-top: calc(var(--site-nav-shell-h, 4.85rem) + 0.5rem);
 }
 
 .hero-archive {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(1.25rem, 3vw, 2rem) var(--content-padding);
+  padding: clamp(1rem, 2.5vw, 1.6rem) var(--content-padding);
   background: var(--hero-portrait-bg);
   font-family: var(--font-mono);
   font-weight: 300;
@@ -145,8 +145,7 @@ a {
 .hero-archive__frame {
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2.5vw, 1.75rem);
-  min-height: min(72vh, 720px);
+  gap: clamp(0.75rem, 1.6vw, 1.15rem);
 }
 
 .hero-archive__link {
@@ -187,9 +186,9 @@ a {
 .hero-archive__body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(220px, 38vw) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2rem);
-  flex: 1;
+  align-items: start;
+  gap: clamp(0.9rem, 2.5vw, 1.65rem);
+  padding-top: clamp(1.25rem, 3.5vh, 2.25rem);
 }
 
 .hero-archive__side {
